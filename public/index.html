@@ -25,21 +25,6 @@
 
       // AUTH CALL SAMPLE
       function callFunctionsAfterGettingTokens({ access_token }) {
-        //   call for balance check
-        // gsma.merchantPay({
-        //   type: 'balanceCheck',
-        //   auth: {
-        //     apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue',
-        //     accessToken: access_token,
-        //   },
-        //   onSucess: (status, data) => {
-        //     console.log('handling sucess in Ui', status, data);
-        //   },
-        //   onFailure: (status, data) => {
-        //     console.log('handling error in Ui', status, data);
-        //   },
-        // });
-
         //  call for pay init
         gsma.merchantPay({
           type: 'payeeInitiated',
@@ -78,7 +63,6 @@
       }
 
       function requestState(serverCoRelationId) {
-        console.log('calling req datate', serverCoRelationId);
         gsma.merchantPay({
           type: 'requestState',
           serverCorrelationId: serverCoRelationId, //"e1d3aa20-7878-4ba9-8ab5-da750b5c663b",
@@ -90,6 +74,21 @@
           },
         });
       }
+
+      //   call for balance check
+      gsma.merchantPay({
+        type: 'balanceCheck',
+        auth: {
+          userName: '59vthmq3f6i15v6jmcjskfkmh',
+          pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
+        },
+        onSucess: (status, data) => {
+          console.log('handling sucess in Ui', status, data);
+        },
+        onFailure: (status, data) => {
+          console.log('handling error in Ui', status, data);
+        },
+      });
     </script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 import {
   MERCHANT_PAYEE_INIT,
   MERCHANT_REQUEST_STATE,
+  MERCHANT_TRANSACTION_REFERENCE,
 } from '../../utils/paymentTypes';
 import requestMaker from '../../utils/requestMaker';
 import { common } from '../Common';
@@ -29,6 +30,13 @@ const merchantPayments = {
       return requestMaker(`/requeststates/${serverCorrelationId}`).get();
     } else {
       onError('000', 'could not get serverCorrelationId');
+    }
+  },
+  [MERCHANT_TRANSACTION_REFERENCE]: ({ transactionReference }) => {
+    if (transactionReference) {
+      return requestMaker(`/transactions/${transactionReference}`).get();
+    } else {
+      onError('000', 'transactionReference is required');
     }
   },
   ...common,
