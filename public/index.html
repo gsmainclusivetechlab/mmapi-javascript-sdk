@@ -10,85 +10,165 @@
     <h1 class="main"></h1>
     <script src="main.min.js"></script>
     <script>
+      // ------------ Basic Auth ----------------
+      //needed to add  api key ,call back url
+      let GSMA_BASIC_AUTH = gsma.initBasicAuth(
+        '59vthmq3f6i15v6jmcjskfkmh', //consumer key
+        'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb' //consumer secret key
+      );
+
+      console.log('gsma basic fun', GSMA_BASIC_AUTH);
+
+      //   call for balance check
+      GSMA_BASIC_AUTH.merchantPay({
+        type: 'balanceCheck',
+        onSucess: (status, data) => {
+          console.log('handling sucess BASIC AUTH', status, data);
+        },
+        onFailure: (status, data) => {
+          console.log('handling error BASIC AUTH', status, data);
+        },
+      });
+
+      // ------------ Standard Auth  --------------
+
+      //1.  sdk handling token creation and its expirey
+
+      gsma.initStandardaAuth({
+        userName: '59vthmq3f6i15v6jmcjskfkmh', //consumer key
+        pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb', //consumer secret key
+        apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue', //api key
+        onSucess: (gsmaFunctions) => {
+          console.log('on receving tokened data', gsmaFunctions);
+          GSMA_STD_AUTH = gsmaFunctions;
+          //   call for balance check
+          GSMA_STD_AUTH.merchantPay({
+            type: 'balanceCheck',
+            onSucess: (status, data) => {
+              console.log('handling sucess std AUTH 1', status, data);
+            },
+            onFailure: (status, data) => {
+              console.log('handling error std AUTH 1', status, data);
+            },
+          });
+        },
+      });
+
+      // 2. token handled by client and passing token and api key globaly
+
       // call to get token
       gsma.getToken({
         userName: '59vthmq3f6i15v6jmcjskfkmh',
         pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
         onSucess: (status, data) => {
-          console.log('got token', status, data);
-          callFunctionsAfterGettingTokens(data);
+          console.log('token call directly from client', status, data);
+          // client can store token in (cache) or anywhere
+          functionaCallAfterGettingToken(data);
         },
         onFailure: (status, data) => {
           console.log('error to get token', status, data);
         },
       });
 
-      // AUTH CALL SAMPLE
-      function callFunctionsAfterGettingTokens({ access_token }) {
-        //  call for pay init
-        gsma.merchantPay({
-          type: 'payeeInitiated',
-          auth: {
-            apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue',
-            accessToken: access_token,
-          },
-          data: {
-            amount: '200.00',
-            debitParty: [
-              {
-                key: 'accountid',
-                value: '2999',
-              },
-            ],
-            creditParty: [
-              {
-                key: 'accountid',
-                value: '2999',
-              },
-            ],
-            currency: 'RWF',
-          },
-          corelationId: '641c3b1f-c093-46a6-8f2b-17020beae483',
-          callBackUrl:
-            'https://e897a8c9-3285-4187-b464-87e3f9f2f954.mock.pstmn.io/status',
+      // function receving access token
+      function functionaCallAfterGettingToken({ access_token }) {
+        // inti setup
+        const GSMA_WITH_KEY_TOKEN = gsma.initStandardAuthWithToken(
+          'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue',
+          access_token
+        );
+        GSMA_WITH_KEY_TOKEN.merchantPay({
+          type: 'balanceCheck',
           onSucess: (status, data) => {
-            console.log('handling sucess in Ui', status, data);
-            const { serverCorrelationId } = data;
-            requestState(serverCorrelationId);
+            console.log('handling sucess std AUTH 2', status, data);
           },
           onFailure: (status, data) => {
-            console.log('handling error in Ui', status, data);
+            console.log('handling error std AUTH 2', status, data);
           },
         });
       }
 
-      function requestState(serverCoRelationId) {
-        gsma.merchantPay({
-          type: 'requestState',
-          serverCorrelationId: serverCoRelationId, //"e1d3aa20-7878-4ba9-8ab5-da750b5c663b",
-          onSucess: (status, data) => {
-            console.log('handling sucess in Ui', status, data);
-          },
-          onFailure: (status, data) => {
-            console.log('handling error in Ui', status, data);
-          },
-        });
-      }
+      // ------------old methods------------------
+
+      //  call for pay init
+      // gsma.merchantPay({
+      //     type: 'payeeInitiated',
+      //     auth: {
+      //       apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue',
+      //       accessToken: access_token,
+      //     },
+      //     data: {
+      //       amount: '200.00',
+      //       debitParty: [
+      //         {
+      //           key: 'accountid',
+      //           value: '2999',
+      //         },
+      //       ],
+      //       creditParty: [
+      //         {
+      //           key: 'accountid',
+      //           value: '2999',
+      //         },
+      //       ],
+      //       currency: 'RWF',
+      //     },
+      //     corelationId: '9ed1792d-96de-45c7-a301-56a07e6d4883',
+      //     callBackUrl:
+      //       'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
+
+      //     onSucess: (status, data) => {
+      //       console.log('handling sucess in Ui', status, data);
+      //       const { serverCorrelationId } = data;
+      //       requestState(serverCorrelationId);
+      //     },
+      //     onFailure: (status, data) => {
+      //       console.log('handling error in Ui', status, data);
+      //     },
+      //   });
+
+      // function requestState(serverCoRelationId) {
+      //   gsma.merchantPay({
+      //     type: 'requestState',
+      //     serverCorrelationId: serverCoRelationId, //"e1d3aa20-7878-4ba9-8ab5-da750b5c663b",
+      //     onSucess: (status, data) => {
+      //       console.log('handling sucess in Ui', status, data);
+      //     },
+      //     onFailure: (status, data) => {
+      //       console.log('handling error in Ui', status, data);
+      //     },
+      //   });
+      // }
 
       //   call for balance check
-      gsma.merchantPay({
-        type: 'balanceCheck',
-        auth: {
-          userName: '59vthmq3f6i15v6jmcjskfkmh',
-          pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
-        },
-        onSucess: (status, data) => {
-          console.log('handling sucess in Ui', status, data);
-        },
-        onFailure: (status, data) => {
-          console.log('handling error in Ui', status, data);
-        },
-      });
+      // GSMA_AUTH.merchantPay({
+      //   type: 'balanceCheck',
+      //   // auth: {
+      //   //   userName: '59vthmq3f6i15v6jmcjskfkmh',
+      //   //   pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
+      //   // },
+      //   onSucess: (status, data) => {
+      //     console.log('handling sucess in Ui', status, data);
+      //   },
+      //   onFailure: (status, data) => {
+      //     console.log('handling error in Ui', status, data);
+      //   },
+      // });
+
+      //   call for balance check
+      // gsma.merchantPay({
+      //   type: 'preAuthCode',
+      //   auth: {
+      //     userName: '59vthmq3f6i15v6jmcjskfkmh',
+      //     pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
+      //   },
+      //   onSucess: (status, data) => {
+      //     console.log('handling sucess in Ui', status, data);
+      //   },
+      //   onFailure: (status, data) => {
+      //     console.log('handling error in Ui', status, data);
+      //   },
+      // });
     </script>
   </body>
 </html>

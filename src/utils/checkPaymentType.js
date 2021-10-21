@@ -8,7 +8,7 @@ export default function checkForExistingType(
   if (payamentTypes[type]) {
     return payamentTypes[type](rest, onFailure);
   } else {
-    onFailure('000', 'Invalid Payment Type');
+    onFailure('000', 'Invalid Payment Type', type);
     // return;
   }
 }

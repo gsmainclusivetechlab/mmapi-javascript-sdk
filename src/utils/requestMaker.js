@@ -15,7 +15,7 @@ export default function GenerateReqConfig(url, headers) {
 
   //  configure post request calls
 
-  const post = (data, fileUpload) => {
+  const post = (data, fileUpload = false) => {
     return {
       url,
       headers: {
