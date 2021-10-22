@@ -5,9 +5,9 @@ import {
   MERCHANT_AUTH_CODE,
   MERCHANT_REFUND,
   MERCHANT_REVERSAL,
-} from '../../utils/paymentTypes';
-import requestMaker from '../../utils/requestMaker';
-import { common } from '../Common';
+} from "../../utils/paymentTypes";
+import requestMaker from "../../utils/requestMaker";
+import { common } from "../Common";
 
 const merchantTransactionInit = (
   { corelationId, callBackUrl, data },
@@ -15,16 +15,16 @@ const merchantTransactionInit = (
 ) => {
   if (corelationId && callBackUrl) {
     return requestMaker(
-      '/transactions/type/merchantpay', //url
+      "/transactions/type/merchantpay", //url
       {
-        'X-CorrelationID': corelationId,
-        'X-Callback-URL': callBackUrl,
+        "X-CorrelationID": corelationId,
+        "X-Callback-URL": callBackUrl,
       } //  headers
     ).post(
       data //data
     );
   } else {
-    onError('000', 'CorilationId or Callback url missing !');
+    onError("000", "CorilationId or Callback url missing !");
   }
 };
 
@@ -35,20 +35,20 @@ export default {
     if (serverCorrelationId) {
       return requestMaker(`/requeststates/${serverCorrelationId}`).get();
     } else {
-      onError('000', 'could not get serverCorrelationId');
+      onError("000", "could not get serverCorrelationId");
     }
   },
   [MERCHANT_TRANSACTION_REFERENCE]: ({ transactionReference }) => {
     if (transactionReference) {
       return requestMaker(`/transactions/${transactionReference}`).get();
     } else {
-      onError('000', 'transactionReference is required');
+      onError("000", "transactionReference is required");
     }
   },
   [MERCHANT_AUTH_CODE]: (params, onError) => {
     if (
       checkRequiredProps(
-        ['identifierType', 'identifier', 'data', 'corelationId', 'callBackUrl'],
+        ["identifierType", "identifier", "data", "corelationId", "callBackUrl"],
         params,
         onError
       )
@@ -58,8 +58,8 @@ export default {
       return requestMaker(
         `/accounts/${identifierType}/${identifier}/authorisationcodes`,
         {
-          'X-CorrelationID': corelationId,
-          'X-Callback-URL': callBackUrl,
+          "X-CorrelationID": corelationId,
+          "X-Callback-URL": callBackUrl,
         }
       ).post(data);
     }
@@ -67,35 +67,35 @@ export default {
   [MERCHANT_REFUND]: (params, onError) => {
     if (
       checkRequiredProps(
-        ['data', 'corelationId', 'callBackUrl'],
+        ["data", "corelationId", "callBackUrl"],
         params,
         onError
       )
     ) {
       let { data, corelationId, callBackUrl } = params;
       return requestMaker(`/transactions/type/adjustment`, {
-        'X-CorrelationID': corelationId,
-        'X-Callback-URL': callBackUrl,
+        "X-CorrelationID": corelationId,
+        "X-Callback-URL": callBackUrl,
       }).post(data);
     }
   },
   [MERCHANT_REVERSAL]: (params, onError) => {
     if (
       checkRequiredProps(
-        ['corelationId', 'callBackUrl', 'transactionReference'],
+        ["corelationId", "callBackUrl", "transactionReference"],
         params,
         onError
       )
     ) {
       let {
-        data = { type: 'reversal' },
+        data = { type: "reversal" },
         corelationId,
         callBackUrl,
         transactionReference,
       } = params;
       return requestMaker(`/transactions/${transactionReference}/reversals`, {
-        'X-CorrelationID': corelationId,
-        'X-Callback-URL': callBackUrl,
+        "X-CorrelationID": corelationId,
+        "X-Callback-URL": callBackUrl,
       }).post(data);
     }
   },
@@ -112,7 +112,7 @@ const checkRequiredProps = (keys = [], allObjs = null, onError) => {
       }
     });
     if (hasErrors.length > 0) {
-      onError('00', hasErrors);
+      onError("00", hasErrors);
       return false;
     } else {
       return true;
