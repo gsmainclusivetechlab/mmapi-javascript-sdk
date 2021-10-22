@@ -9,85 +9,10 @@
   <body>
     <h1 class="main"></h1>
     <script src="main.min.js"></script>
+    <script src="basicAuth.js"></script>
+    <!-- <script src="stdAuthWithoutToken.js"></script>
+    <script src="stdAuthWithToken.js"></script> -->
     <script>
-      // ------------ Basic Auth ----------------
-      //needed to add  api key ,call back url
-      let GSMA_BASIC_AUTH = gsma.initBasicAuth(
-        '59vthmq3f6i15v6jmcjskfkmh', //consumer key
-        'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb' //consumer secret key
-      );
-
-      console.log('gsma basic fun', GSMA_BASIC_AUTH);
-
-      //   call for balance check
-      GSMA_BASIC_AUTH.merchantPay({
-        type: 'balanceCheck',
-        onSucess: (status, data) => {
-          console.log('handling sucess BASIC AUTH', status, data);
-        },
-        onFailure: (status, data) => {
-          console.log('handling error BASIC AUTH', status, data);
-        },
-      });
-
-      // ------------ Standard Auth  --------------
-
-      //1.  sdk handling token creation and its expirey
-
-      gsma.initStandardaAuth({
-        userName: '59vthmq3f6i15v6jmcjskfkmh', //consumer key
-        pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb', //consumer secret key
-        apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue', //api key
-        onSucess: (gsmaFunctions) => {
-          console.log('on receving tokened data', gsmaFunctions);
-          GSMA_STD_AUTH = gsmaFunctions;
-          //   call for balance check
-          GSMA_STD_AUTH.merchantPay({
-            type: 'balanceCheck',
-            onSucess: (status, data) => {
-              console.log('handling sucess std AUTH 1', status, data);
-            },
-            onFailure: (status, data) => {
-              console.log('handling error std AUTH 1', status, data);
-            },
-          });
-        },
-      });
-
-      // 2. token handled by client and passing token and api key globaly
-
-      // call to get token
-      gsma.getToken({
-        userName: '59vthmq3f6i15v6jmcjskfkmh',
-        pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
-        onSucess: (status, data) => {
-          console.log('token call directly from client', status, data);
-          // client can store token in (cache) or anywhere
-          functionaCallAfterGettingToken(data);
-        },
-        onFailure: (status, data) => {
-          console.log('error to get token', status, data);
-        },
-      });
-
-      // function receving access token
-      function functionaCallAfterGettingToken({ access_token }) {
-        // inti setup
-        const GSMA_WITH_KEY_TOKEN = gsma.initStandardAuthWithToken(
-          'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue',
-          access_token
-        );
-        GSMA_WITH_KEY_TOKEN.merchantPay({
-          type: 'balanceCheck',
-          onSucess: (status, data) => {
-            console.log('handling sucess std AUTH 2', status, data);
-          },
-          onFailure: (status, data) => {
-            console.log('handling error std AUTH 2', status, data);
-          },
-        });
-      }
-
       // ------------old methods------------------
 
       //  call for pay init

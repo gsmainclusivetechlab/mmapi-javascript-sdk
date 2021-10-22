@@ -1,5 +1,6 @@
 import {
   MERCHANT_PAYEE_INIT,
+  MERCHANT_PAYER_INIT,
   MERCHANT_REQUEST_STATE,
   MERCHANT_TRANSACTION_REFERENCE,
   MERCHANT_AUTH_CODE,
@@ -8,29 +9,12 @@ import {
 } from '../../utils/paymentTypes';
 import requestMaker from '../../utils/requestMaker';
 import { common } from '../Common';
-
-const merchantTransactionInit = (
-  { corelationId, callBackUrl, data },
-  onError
-) => {
-  if (corelationId && callBackUrl) {
-    return requestMaker(
-      '/transactions/type/merchantpay', //url
-      {
-        'X-CorrelationID': corelationId,
-        'X-Callback-URL': callBackUrl,
-      } //  headers
-    ).post(
-      data //data
-    );
-  } else {
-    onError('000', 'CorilationId or Callback url missing !');
-  }
-};
+import checkRequiredProps from '../../utils/checkRequiredKeys';
+import merchantTransactionInit from './transactionInit';
 
 export default {
   [MERCHANT_PAYEE_INIT]: merchantTransactionInit,
-  // [MERCHANT_PAYER_INIT]: merchantTransactionInit,
+  [MERCHANT_PAYER_INIT]: merchantTransactionInit,
   [MERCHANT_REQUEST_STATE]: ({ serverCorrelationId = null }, onError) => {
     if (serverCorrelationId) {
       return requestMaker(`/requeststates/${serverCorrelationId}`).get();
@@ -48,8 +32,9 @@ export default {
   [MERCHANT_AUTH_CODE]: (params, onError) => {
     if (
       checkRequiredProps(
-        ['identifierType', 'identifier', 'data', 'corelationId', 'callBackUrl'],
         params,
+        ['identifierType', 'identifier', 'data', 'corelationId', 'callBackUrl'],
+
         onError
       )
     ) {
@@ -67,8 +52,9 @@ export default {
   [MERCHANT_REFUND]: (params, onError) => {
     if (
       checkRequiredProps(
-        ['data', 'corelationId', 'callBackUrl'],
         params,
+        ['data', 'corelationId', 'callBackUrl'],
+
         onError
       )
     ) {
@@ -82,8 +68,9 @@ export default {
   [MERCHANT_REVERSAL]: (params, onError) => {
     if (
       checkRequiredProps(
-        ['corelationId', 'callBackUrl', 'transactionReference'],
         params,
+        ['corelationId', 'callBackUrl', 'transactionReference'],
+
         onError
       )
     ) {
@@ -100,24 +87,4 @@ export default {
     }
   },
   ...common,
-};
-
-const checkRequiredProps = (keys = [], allObjs = null, onError) => {
-  if (keys.length > 0) {
-    let hasErrors = [];
-    keys.forEach((k) => {
-      if (allObjs[k]) {
-      } else {
-        hasErrors.push(`${k} is required`);
-      }
-    });
-    if (hasErrors.length > 0) {
-      onError('00', hasErrors);
-      return false;
-    } else {
-      return true;
-    }
-  } else {
-    return true;
-  }
 };
