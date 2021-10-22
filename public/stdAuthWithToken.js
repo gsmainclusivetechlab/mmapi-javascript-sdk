@@ -8,7 +8,7 @@ gsma.initStandardaAuth({
   apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue', //api key
   onSucess: (gsmaFunctions) => {
     console.log('on receving tokened data', gsmaFunctions);
-    GSMA_STD_AUTH = gsmaFunctions;
+    GSMA_STD_AUTH = gsma.auth;
     //   call for balance check
     GSMA_STD_AUTH.merchantPay({
       type: 'balanceCheck',
@@ -19,5 +19,8 @@ gsma.initStandardaAuth({
         console.log('handling error std AUTH 1', status, data);
       },
     });
+  },
+  onFailure: (error) => {
+    console.log('got some error to get token');
   },
 });

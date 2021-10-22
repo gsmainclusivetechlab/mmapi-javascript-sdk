@@ -1,9 +1,10 @@
 // ------------ Basic Auth ----------------
 //needed to add  api key ,call back url
-let GSMA_BASIC_AUTH = gsma.initBasicAuth(
+gsma.initBasicAuth(
   '59vthmq3f6i15v6jmcjskfkmh', //consumer key
   'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb' //consumer secret key
 );
+GSMA_BASIC_AUTH = gsma.auth;
 
 console.log('gsma basic fun', GSMA_BASIC_AUTH);
 
@@ -22,7 +23,7 @@ console.log('gsma basic fun', GSMA_BASIC_AUTH);
 GSMA_BASIC_AUTH.merchantPay({
   type: 'payeeInitiated',
   data: {
-    amount: '.200.00',
+    amount: '200.00',
     debitParty: [
       {
         key: 'accountid',

@@ -19,10 +19,12 @@ gsma.getToken({
 // function receving access token
 function functionaCallAfterGettingToken({ access_token }) {
   // inti setup
-  const GSMA_WITH_KEY_TOKEN = gsma.initStandardAuthWithToken(
+  gsma.initStandardAuthWithToken(
     'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue',
     access_token
   );
+  const GSMA_WITH_KEY_TOKEN = gsma.auth;
+
   GSMA_WITH_KEY_TOKEN.merchantPay({
     type: 'balanceCheck',
     onSucess: (status, data) => {

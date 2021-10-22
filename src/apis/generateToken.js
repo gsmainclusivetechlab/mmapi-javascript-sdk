@@ -1,18 +1,18 @@
-import axios from 'axios';
-import qs from 'qs';
+import axios from "axios";
+import qs from "qs";
 const GSMA_TOKEN_URL = process.env.GSMA_TOKEN_URL;
 
-export default ({ userName, pass, onSucess, OnFailure }) => {
+export default ({ userName, pass, onSucess, onFailure }) => {
   const base64Data = window.btoa(`${userName}:${pass}`);
   axios
     .post(
       GSMA_TOKEN_URL,
       qs.stringify({
-        grant_type: 'client_credentials',
+        grant_type: "client_credentials",
       }),
       {
         headers: {
-          'content-type': 'application/x-www-form-urlencoded',
+          "content-type": "application/x-www-form-urlencoded",
           Authorization: `Basic ${base64Data}`,
         },
       }
@@ -21,6 +21,6 @@ export default ({ userName, pass, onSucess, OnFailure }) => {
       onSucess(res.status, res.data);
     })
     .catch((err) => {
-      OnFailure(err.response.status, err.response);
+      onFailure(err);
     });
 };
