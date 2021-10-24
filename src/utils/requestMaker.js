@@ -1,7 +1,7 @@
 export default function GenerateReqConfig(url, headers) {
   //   configure get request calls
 
-  const get = () => {
+  const get = (params) => {
     return {
       url,
       headers: {
@@ -10,6 +10,7 @@ export default function GenerateReqConfig(url, headers) {
         Accept: 'application/json',
       },
       method: 'get',
+      params: params,
     };
   };
 

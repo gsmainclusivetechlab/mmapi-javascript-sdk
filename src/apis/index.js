@@ -16,11 +16,12 @@ export default function fetchHandler(
     }
     apiInstance(reqConfig)
       .then((res) => {
-        return successHandler ? successHandler(res.status, res.data) : null;
+        return successHandler ? successHandler(res.status, res?.data) : null;
       })
       .catch((err) => {
+        console.error(err);
         return errorHandler
-          ? errorHandler(err.response.status, err.response.data)
+          ? errorHandler(err?.response?.status, err?.response?.data)
           : null;
       });
   }

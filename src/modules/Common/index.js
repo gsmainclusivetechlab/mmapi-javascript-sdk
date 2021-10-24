@@ -1,6 +1,25 @@
-import { BALANCE_CHECK, GET_TOKEN } from '../../utils/paymentTypes';
+import {
+  BALANCE_CHECK,
+  SERVICE_AVAILABILITY,
+  RETRIEVE_MISSING_API,
+  RETRIEVE_MISSING_API_RESPONSE,
+} from '../../utils/paymentTypes';
 import requestMaker from '../../utils/requestMaker';
+import checkRequiredProps from '../../utils/checkRequiredKeys';
 
 export const common = {
   [BALANCE_CHECK]: () => requestMaker('/accounts/accountid/1/balance').get(),
+  [SERVICE_AVAILABILITY]: () => requestMaker('/heartbeat').get(),
+  [RETRIEVE_MISSING_API]: (props, onError) => {
+    if (checkRequiredProps(props, ['clientCorelationId'], onError)) {
+      const { clientCorelationId } = props;
+      return requestMaker(`/responses/${clientCorelationId}`).get();
+    }
+  },
+  [RETRIEVE_MISSING_API_RESPONSE]: (props, onError) => {
+    if (checkRequiredProps(props, ['link'], onError)) {
+      const { link } = props;
+      return requestMaker(link).get();
+    }
+  },
 };

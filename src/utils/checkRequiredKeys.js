@@ -1,14 +1,20 @@
 const checkRequiredKeys = (allObjs = null, keys = [], onError) => {
   if (keys.length > 0) {
-    let hasErrors = [];
+    let errors = [];
     keys.forEach((k) => {
-      if (allObjs[k]) {
-      } else {
-        hasErrors.push(`${k} is required`);
+      if (!allObjs.hasOwnProperty(k)) {
+        errors.push({ key: k, value: '' });
       }
     });
-    if (hasErrors.length > 0) {
-      onError('00', hasErrors);
+    if (errors.length > 0) {
+      onError('400', {
+        errorCategory: 'validation',
+        errorCode: 'MandatoryValueNotSupplied',
+        errorDescription:
+          'A mandatory value has not been provided in the header and/or JSON body.',
+        errorParameters: errors,
+      });
+      // onError('00', hasErrors);
       return false;
     } else {
       return true;

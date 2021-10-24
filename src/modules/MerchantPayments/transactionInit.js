@@ -1,12 +1,11 @@
 import requestMaker from '../../utils/requestMaker';
-import { v4 as uuidv4 } from 'uuid';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
 import { regxChecker } from '../../utils/validator';
 const merchantTransactionInit = (params, onError) => {
-  const { corelationId = uuidv4(), callBackUrl, data } = params;
+  const { corelationId, callBackUrl, data } = params;
   if (
-    transactionObjectValidtor(data, ['amount'], onError) &&
-    checkRequiredProps(params, ['data'], onError)
+    checkRequiredProps(params, ['data'], onError) &&
+    transactionObjectValidtor(data, ['amount'], onError)
   ) {
     let header = {
       'X-CorrelationID': corelationId,
@@ -50,9 +49,9 @@ function transactionObjectValidtor(transactionObject, testKeys = [], onError) {
       }
     });
   }
-  console.log('testing transaction object', errors);
+
   if (errors.length > 0) {
-    onError('status on validation', {
+    onError('400', {
       errorCategory: 'validation',
       errorCode: 'formatError',
       errorDescription: 'Invalid JSON Field',
