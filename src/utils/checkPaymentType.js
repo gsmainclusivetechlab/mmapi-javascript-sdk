@@ -1,17 +1,17 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 // check payment type exist in a particular module
 export default function checkForExistingType(
-  payamentTypes,
+  paymentTypes,
   type,
   rest,
   onFailure
 ) {
-  if (payamentTypes[type]) {
-    const corelationId = uuidv4();
-    let restWithCorelationId = { corelationId, ...rest };
-    return payamentTypes[type](restWithCorelationId, onFailure);
+  if (paymentTypes[type]) {
+    const correlationId = uuidv4();
+    let restWithcorrelationId = { correlationId, ...rest };
+    return paymentTypes[type](restWithcorrelationId, onFailure);
   } else {
-    onFailure('000', 'Invalid Payment Type', type);
+    onFailure("000", "Invalid Payment Type", type);
     // return;
   }
 }

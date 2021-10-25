@@ -1,20 +1,20 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { regxChecker } from '../../utils/validator';
+import requestMaker from "../../utils/requestMaker";
+import checkRequiredProps from "../../utils/checkRequiredKeys";
+import { regxChecker } from "../../utils/validator";
 
 export default (props, onError) => {
   if (
     checkRequiredProps(
       props,
-      ['data', 'corelationId', 'callBackUrl'],
+      ["data", "correlationId", "callbackUrl"],
       onError
     ) &&
-    checkRequiredProps(props.data, ['amount', 'currency'], onError)
+    checkRequiredProps(props.data, ["amount", "currency"], onError)
   ) {
-    let { data, corelationId, callBackUrl } = props;
+    let { data, correlationId, callbackUrl } = props;
     return requestMaker(`/transactions/type/adjustment`, {
-      'X-CorrelationID': corelationId,
-      'X-Callback-URL': callBackUrl,
+      "X-CorrelationID": correlationId,
+      "X-Callback-URL": callbackUrl,
     }).post(data);
   }
 };

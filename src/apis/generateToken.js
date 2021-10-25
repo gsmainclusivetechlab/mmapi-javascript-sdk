@@ -2,8 +2,8 @@ import axios from "axios";
 import qs from "qs";
 const GSMA_TOKEN_URL = process.env.GSMA_TOKEN_URL;
 
-export default ({ userName, pass, onSucess, onFailure }) => {
-  const base64Data = window.btoa(`${userName}:${pass}`);
+export default ({ username, pass, onSucess, onFailure }) => {
+  const base64Data = window.btoa(`${username}:${pass}`);
   axios
     .post(
       GSMA_TOKEN_URL,

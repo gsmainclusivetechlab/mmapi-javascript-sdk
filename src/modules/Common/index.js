@@ -3,21 +3,21 @@ import {
   SERVICE_AVAILABILITY,
   RETRIEVE_MISSING_API,
   RETRIEVE_MISSING_API_RESPONSE,
-} from '../../utils/paymentTypes';
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+} from "../../utils/paymentTypes";
+import requestMaker from "../../utils/requestMaker";
+import checkRequiredProps from "../../utils/checkRequiredKeys";
 
 export const common = {
-  [BALANCE_CHECK]: () => requestMaker('/accounts/accountid/1/balance').get(),
-  [SERVICE_AVAILABILITY]: () => requestMaker('/heartbeat').get(),
+  [BALANCE_CHECK]: () => requestMaker("/accounts/accountid/1/balance").get(),
+  [SERVICE_AVAILABILITY]: () => requestMaker("/heartbeat").get(),
   [RETRIEVE_MISSING_API]: (props, onError) => {
-    if (checkRequiredProps(props, ['clientCorelationId'], onError)) {
-      const { clientCorelationId } = props;
-      return requestMaker(`/responses/${clientCorelationId}`).get();
+    if (checkRequiredProps(props, ["clientcorrelationId"], onError)) {
+      const { clientcorrelationId } = props;
+      return requestMaker(`/responses/${clientcorrelationId}`).get();
     }
   },
   [RETRIEVE_MISSING_API_RESPONSE]: (props, onError) => {
-    if (checkRequiredProps(props, ['link'], onError)) {
+    if (checkRequiredProps(props, ["link"], onError)) {
       const { link } = props;
       return requestMaker(link).get();
     }

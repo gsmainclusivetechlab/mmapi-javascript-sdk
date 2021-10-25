@@ -1,22 +1,23 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { regxChecker } from '../../utils/validator';
+import requestMaker from "../../utils/requestMaker";
+import checkRequiredProps from "../../utils/checkRequiredKeys";
+import { regxChecker } from "../../utils/validator";
 
 export default (props, onError) => {
   if (
     checkRequiredProps(
       props,
-      ['identifierType', 'identifier', 'data', 'callBackUrl'],
+      ["identifierType", "identifier", "data", "callbackUrl"],
       onError
     ) &&
-    checkRequiredProps(props.data, ['currency', 'amount'], onError)
+    checkRequiredProps(props.data, ["currency", "amount"], onError)
   ) {
-    let { identifierType, identifier, data, corelationId, callBackUrl } = props;
+    let { identifierType, identifier, data, correlationId, callbackUrl } =
+      props;
     let header = {
-      'X-CorrelationID': corelationId,
+      "X-CorrelationID": correlationId,
     };
-    if (callBackUrl) {
-      header['X-Callback-URL'] = callBackUrl;
+    if (callbackUrl) {
+      header["X-Callback-URL"] = callbackUrl;
     }
     return requestMaker(
       `/accounts/${identifierType}/${identifier}/authorisationcodes`,

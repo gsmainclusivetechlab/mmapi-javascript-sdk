@@ -1,24 +1,24 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { regxChecker } from '../../utils/validator';
+import requestMaker from "../../utils/requestMaker";
+import checkRequiredProps from "../../utils/checkRequiredKeys";
+import { regxChecker } from "../../utils/validator";
 
 export default (props, onError) => {
   if (
     checkRequiredProps(
       props,
-      ['corelationId', 'callBackUrl', 'transactionReference'],
+      ["correlationId", "callbackUrl", "transactionReference"],
       onError
     )
   ) {
     let {
-      data = { type: 'reversal' },
-      corelationId,
-      callBackUrl,
+      data = { type: "reversal" },
+      correlationId,
+      callbackUrl,
       transactionReference,
     } = props;
     return requestMaker(`/transactions/${transactionReference}/reversals`, {
-      'X-CorrelationID': corelationId,
-      'X-Callback-URL': callBackUrl,
+      "X-CorrelationID": correlationId,
+      "X-Callback-URL": callbackUrl,
     }).post(data);
   }
 };

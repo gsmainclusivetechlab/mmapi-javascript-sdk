@@ -8,8 +8,8 @@ const allFunctions = (authHeaders) => {
   };
 };
 window.gsma = {
-  initBasicAuth: (userName, pass) => {
-    return allFunctions({ userName, pass });
+  initBasicAuth: (username, pass) => {
+    return allFunctions({ username, pass });
   },
   initStandardAuthWithToken: (apiKey, accessToken) => {
     return allFunctions({ apiKey, accessToken });
@@ -37,7 +37,7 @@ const setExpireTokenInStorage = ({ access_token, expires_in }) => {
 };
 
 // function handling token generation
-function tokenGenerator({ userName, pass, apiKey, onSucess, onFailure }) {
+function tokenGenerator({ username, pass, apiKey, onSucess, onFailure }) {
   // if user has token in cache
   if (sessionStorage.getItem("token")) {
     const tokenData = JSON.parse(sessionStorage.getItem("token"));
@@ -54,7 +54,7 @@ function tokenGenerator({ userName, pass, apiKey, onSucess, onFailure }) {
     } else {
       console.log("token expired");
       generateToken({
-        userName,
+        username,
         pass,
         onSucess: (status, data) => {
           setExpireTokenInStorage(data);
@@ -72,7 +72,7 @@ function tokenGenerator({ userName, pass, apiKey, onSucess, onFailure }) {
     }
   } else {
     generateToken({
-      userName,
+      username,
       pass,
       onSucess: (status, data) => {
         setExpireTokenInStorage(data);

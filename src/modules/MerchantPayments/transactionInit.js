@@ -1,21 +1,21 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { regxChecker } from '../../utils/validator';
+import requestMaker from "../../utils/requestMaker";
+import checkRequiredProps from "../../utils/checkRequiredKeys";
+import { regxChecker } from "../../utils/validator";
 const merchantTransactionInit = (params, onError) => {
-  const { corelationId, callBackUrl, data } = params;
+  const { correlationId, callbackUrl, data } = params;
   if (
-    checkRequiredProps(params, ['data'], onError) &&
-    transactionObjectValidtor(data, ['amount'], onError)
+    checkRequiredProps(params, ["data"], onError) &&
+    transactionObjectValidtor(data, ["amount"], onError)
   ) {
     let header = {
-      'X-CorrelationID': corelationId,
+      "X-CorrelationID": correlationId,
     };
-    if (callBackUrl) {
-      header['X-Callback-URL'] = callBackUrl;
+    if (callbackUrl) {
+      header["X-Callback-URL"] = callbackUrl;
     }
 
     return requestMaker(
-      '/transactions/type/merchantpay', //url
+      "/transactions/type/merchantpay", //url
       header //  headers
     ).post(
       data //data
@@ -30,7 +30,7 @@ function transactionObjectValidtor(transactionObject, testKeys = [], onError) {
   if (testKeys.length > 0) {
     testKeys.forEach((testKey) => {
       switch (testKey) {
-        case 'amount': {
+        case "amount": {
           if (
             !regxChecker(
               /^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[0-9])?$/m,
@@ -38,7 +38,7 @@ function transactionObjectValidtor(transactionObject, testKeys = [], onError) {
             )
           ) {
             errors.push({
-              key: 'amount',
+              key: "amount",
               value:
                 'must match "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[0-9])?$"',
             });
@@ -51,10 +51,10 @@ function transactionObjectValidtor(transactionObject, testKeys = [], onError) {
   }
 
   if (errors.length > 0) {
-    onError('400', {
-      errorCategory: 'validation',
-      errorCode: 'formatError',
-      errorDescription: 'Invalid JSON Field',
+    onError("400", {
+      errorCategory: "validation",
+      errorCode: "formatError",
+      errorDescription: "Invalid JSON Field",
       errorParameters: errors,
     });
   }

@@ -1,12 +1,12 @@
 // ------------ Basic Auth ----------------
 //needed to add  api key ,call back url
 gsma.initBasicAuth(
-  '59vthmq3f6i15v6jmcjskfkmh', //consumer key
-  'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb' //consumer secret key
+  "59vthmq3f6i15v6jmcjskfkmh", //consumer key
+  "ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb" //consumer secret key
 );
 GSMA_BASIC_AUTH = gsma.auth;
 
-console.log('gsma basic fun', GSMA_BASIC_AUTH);
+console.log("gsma basic fun", GSMA_BASIC_AUTH);
 
 //   call for balance check
 // GSMA_BASIC_AUTH.merchantPay({
@@ -38,8 +38,8 @@ console.log('gsma basic fun', GSMA_BASIC_AUTH);
 //     ],
 //     currency: 'RWF',
 //   },
-//   // corelationId: '9ed1792d-96de-45c7-a301-56a07e6d4883',
-//   callBackUrl:
+//   // correlationId: '9ed1792d-96de-45c7-a301-56a07e6d4883',
+//   callbackUrl:
 //     'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
 
 //   onSucess: (status, data) => {
@@ -55,7 +55,7 @@ console.log('gsma basic fun', GSMA_BASIC_AUTH);
 //   type: 'preAuthCode',
 //   identifierType: 'accountid',
 //   identifier: 1,
-//   callBackUrl:
+//   callbackUrl:
 //     'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
 
 //   data: {
@@ -75,14 +75,14 @@ function getState(data) {
   let { serverCorrelationId } = data;
   // request for state
   GSMA_BASIC_AUTH.merchantPay({
-    type: 'requestState',
+    type: "requestState",
     serverCorrelationId: serverCorrelationId,
     onSucess: (status, data) => {
-      console.log('BASIC AUTH sucess in get state ', status, data);
+      console.log("BASIC AUTH sucess in get state ", status, data);
       getTransactionReference(data);
     },
     onFailure: (status, data) => {
-      console.log('BASIC AUTH error in get state', status, data);
+      console.log("BASIC AUTH error in get state", status, data);
     },
   });
 }
@@ -90,13 +90,13 @@ function getState(data) {
 function getTransactionReference({ objectReference: transactionReference }) {
   //   call to get transaction referece
   GSMA_BASIC_AUTH.merchantPay({
-    type: 'transactionReference',
+    type: "transactionReference",
     transactionReference: transactionReference,
     onSucess: (status, data) => {
-      console.log('BASIC AUTH sucess transaction reference', status, data);
+      console.log("BASIC AUTH sucess transaction reference", status, data);
     },
     onFailure: (status, data) => {
-      console.log('BASIC AUTH error transaction reference', status, data);
+      console.log("BASIC AUTH error transaction reference", status, data);
     },
   });
 }
@@ -131,26 +131,26 @@ function getTransactionReference({ objectReference: transactionReference }) {
 
 // retrive missing apis
 GSMA_BASIC_AUTH.merchantPay({
-  type: 'retrieveMissingRequest',
-  clientCorelationId: '84002d65-229c-4434-a48f-3cdfd1c030e3',
+  type: "retrieveMissingRequest",
+  clientcorrelationId: "84002d65-229c-4434-a48f-3cdfd1c030e3",
   onSucess: (status, data) => {
-    console.log('BASIC AUTH sucess missing apis', status, data);
+    console.log("BASIC AUTH sucess missing apis", status, data);
     getMissedResponse(data);
   },
   onFailure: (status, data) => {
-    console.log('BASIC AUTH error missing apis', status, data);
+    console.log("BASIC AUTH error missing apis", status, data);
   },
 });
 
 function getMissedResponse({ link }) {
   GSMA_BASIC_AUTH.merchantPay({
-    type: 'retrieveMissingResponse',
+    type: "retrieveMissingResponse",
     link: link,
     onSucess: (status, data) => {
-      console.log('BASIC AUTH sucess retrieveMissingResponse', status, data);
+      console.log("BASIC AUTH sucess retrieveMissingResponse", status, data);
     },
     onFailure: (status, data) => {
-      console.log('BASIC AUTH error retrieveMissingResponse', status, data);
+      console.log("BASIC AUTH error retrieveMissingResponse", status, data);
     },
   });
 }
