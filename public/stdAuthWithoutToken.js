@@ -6,7 +6,7 @@
 gsma.getToken({
   username: "59vthmq3f6i15v6jmcjskfkmh",
   pass: "ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb",
-  onSucess: (status, data) => {
+  onSuccess: (status, data) => {
     console.log("token call directly from client", status, data);
     // client can store token in (cache) or anywhere
     functionaCallAfterGettingToken(data);
@@ -27,8 +27,8 @@ function functionaCallAfterGettingToken({ access_token }) {
 
   GSMA_WITH_KEY_TOKEN.merchantPay({
     type: "balanceCheck",
-    onSucess: (status, data) => {
-      console.log("handling sucess std AUTH 2", status, data);
+    onSuccess: (status, data) => {
+      console.log("handling success std AUTH 2", status, data);
     },
     onFailure: (status, data) => {
       console.log("handling error std AUTH 2", status, data);

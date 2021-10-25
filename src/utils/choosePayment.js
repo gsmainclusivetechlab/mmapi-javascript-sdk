@@ -1,7 +1,7 @@
 import apiCall from "../apis";
 import checkForExistingType from "./checkPaymentType";
 export default function choosePayment(paymentTypes, hasAuthHeaders = null) {
-  return ({ onSucess = () => {}, onFailure = () => {}, type, ...rest }) => {
+  return ({ onSuccess = () => {}, onFailure = () => {}, type, ...rest }) => {
     let reqConfig = checkForExistingType(paymentTypes, type, rest, onFailure);
 
     // check for payment type
@@ -24,7 +24,7 @@ export default function choosePayment(paymentTypes, hasAuthHeaders = null) {
             "X-API-Key": apiKey,
             Authorization: `Bearer ${accessToken}`,
           };
-          apiCall(reqConfig, onSucess, onFailure, true);
+          apiCall(reqConfig, onSuccess, onFailure, true);
         } else if (username && pass) {
           const base64Data = window.btoa(`${username}:${pass}`);
           reqConfig["headers"] = {
@@ -32,7 +32,7 @@ export default function choosePayment(paymentTypes, hasAuthHeaders = null) {
             // 'X-API-Key': apiKey,
             Authorization: `Bearer ${base64Data}`,
           };
-          apiCall(reqConfig, onSucess, onFailure, false);
+          apiCall(reqConfig, onSuccess, onFailure, false);
         } else {
           onFailure("000", "Missing auth params");
         }
@@ -51,19 +51,19 @@ export default function choosePayment(paymentTypes, hasAuthHeaders = null) {
               "X-API-Key": apiKey,
               Authorization: `Bearer ${accessToken}`,
             };
-            apiCall(reqConfig, onSucess, onFailure, true);
+            apiCall(reqConfig, onSuccess, onFailure, true);
           } else if (username && pass) {
             const base64Data = window.btoa(`${username}:${pass}`);
             reqConfig["headers"] = {
               ...reqConfig.headers,
               Authorization: `Bearer ${base64Data}`,
             };
-            apiCall(reqConfig, onSucess, onFailure, false);
+            apiCall(reqConfig, onSuccess, onFailure, false);
           } else {
             onFailure("000", "Missing auth params");
           }
         } else {
-          apiCall(reqConfig, onSucess, onFailure, false);
+          apiCall(reqConfig, onSuccess, onFailure, false);
         }
       }
     }

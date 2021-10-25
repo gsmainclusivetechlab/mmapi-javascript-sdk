@@ -37,7 +37,7 @@ const setExpireTokenInStorage = ({ access_token, expires_in }) => {
 };
 
 // function handling token generation
-function tokenGenerator({ username, pass, apiKey, onSucess, onFailure }) {
+function tokenGenerator({ username, pass, apiKey, onSuccess, onFailure }) {
   // if user has token in cache
   if (sessionStorage.getItem("token")) {
     const tokenData = JSON.parse(sessionStorage.getItem("token"));
@@ -50,19 +50,19 @@ function tokenGenerator({ username, pass, apiKey, onSucess, onFailure }) {
       accessToken.length > 0
     ) {
       console.log("sdk using existing token", accessToken);
-      onSucess(allFunctions({ apiKey, accessToken }));
+      onSuccess(allFunctions({ apiKey, accessToken }));
     } else {
       console.log("token expired");
       generateToken({
         username,
         pass,
-        onSucess: (status, data) => {
+        onSuccess: (status, data) => {
           setExpireTokenInStorage(data);
           const { access_token: accessToken } = data;
 
           console.log("return sdk function after expiry", data);
           // returning sdk function with newly create access token
-          onSucess(allFunctions({ apiKey, accessToken }));
+          onSuccess(allFunctions({ apiKey, accessToken }));
         },
         onFailure: (status, data) => {
           onFailure(status, data);
@@ -74,13 +74,13 @@ function tokenGenerator({ username, pass, apiKey, onSucess, onFailure }) {
     generateToken({
       username,
       pass,
-      onSucess: (status, data) => {
+      onSuccess: (status, data) => {
         setExpireTokenInStorage(data);
         const { access_token: accessToken } = data;
 
         console.log("returns sdk function from new token", status, data);
         // returning sdk function with newly create access token
-        onSucess(allFunctions({ apiKey, accessToken }));
+        onSuccess(allFunctions({ apiKey, accessToken }));
       },
       onFailure: (err) => {
         onFailure({ status: 401, response: err });

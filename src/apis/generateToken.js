@@ -2,7 +2,7 @@ import axios from "axios";
 import qs from "qs";
 const GSMA_TOKEN_URL = process.env.GSMA_TOKEN_URL;
 
-export default ({ username, pass, onSucess, onFailure }) => {
+export default ({ username, pass, onSuccess, onFailure }) => {
   const base64Data = window.btoa(`${username}:${pass}`);
   axios
     .post(
@@ -18,7 +18,7 @@ export default ({ username, pass, onSucess, onFailure }) => {
       }
     )
     .then((res) => {
-      onSucess(res.status, res.data);
+      onSuccess(res.status, res.data);
     })
     .catch((err) => {
       onFailure(err);
