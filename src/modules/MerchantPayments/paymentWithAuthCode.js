@@ -1,11 +1,15 @@
 import requestMaker from '../../utils/requestMaker';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
 import { transactionObjectValidtor } from './transactionObjectValidator';
-export default function merchantTransactionInit(props, onError) {
+export default function paymentWithAuthCode(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (
         checkRequiredProps(props, ['data'], onError) &&
-        checkRequiredProps(data, ['amount', 'currency'], onError) &&
+        checkRequiredProps(
+            data,
+            ['amount', 'currency', 'oneTimeCode'],
+            onError
+        ) &&
         transactionObjectValidtor(data, ['amount'], onError)
     ) {
         let header = {

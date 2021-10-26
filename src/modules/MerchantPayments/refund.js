@@ -1,20 +1,16 @@
-import requestMaker from "../../utils/requestMaker";
-import checkRequiredProps from "../../utils/checkRequiredKeys";
-import { regxChecker } from "../../utils/validator";
-
+import requestMaker from '../../utils/requestMaker';
+import checkRequiredProps from '../../utils/checkRequiredKeys';
+import { transactionObjectValidtor } from './transactionObjectValidator';
 export default (props, onError) => {
-  if (
-    checkRequiredProps(
-      props,
-      ["data", "correlationId", "callbackUrl"],
-      onError
-    ) &&
-    checkRequiredProps(props.data, ["amount", "currency"], onError)
-  ) {
-    let { data, correlationId, callbackUrl } = props;
-    return requestMaker(`/transactions/type/adjustment`, {
-      "X-CorrelationID": correlationId,
-      "X-Callback-URL": callbackUrl,
-    }).post(data);
-  }
+    if (
+        checkRequiredProps(props, ['data', 'callbackUrl'], onError) &&
+        checkRequiredProps(data, ['amount', 'currency'], onError) &&
+        transactionObjectValidtor(data, ['amount'], onError)
+    ) {
+        let { data, correlationId = '', callbackUrl } = props;
+        return requestMaker(`/transactions/type/adjustment`, {
+            'X-CorrelationID': correlationId,
+            'X-Callback-URL': callbackUrl,
+        }).post(data);
+    }
 };

@@ -1,6 +1,5 @@
 import requestMaker from '../../utils/requestMaker';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { regxChecker } from '../../utils/validator';
 /**
  * @param  {} props
  * @param  {} onError
