@@ -7,7 +7,7 @@ export const MERCHANT_AUTH_CODE = 'preAuthCode';
 export const MERCHANT_REFUND = 'refund';
 export const MERCHANT_REVERSAL = 'reversal';
 export const MERCHANT_PAYMENTS = 'payments';
-// common - balance check - types
+// common -  types
 export const BALANCE_CHECK = 'balanceCheck';
 export const SERVICE_AVAILABILITY = 'serviceAvailability';
 export const RETRIEVE_MISSING_API = 'retrieveMissingRequest';
