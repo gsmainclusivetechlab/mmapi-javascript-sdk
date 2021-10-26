@@ -1,6 +1,6 @@
 import requestMaker from '../../utils/requestMaker';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { transactionObjectValidtor } from './transactionObjectValidator';
+import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
 export default function paymentWithAuthCode(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (

@@ -1,4 +1,4 @@
-import { regxChecker } from '../../utils/validator';
+import { regxChecker } from './validator';
 export function transactionObjectValidtor(
     transactionObject,
     testKeys = [],

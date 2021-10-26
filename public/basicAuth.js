@@ -9,17 +9,17 @@ GSMA_BASIC_AUTH = gsma.auth;
 console.log('gsma basic fun', GSMA_BASIC_AUTH);
 
 //   call for balance check
-GSMA_BASIC_AUTH.merchantPay({
-    type: 'balanceCheck',
-    identifierType: 'accountid',
-    identifier: 1,
-    onSuccess: (data, status) => {
-        console.log('BASIC AUTH success balance check', status, data);
-    },
-    onFailure: (error, status) => {
-        console.error('BASIC AUTH error balance check', error);
-    },
-});
+// GSMA_BASIC_AUTH.merchantPay({
+//     type: 'balanceCheck',
+//     identifierType: 'accountid',
+//     identifier: 1,
+//     onSuccess: (data, status) => {
+//         console.log('BASIC AUTH success balance check', status, data);
+//     },
+//     onFailure: (error, status) => {
+//         console.error('BASIC AUTH error balance check', error);
+//     },
+// });
 
 //  call for pay init
 // GSMA_BASIC_AUTH.merchantPay({
@@ -205,17 +205,17 @@ function getTransactionReference({ objectReference: transactionReference }) {
 // });
 
 // retrive missing apis
-// GSMA_BASIC_AUTH.merchantPay({
-//     type: 'retrieveMissingRequest',
-//     clientCorrelationId: '84002d65-229c-4434-a48f-3cdfd1c030e3',
-//     onSuccess: (data, status) => {
-//         console.log('BASIC AUTH success missing apis', status, data);
-//         getMissedResponse(data);
-//     },
-//     onFailure: (error,status) => {
-//         console.log('BASIC AUTH error missing apis', error);
-//     },
-// });
+GSMA_BASIC_AUTH.merchantPay({
+    type: 'retrieveMissingRequest',
+    clientCorrelationId: '84002d65-229c-4434-a48f-3cdfd1c030e3',
+    onSuccess: (data, status) => {
+        console.log('BASIC AUTH success missing apis', status, data);
+        getMissedResponse(data);
+    },
+    onFailure: (error, status) => {
+        console.log('BASIC AUTH error missing apis', error);
+    },
+});
 
 // function getMissedResponse({ link }) {
 //     GSMA_BASIC_AUTH.merchantPay({
@@ -228,7 +228,7 @@ function getTransactionReference({ objectReference: transactionReference }) {
 //                 data
 //             );
 //         },
-//         onFailure: (error,status) => {
+//         onFailure: (error, status) => {
 //             console.log('BASIC AUTH error retrieveMissingResponse', error);
 //         },
 //     });

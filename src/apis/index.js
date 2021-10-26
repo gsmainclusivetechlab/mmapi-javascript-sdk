@@ -8,6 +8,7 @@ export default function fetchHandler(
     hasAuth = false
 ) {
     if (reqConfig) {
+        // choose auth type
         let apiInstance;
         if (hasAuth) {
             apiInstance = gsmaAuth;
@@ -21,7 +22,7 @@ export default function fetchHandler(
                     : null;
             })
             .catch((error) => {
-                return errorHandler
+                return errorHandler && error.response
                     ? errorHandler(
                           error?.response?.data,
                           error?.response?.status

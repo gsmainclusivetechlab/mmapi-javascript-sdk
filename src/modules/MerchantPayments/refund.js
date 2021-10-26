@@ -1,6 +1,6 @@
 import requestMaker from '../../utils/requestMaker';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { transactionObjectValidtor } from './transactionObjectValidator';
+import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
 export default (props, onError) => {
     if (
         checkRequiredProps(props, ['data', 'callbackUrl'], onError) &&

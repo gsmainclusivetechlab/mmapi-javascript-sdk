@@ -1,52 +1,72 @@
-export default function GenerateReqConfig(url, headers) {
-  //   configure get request calls
+export default function GenerateReqConfig(
+    url = '',
+    headers = null,
+    tailingApiCallConfig = null
+) {
+    //   configure get request calls
 
-  const get = (params) => {
-    return {
-      url,
-      headers: {
-        ...headers,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      method: 'get',
-      params: params,
+    const get = (params = null) => {
+        let localHeader = {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        };
+        if (headers) {
+            localHeader = { ...localHeader, ...headers };
+        }
+
+        let getConfig = {
+            url,
+            headers: localHeader,
+            method: 'get',
+        };
+        // check for params
+        if (params) {
+            getConfig['params'] = params;
+        }
+
+        if (tailingApiCallConfig) {
+            getConfig['tailingApiCall'] = tailingApiCallConfig;
+        }
+        return getConfig;
     };
-  };
 
-  //  configure post request calls
+    //  configure post request calls
 
-  const post = (data, fileUpload = false) => {
-    return {
-      url,
-      headers: {
-        ...headers,
-        'Content-Type': fileUpload ? 'multipart/form-data' : 'application/json',
-        Accept: fileUpload ? 'multipart/form-data' : 'application/json',
-      },
-      data,
-      method: 'post',
+    const post = (data, fileUpload = false) => {
+        return {
+            url,
+            headers: {
+                ...headers,
+                'Content-Type': fileUpload
+                    ? 'multipart/form-data'
+                    : 'application/json',
+                Accept: fileUpload ? 'multipart/form-data' : 'application/json',
+            },
+            data,
+            method: 'post',
+        };
     };
-  };
 
-  //  configure patch request calls
+    //  configure patch request calls
 
-  const patch = (data, fileUpload) => {
-    return {
-      url,
-      headers: {
-        ...headers,
-        'Content-Type': fileUpload ? 'multipart/form-data' : 'application/json',
-        Accept: fileUpload ? 'multipart/form-data' : 'application/json',
-      },
-      data: data,
-      method: 'post',
+    const patch = (data, fileUpload = false) => {
+        return {
+            url,
+            headers: {
+                ...headers,
+                'Content-Type': fileUpload
+                    ? 'multipart/form-data'
+                    : 'application/json',
+                Accept: fileUpload ? 'multipart/form-data' : 'application/json',
+            },
+            data,
+            method: 'patch',
+        };
     };
-  };
 
-  return {
-    get,
-    post,
-    patch,
-  };
+    return {
+        get,
+        post,
+        patch,
+    };
 }
