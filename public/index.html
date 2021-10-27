@@ -1,100 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GSMA</title>
-  </head>
-  <body>
-    <h1 class="main"></h1>
-    <script src="main.min.js"></script>
-    <script src="basicAuth.js"></script>
-    <!-- <script src="stdAuthWithoutToken.js"></script> -->
-    <!-- <script src="stdAuthWithToken.js"></script> -->
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GSMA</title>
+    </head>
+    <body>
+        <h1 class="main"></h1>
+        <script src="main.min.js"></script>
+        <!-- <script src="basicAuth.js"></script> -->
+        <!-- <script src="stdAuthWithoutToken.js"></script> -->
+        <script src="stdAuthWithToken.js"></script>
 
-    <script>
-      // ------------old methods------------------
+        <script>
+            // ------------old methods------------------
 
-      //  call for pay init
-      // gsma.merchantPay({
-      //     type: 'payeeInitiated',
-      //     auth: {
-      //       apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue',
-      //       accessToken: access_token,
-      //     },
-      //     data: {
-      //       amount: '200.00',
-      //       debitParty: [
-      //         {
-      //           key: 'accountid',
-      //           value: '2999',
-      //         },
-      //       ],
-      //       creditParty: [
-      //         {
-      //           key: 'accountid',
-      //           value: '2999',
-      //         },
-      //       ],
-      //       currency: 'RWF',
-      //     },
-      //     correlationId: '9ed1792d-96de-45c7-a301-56a07e6d4883',
-      //     callbackUrl:
-      //       'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
+            //  call for pay init
+            // gsma.merchantPay({
+            //     type: 'payeeInitiated',
+            //     auth: {
+            //       apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue',
+            //       accessToken: access_token,
+            //     },
+            //     data: {
+            //       amount: '200.00',
+            //       debitParty: [
+            //         {
+            //           key: 'accountid',
+            //           value: '2999',
+            //         },
+            //       ],
+            //       creditParty: [
+            //         {
+            //           key: 'accountid',
+            //           value: '2999',
+            //         },
+            //       ],
+            //       currency: 'RWF',
+            //     },
+            //     correlationId: '9ed1792d-96de-45c7-a301-56a07e6d4883',
+            //     callbackUrl:
+            //       'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
 
-      //     onSuccess: (status, data) => {
-      //       console.log('handling success in Ui', status, data);
-      //       const { serverCorrelationId } = data;
-      //       requestState(serverCorrelationId);
-      //     },
-      //     onFailure: (status, data) => {
-      //       console.log('handling error in Ui', status, data);
-      //     },
-      //   });
+            //     onSuccess: (status, data) => {
+            //       console.log('handling success in Ui', status, data);
+            //       const { serverCorrelationId } = data;
+            //       requestState(serverCorrelationId);
+            //     },
+            //     onFailure: (status, data) => {
+            //       console.log('handling error in Ui', status, data);
+            //     },
+            //   });
 
-      // function requestState(servercorrelationId) {
-      //   gsma.merchantPay({
-      //     type: 'requestState',
-      //     serverCorrelationId: servercorrelationId, //"e1d3aa20-7878-4ba9-8ab5-da750b5c663b",
-      //     onSuccess: (status, data) => {
-      //       console.log('handling success in Ui', status, data);
-      //     },
-      //     onFailure: (status, data) => {
-      //       console.log('handling error in Ui', status, data);
-      //     },
-      //   });
-      // }
+            // function requestState(servercorrelationId) {
+            //   gsma.merchantPay({
+            //     type: 'requestState',
+            //     serverCorrelationId: servercorrelationId, //"e1d3aa20-7878-4ba9-8ab5-da750b5c663b",
+            //     onSuccess: (status, data) => {
+            //       console.log('handling success in Ui', status, data);
+            //     },
+            //     onFailure: (status, data) => {
+            //       console.log('handling error in Ui', status, data);
+            //     },
+            //   });
+            // }
 
-      //   call for balance check
-      // GSMA_AUTH.merchantPay({
-      //   type: 'balanceCheck',
-      //   // auth: {
-      //   //   username: '59vthmq3f6i15v6jmcjskfkmh',
-      //   //   pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
-      //   // },
-      //   onSuccess: (status, data) => {
-      //     console.log('handling success in Ui', status, data);
-      //   },
-      //   onFailure: (status, data) => {
-      //     console.log('handling error in Ui', status, data);
-      //   },
-      // });
+            //   call for balance check
+            // GSMA_AUTH.merchantPay({
+            //   type: 'balanceCheck',
+            //   // auth: {
+            //   //   username: '59vthmq3f6i15v6jmcjskfkmh',
+            //   //   pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
+            //   // },
+            //   onSuccess: (status, data) => {
+            //     console.log('handling success in Ui', status, data);
+            //   },
+            //   onFailure: (status, data) => {
+            //     console.log('handling error in Ui', status, data);
+            //   },
+            // });
 
-      //   call for balance check
-      // gsma.merchantPay({
-      //   type: 'preAuthCode',
-      //   auth: {
-      //     username: '59vthmq3f6i15v6jmcjskfkmh',
-      //     pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
-      //   },
-      //   onSuccess: (status, data) => {
-      //     console.log('handling success in Ui', status, data);
-      //   },
-      //   onFailure: (status, data) => {
-      //     console.log('handling error in Ui', status, data);
-      //   },
-      // });
-    </script>
-  </body>
+            //   call for balance check
+            // gsma.merchantPay({
+            //   type: 'preAuthCode',
+            //   auth: {
+            //     username: '59vthmq3f6i15v6jmcjskfkmh',
+            //     pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
+            //   },
+            //   onSuccess: (status, data) => {
+            //     console.log('handling success in Ui', status, data);
+            //   },
+            //   onFailure: (status, data) => {
+            //     console.log('handling error in Ui', status, data);
+            //   },
+            // });
+        </script>
+    </body>
 </html>

@@ -1,7 +1,7 @@
 export default function GenerateReqConfig(
     url = '',
     headers = null,
-    tailingApiCallConfig = null
+    tailingFunctionCall = null
 ) {
     //   configure get request calls
 
@@ -24,8 +24,8 @@ export default function GenerateReqConfig(
             getConfig['params'] = params;
         }
 
-        if (tailingApiCallConfig) {
-            getConfig['tailingApiCall'] = tailingApiCallConfig;
+        if (tailingFunctionCall) {
+            getConfig['tailingFunctionCall'] = tailingFunctionCall;
         }
         return getConfig;
     };

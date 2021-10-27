@@ -21,6 +21,8 @@ export default ({ username, pass, onSuccess, onFailure }) => {
             onSuccess(res?.data, res?.status);
         })
         .catch((error) => {
-            onFailure((error?.response?.data, error?.response?.status));
+            if (error && error.response)
+                onFailure((error?.response?.data, error?.response?.status));
+            else onFailure(error);
         });
 };

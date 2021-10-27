@@ -1,7 +1,10 @@
 import apiCall from '../apis';
 import checkForExistingType from './checkPaymentType';
-export default function choosePayment(paymentTypes, hasAuthHeaders = null) {
+import chooseAuthType from './chooseAuthType';
+
+export default function choosePayment(paymentTypes, authHeaderProps = null) {
     return ({ onSuccess = () => {}, onFailure = () => {}, type, ...rest }) => {
+        // check for payment type
         let reqConfig = checkForExistingType(
             paymentTypes,
             type,
@@ -9,87 +12,54 @@ export default function choosePayment(paymentTypes, hasAuthHeaders = null) {
             onFailure
         );
 
-        // check for payment type
-
         if (reqConfig) {
+            let authConfigHeaders = null;
+            let isStdAuth = false;
             // handle auth
-            if (rest.hasOwnProperty('auth')) {
-                let {
-                    auth: {
-                        apiKey = null,
-                        accessToken = null,
-                        username = null,
-                        pass = null,
-                    },
-                } = rest;
-
-                if (apiKey && accessToken) {
-                    reqConfig['headers'] = {
-                        ...reqConfig.headers,
-                        'X-API-Key': apiKey,
-                        Authorization: `Bearer ${accessToken}`,
-                    };
-                    // apiCall(reqConfig, onSuccess, onFailure, true);
-                } else if (username && pass) {
-                    const base64Data = window.btoa(`${username}:${pass}`);
-                    reqConfig['headers'] = {
-                        ...reqConfig.headers,
-                        // 'X-API-Key': apiKey,
-                        Authorization: `Bearer ${base64Data}`,
-                    };
-                    // apiCall(reqConfig, onSuccess, onFailure, false);
-                } else {
-                    onFailure('Missing auth params', '400');
-                }
-            } else {
-                if (hasAuthHeaders) {
-                    let {
-                        apiKey = null,
-                        accessToken = null,
-                        username = null,
-                        pass = null,
-                    } = hasAuthHeaders;
-
-                    if (apiKey && accessToken) {
-                        reqConfig['headers'] = {
-                            ...reqConfig.headers,
-                            'X-API-Key': apiKey,
-                            Authorization: `Bearer ${accessToken}`,
-                        };
-                        // apiCall(reqConfig, onSuccess, onFailure, true);
-                    } else if (username && pass) {
-                        const base64Data = window.btoa(`${username}:${pass}`);
-                        reqConfig['headers'] = {
-                            ...reqConfig.headers,
-                            Authorization: `Bearer ${base64Data}`,
-                        };
-                        // apiCall(reqConfig, onSuccess, onFailure, false);
-                    } else {
-                        onFailure('Missing auth params', '400');
-                    }
-                } else {
-                    // apiCall(reqConfig, onSuccess, onFailure, false);
-                }
-            }
-
+            chooseAuthType(
+                rest,
+                authHeaderProps,
+                reqConfig,
+                (reqConfigWithBasicAuth) => {
+                    // basic auth config setup
+                    authConfigHeaders = reqConfigWithBasicAuth;
+                    isStdAuth = false;
+                },
+                (reqConfigWithStdAuth) => {
+                    // std auth config setup
+                    authConfigHeaders = reqConfigWithStdAuth;
+                    isStdAuth = true;
+                },
+                onFailure
+            );
             // choose sucess handler or tailing call back handler
-            const { tailingApiCall = null, ...restConfig } = reqConfig;
-            if (tailingApiCall) {
+            const { tailingFunctionCall = null, ...restConfig } = reqConfig;
+            restConfig['headers'] = {
+                ...authConfigHeaders,
+            };
+            if (tailingFunctionCall) {
                 apiCall(
                     restConfig,
-                    (data) => {
+                    (dataFromParentSucessResponse) => {
+                        let tailingReqConfig = tailingFunctionCall(
+                            dataFromParentSucessResponse,
+                            onFailure
+                        );
+                        tailingReqConfig['headers'] = {
+                            ...authConfigHeaders,
+                        };
                         apiCall(
-                            tailingApiCall(data, onFailure),
+                            tailingReqConfig,
                             onSuccess,
                             onFailure,
-                            false
+                            isStdAuth
                         );
                     },
                     onFailure,
-                    false
+                    isStdAuth
                 );
             } else {
-                apiCall(reqConfig, onSuccess, onFailure, false);
+                apiCall(restConfig, onSuccess, onFailure, isStdAuth);
             }
         }
     };

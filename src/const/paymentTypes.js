@@ -12,4 +12,3 @@ export const MERCHANT_PAYMENTS = 'payments';
 export const BALANCE_CHECK = 'balanceCheck';
 export const SERVICE_AVAILABILITY = 'serviceAvailability';
 export const RETRIEVE_MISSING_API = 'retrieveMissingRequest';
-export const RETRIEVE_MISSING_API_RESPONSE = 'retrieveMissingResponse';
