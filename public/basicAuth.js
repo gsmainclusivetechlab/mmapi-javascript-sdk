@@ -9,17 +9,17 @@ GSMA_BASIC_AUTH = gsma.auth;
 console.log('gsma basic fun', GSMA_BASIC_AUTH);
 
 //   call for balance check
-// GSMA_BASIC_AUTH.merchantPay({
-//     type: 'balanceCheck',
-//     identifierType: 'accountid',
-//     identifier: 1,
-//     onSuccess: (data, status) => {
-//         console.log('BASIC AUTH success balance check', status, data);
-//     },
-//     onFailure: (error, status) => {
-//         console.error('BASIC AUTH error balance check', error);
-//     },
-// });
+GSMA_BASIC_AUTH.merchantPay({
+    type: 'balanceCheck',
+    identifierType: 'accountid',
+    identifier: 1,
+    onSuccess: (data, status) => {
+        console.log('BASIC AUTH success balance check', status, data);
+    },
+    onFailure: (error, status) => {
+        console.error('BASIC AUTH error balance check', error);
+    },
+});
 
 //  call for pay init
 // GSMA_BASIC_AUTH.merchantPay({

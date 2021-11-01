@@ -17,15 +17,38 @@ gsma.initStandardAuth({
 
 function afterInit() {
     //   call for balance check
-    gsma.auth.merchantPay({
-        type: 'balanceCheck',
-        identifierType: 'accountid',
-        identifier: 1,
-        onSuccess: (status, data) => {
-            console.log('STD-AUTH 1 success balance check', status, data);
+    // gsma.auth.merchantPay({
+    //     type: 'balanceCheck',
+    //     identifierType: 'accountid',
+    //     identifier: 1,
+    //     onSuccess: ( data,status) => {
+    //         console.log('STD-AUTH 1 success balance check', status, data);
+    //     },
+    //     onFailure: ( data,status) => {
+    //         console.log('STD-AUTH 1 error balance check', status, data);
+    //     },
+    // });
+
+    gsma.auth.disbursement({
+        type: 'individualDisbursement',
+        data: {
+            currency: 'ALL',
+            amount: '200.00',
+            debitParty: [{ key: 'accountid', value: '2999' }],
         },
-        onFailure: (status, data) => {
-            console.log('STD-AUTH 1 error balance check', status, data);
+        onSuccess: (data, status) => {
+            console.log(
+                'STD-AUTH 1 success individualDisbursement',
+                status,
+                data
+            );
+        },
+        onFailure: (data, status) => {
+            console.error(
+                'STD-AUTH 1 error individualDisbursement',
+                status,
+                data
+            );
         },
     });
 }
