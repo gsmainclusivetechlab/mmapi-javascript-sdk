@@ -2,11 +2,11 @@ import requestMaker from '../../utils/requestMaker';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
 import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
 
-export default function bulkDisbursement(props, onError) {
+export default function bulkDisbursementApproval(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (
         checkRequiredProps(props, ['data'], onError) &&
-        checkRequiredProps(data, ['transactions'], onError)
+        checkRequiredProps(props, ['batchId'], onError)
     ) {
         let header = {
             'X-CorrelationID': correlationId,
@@ -14,11 +14,11 @@ export default function bulkDisbursement(props, onError) {
         if (callbackUrl) {
             header['X-Callback-URL'] = callbackUrl;
         }
-
+        const { batchId } = props;
         return requestMaker(
-            '/batchtransactions', //url
+            `/batchtransactions/${batchId}`, //url
             header //  headers
-        ).post(
+        ).patch(
             data //data
         );
     }
