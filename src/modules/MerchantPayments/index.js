@@ -14,7 +14,6 @@ import merchantTransactionInit from './transactionInit';
 import generatePreAuthCode from './transInitWithPreAuthCode';
 import paymentWithAuthCode from './paymentWithAuthCode';
 import refund from './refund';
-import getAllTransactions from './getAllTransactions';
 
 export default {
     [MERCHANT_PAYEE_INIT]: merchantTransactionInit,
@@ -22,6 +21,5 @@ export default {
     [MERCHANT_AUTH_CODE]: generatePreAuthCode,
     [MERCHANT_PAYMENT_WITH_PREAUTH_CODE]: paymentWithAuthCode,
     [MERCHANT_REFUND]: refund,
-    [MERCHANT_PAYMENTS]: getAllTransactions,
     ...common,
 };
