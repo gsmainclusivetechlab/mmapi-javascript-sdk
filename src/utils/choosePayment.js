@@ -13,6 +13,7 @@ export default function choosePayment(paymentTypes, authHeaderProps = null) {
                 onSuccess = () => {},
                 onFailure = () => {},
                 type,
+                getClientCorrelationId = () => {},
                 ...rest
             } = clientProps;
             // check for payment type
@@ -20,7 +21,8 @@ export default function choosePayment(paymentTypes, authHeaderProps = null) {
                 paymentTypes,
                 type,
                 rest,
-                onFailure
+                onFailure,
+                getClientCorrelationId
             );
 
             if (reqConfig) {
@@ -74,7 +76,7 @@ export default function choosePayment(paymentTypes, authHeaderProps = null) {
                 }
             }
         } else {
-            console.error('Missing client props onSucess, onFailure...');
+            console.error('Missing onSucess/onFailure in request !');
         }
     };
 }
