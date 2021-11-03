@@ -39,45 +39,29 @@ To list all the available modules within the SDK.
 
 Modules available in window.gsma:
 
-| Module           | Type        | Parameters                                   | Utility                                                                                                                                                                                 |
-| ---------------- | ----------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| initBasicAuth    | Function    | username, pass                               | This function is used for basic authentication of MobileMoney SDK                                                                                                                       |
-| --------------   | ----------- | ------------                                 | ------------                                                                                                                                                                            |
-| initStandardAuth | Function    | username, pass, apiKey, onSuccess, onFailure | This function is used for OAuth2 based authentication of MobileMoney SDK where access token is handled by SDK.                                                                          |
-| --------------   | ----------- | ------------                                 | ------------                                                                                                                                                                            |
-| noAuth           | Function    | -                                            | If the client is not logged in using any of the authentication all the use cases and their respective functions will be available in this module, if they don't require Authentication. |
-| --------------   | ----------- | ------------                                 | ------------                                                                                                                                                                            |
-| auth             | Function    | -                                            | If the client is logged in using any of the authentication all the use cases and their respective functions will be available in this module.                                           |
+Module | Type | Parameters | Utility
+initBasicAuth | Function | username, pass | This function is used for basic authentication of MobileMoney SDK
+initStandardAuth | Function | username, pass, apiKey, onSuccess, onFailure | This function is used for OAuth2 based authentication of MobileMoney SDK where access token is handled by SDK.
+noAuth | Function | - | If the client is not logged in using any of the authentication all the use cases and their respective functions will be available in this module, if they don't require Authentication.
+auth | Function | - | If the client is logged in using any of the authentication all the use cases and their respective functions will be available in this module.
 
 Use cases available in auth and noAuth modules:
 
 merchantPay - Contains functions for all the use case scenarios within Merchant Payments Use case.
 
-| Scenario Type          | Scenarios                                                                                   | Parameters                                                                  |
-| ---------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| payeeInitiated         | Payee-Initiated Merchant Payment, Payee-Initiated Merchant Payment using the Polling Method | callbackUrl, data                                                           |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| payerInitiated         | Payer-Initiated Merchant Payment                                                            | callbackUrl, data                                                           |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| requestState           | Payee-Initiated Merchant Payment Failure, Payer-Initiated Merchant Payment Failure          | serverCorrelationId                                                         |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| transactionReference   | Get Details of a Transaction Reference                                                      | transactionReference                                                        |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| preAuthCode            | Auth Code generation for paymentWithAuthCode                                                | identifierType, identifier, data, callbackUrl                               |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| paymentWithAuthCode    | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code                        | callbackUrl, data, and amount, currency, oneTimeCode within the data object |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| refund                 | Merchant Payment Refund                                                                     | data, callbackUrl and amount, currency within data object                   |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| reversal               | Merchant Payment Reversal                                                                   | transactionReference                                                        |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| payments               | Retrieve Payments for a Merchant                                                            | identifierType, identifier, offset, limit                                   |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| balanceCheck           | Obtain a Merchant Balance                                                                   | identifierType, identifier                                                  |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| serviceAvailability    | Check for Service Availability                                                              | -                                                                           |
-| --------------         | -----------                                                                                 | ------------                                                                |
-| retrieveMissingRequest | Retrieve a Missing API Response                                                             | clientCorrelationId                                                         |
+Scenario Type | Scenarios | Parameters
+payeeInitiated | Payee-Initiated Merchant Payment, Payee-Initiated Merchant Payment using the Polling Method | callbackUrl, data
+payerInitiated | Payer-Initiated Merchant Payment | callbackUrl, data
+requestState | Payee-Initiated Merchant Payment Failure, Payer-Initiated Merchant Payment Failure | serverCorrelationId
+transactionReference | Get Details of a Transaction Reference | transactionReference
+preAuthCode | Auth Code generation for paymentWithAuthCode | identifierType, identifier, data, callbackUrl
+paymentWithAuthCode | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code | callbackUrl, data, and amount, currency, oneTimeCode within the data object
+refund | Merchant Payment Refund | data, callbackUrl and amount, currency within data object
+reversal | Merchant Payment Reversal | transactionReference
+payments | Retrieve Payments for a Merchant | identifierType, identifier, offset, limit
+balanceCheck | Obtain a Merchant Balance | identifierType, identifier
+serviceAvailability | Check for Service Availability | -
+retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
 
 Executing a function:
 
