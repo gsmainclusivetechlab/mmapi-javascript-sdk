@@ -11,7 +11,7 @@
 4. [Payment Modules](#modules)
 * [Merchant Payment Module](#merchantPayment)
 
-[1]: #integration
+<a name="integration"></a>
 ## Integrating SDK to your Application
 Import the SDK script in the head of the client application.
 ```html
@@ -23,7 +23,8 @@ You can use:
 console.log(window.gsma)
 ``` 
 To list all the available modules within the SDK.
-[2]: #initMethods
+
+<a name="initMethods"></a>
 ## Initialization Methods
 Functions and modules that are available in `window.gsma`
 
@@ -33,19 +34,19 @@ initBasicAuth |  username, pass | This function is used for basic authentication
 initStandardAuth |username, pass, apiKey, onSuccess, onFailure | This function is used for OAuth2 based authentication of MobileMoney SDK where access token is handled by SDK. 
 noAuth |  - | If the client is not logged in using any of the authentication all the use cases and their respective functions will be available in this module, if they don't require Authentication.
 auth | - | If the client is logged in using any of the authentication all the use cases and their respective functions will be available in this module.
-[3]: #execution
+<a name="execution"></a>
 ## Executing Functions
 
-[4]: #authMethods
+<a name="authMethods"></a>
 ### Authentication Functions
 Once Authenticated, the client gets access to all functions that require authentication in `window.gsma.auth`
-[5]: #basicAuth
+<a name="basicAuth"></a>
 #### Basic Authentication
 Tou Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
 ```javascript
     window.gsma.initBasicAuth(consumerKey, consumerSecret );
 ```
-[6]:#oauth2
+<a name="oauth2"></a>
 #### OAuth2 based Authentication
 Tou Authenticate using OAuth2 based Authentication method, you can use `initStandardaAuth()` with an object with username, pass, apiKey, onSuccess and onFailure as parameter. here, onSuccess and onFailure are callback functions, which gives the client a response of Authentication Status.
 ```javascript
@@ -62,7 +63,7 @@ window.gsma.initStandardaAuth({
 ```
 
 
-[7]: #noAuth
+<a name="noAuth"></a>
 ### Executing without Authentication
 Without authentication, client can access functions that doesn't require authentication from `window.gsma.noAuth`
 
@@ -96,7 +97,7 @@ window.gsma.noAuth.merchantPay({
 	} 
 })
 ```
-[8]: #auth
+<a name="auth"></a>
 ### Executing after Authentication
 With authentication, client can access all functions from `window.gsma.auth`
 
@@ -130,9 +131,9 @@ window.gsma.auth.merchantPay({
 	} 
 })
 ```
-[9]: #modules
+<a name="modules"></a>
 ## Payment Modules
-[10]:#merchantPayment
+<a name="merchantPayment"></a>
 ### Merchant Payment Module
 Contains functions for all the use case scenarios within Merchant Payments Use case.
 
