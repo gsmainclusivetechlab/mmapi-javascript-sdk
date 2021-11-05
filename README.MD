@@ -1,18 +1,18 @@
 # MMAPI JavaScript SDK
 ## Table of Contents
-1. [Integrating SDK to your Application][integration]
-2. [Initialization Methods][initMethods]
-3. [Executing Functions][execution]
-	- [Authentication Functions][authMethods]
-		- [Basic Authentication][basicAuth]
-		- [OAuth2 based Authentication][oauth2]
-	- [Executing without Authentication][noAuth]
-	- [Executing after Authentication][auth]
-4. [Payment Modules][modules]
-	- [Merchant Payment Module][merchantPayment]
+1. [Integrating SDK to your Application](#integration)
+2. [Initialization Methods](#initMethods)
+3. [Executing Functions](#execution)
+* [Authentication Functions](#authMethods)
+	* [Basic Authentication](#basicAuth)
+	* [OAuth2 based Authentication](#oauth2)
+	* [Executing without Authentication](#noAuth)
+	* [Executing after Authentication](#auth)
+4. [Payment Modules](#modules)
+* [Merchant Payment Module](#merchantPayment)
 
-[integration]: #integration
-##Integrating SDK to your Application
+[1]: #integration
+## Integrating SDK to your Application
 Import the SDK script in the head of the client application.
 ```html
 <script src="http://{cdn-url}/mmsdk.min.js"></script>
@@ -23,8 +23,8 @@ You can use:
 console.log(window.gsma)
 ``` 
 To list all the available modules within the SDK.
-[initMethods]: #initMethods
-##Initialization Methods
+[2]: #initMethods
+## Initialization Methods
 Functions and modules that are available in `window.gsma`
 
 Function |  Parameters | Utility 
@@ -33,20 +33,20 @@ initBasicAuth |  username, pass | This function is used for basic authentication
 initStandardAuth |username, pass, apiKey, onSuccess, onFailure | This function is used for OAuth2 based authentication of MobileMoney SDK where access token is handled by SDK. 
 noAuth |  - | If the client is not logged in using any of the authentication all the use cases and their respective functions will be available in this module, if they don't require Authentication.
 auth | - | If the client is logged in using any of the authentication all the use cases and their respective functions will be available in this module.
-[execution]: #execution
-##Executing Functions
+[3]: #execution
+## Executing Functions
 
-[authMethods]: #authMethods
-###Authentication Functions
+[4]: #authMethods
+### Authentication Functions
 Once Authenticated, the client gets access to all functions that require authentication in `window.gsma.auth`
-[basicAuth]: #basicAuth
-####Basic Authentication
+[5]: #basicAuth
+#### Basic Authentication
 Tou Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
 ```javascript
     window.gsma.initBasicAuth(consumerKey, consumerSecret );
 ```
-[oauth2]:#oauth2
-####OAuth2 based Authentication
+[6]:#oauth2
+#### OAuth2 based Authentication
 Tou Authenticate using OAuth2 based Authentication method, you can use `initStandardaAuth()` with an object with username, pass, apiKey, onSuccess and onFailure as parameter. here, onSuccess and onFailure are callback functions, which gives the client a response of Authentication Status.
 ```javascript
 window.gsma.initStandardaAuth({ 
@@ -62,8 +62,8 @@ window.gsma.initStandardaAuth({
 ```
 
 
-[noAuth]: #noAuth
-###Executing without Authentication
+[7]: #noAuth
+### Executing without Authentication
 Without authentication, client can access functions that doesn't require authentication from `window.gsma.noAuth`
 
 Syntax to call function without Authentication:
@@ -96,8 +96,8 @@ window.gsma.noAuth.merchantPay({
 	} 
 })
 ```
-[auth]: #auth
-###Executing after Authentication
+[8]: #auth
+### Executing after Authentication
 With authentication, client can access all functions from `window.gsma.auth`
 
 Syntax to call function without Authentication:
@@ -130,10 +130,10 @@ window.gsma.auth.merchantPay({
 	} 
 })
 ```
-[modules]: #modules
-##Payment Modules
-[merchantPayment]:#merchantPayment
-###Merchant Payment Module
+[9]: #modules
+## Payment Modules
+[10]:#merchantPayment
+### Merchant Payment Module
 Contains functions for all the use case scenarios within Merchant Payments Use case.
 
 Function | Scenarios | Parameters
