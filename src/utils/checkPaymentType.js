@@ -14,7 +14,7 @@ export default function checkForExistingType(
         let restWithcorrelationId = { correlationId, ...rest };
         return paymentTypes[type](restWithcorrelationId, onFailure);
     } else {
-        onFailure('Invalid Payment Type : ' + type, null, '400');
+        onFailure('Invalid Payment Type : ' + type, '400');
         // return;
     }
 }

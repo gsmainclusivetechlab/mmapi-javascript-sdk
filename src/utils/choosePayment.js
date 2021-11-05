@@ -3,6 +3,7 @@ import checkForExistingType from './checkPaymentType';
 import chooseAuthType from './chooseAuthType';
 
 export default function choosePayment(paymentTypes, authHeaderProps = null) {
+    // const { callBackUrl: globalCallBackUrl = null } = authHeaderProps;
     return (clientProps) => {
         // check for required basic props in called function
         if (

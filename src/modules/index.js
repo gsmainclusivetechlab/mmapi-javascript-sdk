@@ -12,4 +12,5 @@ export const moduleWrapperWithAuth = (authHeaders) => {
 
 export const moduleWrapperWithoutAuth = {
     merchantPay: choosePayment(merchantPayments),
+    disbursement: choosePayment(disbursement),
 };

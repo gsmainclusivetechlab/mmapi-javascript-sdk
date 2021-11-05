@@ -9,17 +9,17 @@ GSMA_BASIC_AUTH = gsma.auth;
 console.log('gsma basic fun', GSMA_BASIC_AUTH);
 
 //   call for balance check
-GSMA_BASIC_AUTH.merchantPay({
-    type: 'balanceCheck',
-    identifierType: 'accountid',
-    identifier: 1,
-    onSuccess: (data, status) => {
-        console.log('BASIC AUTH success balance check', status, data);
-    },
-    onFailure: (error, status) => {
-        console.error('BASIC AUTH error balance check', error);
-    },
-});
+// GSMA_BASIC_AUTH.merchantPay({
+//     type: 'balanceCheck',
+//     identifierType: 'accountid',
+//     identifier: 1,
+//     onSuccess: (data, status) => {
+//         console.log('BASIC AUTH success balance check', status, data);
+//     },
+//     onFailure: (error, status) => {
+//         console.error('BASIC AUTH error balance check', error);
+//     },
+// });
 
 //  call for pay init
 // GSMA_BASIC_AUTH.merchantPay({
@@ -53,28 +53,28 @@ GSMA_BASIC_AUTH.merchantPay({
 // });
 
 // generate pre auth code
-// GSMA_BASIC_AUTH.merchantPay({
-//     type: 'preAuthCode',
-//     identifierType: 'accountid',
-//     identifier: 1,
-//     callbackUrl:
-//         'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
+GSMA_BASIC_AUTH.merchantPay({
+    type: 'generatePreAuthCode',
+    identifierType: 'accountid',
+    identifier: 1,
+    // callbackUrl:
+    //     'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
 
-//     data: {
-//         requestDate: '2018-07-03T10:43:27.405Z',
-//         currency: 'GBP',
-//         amount: '1000.00',
-//     },
-//     onSuccess: (data, status) => {
-//         console.log('BASIC AUTH success preAuth code generator ', status, data);
-//         // getState(data);
-//         // getTransactionReference(data);
-//         // payWithPreAuthCode();
-//     },
-//     onFailure: (error, status) => {
-//         console.log('BASIC AUTH error preAuth code generator', error);
-//     },
-// });
+    data: {
+        requestDate: '2018-07-03T10:43:27.405Z',
+        currency: 'GBP',
+        amount: '1000.00',
+    },
+    onSuccess: (data, status) => {
+        console.log('BASIC AUTH success preAuth code generator ', data);
+        getState(data);
+        getTransactionReference(data);
+        // payWithPreAuthCode();
+    },
+    onFailure: (error, status) => {
+        console.log('BASIC AUTH error preAuth code generator', error);
+    },
+});
 
 function payWithPreAuthCode(code) {
     GSMA_BASIC_AUTH.merchantPay({
@@ -96,8 +96,8 @@ function payWithPreAuthCode(code) {
             currency: 'RWF',
             oneTimeCode: 'e8f51f4e-c8d6-4b4e-873b-fcdbda22523d',
         },
-        callbackUrl:
-            'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
+        // callbackUrl:
+        //     'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
 
         onSuccess: (data, status) => {
             console.log(
@@ -105,7 +105,7 @@ function payWithPreAuthCode(code) {
                 status,
                 data
             );
-            // getState(data);
+            getState(data);
             // getTransactionReference(data);
         },
         onFailure: (error, status) => {
@@ -127,10 +127,24 @@ function getState(data) {
         onSuccess: (data, status) => {
             console.log('BASIC AUTH success in get state ', status, data);
             // reversal(data);
-            getTransactionReference(data);
+            // getTransactionReference(data);
         },
         onFailure: (error, status) => {
             console.log('BASIC AUTH error in get state', error);
+        },
+    });
+}
+function getStateOfReversal(data) {
+    let { serverCorrelationId } = data;
+    // request for state
+    GSMA_BASIC_AUTH.merchantPay({
+        type: 'requestState',
+        serverCorrelationId: serverCorrelationId,
+        onSuccess: (data, status) => {
+            console.log('BASIC AUTH success getStateOfReversal ', status, data);
+        },
+        onFailure: (error, status) => {
+            console.log('BASIC AUTH error getStateOfReversal', error);
         },
     });
 }
@@ -146,7 +160,7 @@ function reversal({ objectReference: transactionReference }) {
                 status,
                 data
             );
-            getState(data);
+            getStateOfReversal(data);
         },
         onFailure: (error, status) => {
             console.error(
@@ -205,17 +219,17 @@ function getTransactionReference({ objectReference: transactionReference }) {
 // });
 
 // retrive missing apis
-GSMA_BASIC_AUTH.merchantPay({
-    type: 'retrieveMissingRequest',
-    clientCorrelationId: '84002d65-229c-4434-a48f-3cdfd1c030e3',
-    onSuccess: (data, status) => {
-        console.log('BASIC AUTH success missing apis', status, data);
-        getMissedResponse(data);
-    },
-    onFailure: (error, status) => {
-        console.log('BASIC AUTH error missing apis', error);
-    },
-});
+// GSMA_BASIC_AUTH.merchantPay({
+//     type: 'retrieveMissingRequest',
+//     clientCorrelationId: '84002d65-229c-4434-a48f-3cdfd1c030e3',
+//     onSuccess: (data, status) => {
+//         console.log('BASIC AUTH success missing apis', status, data);
+//         getMissedResponse(data);
+//     },
+//     onFailure: (error, status) => {
+//         console.log('BASIC AUTH error missing apis', error);
+//     },
+// });
 
 // function getMissedResponse({ link }) {
 //     GSMA_BASIC_AUTH.merchantPay({
