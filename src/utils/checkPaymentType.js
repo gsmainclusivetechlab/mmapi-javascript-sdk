@@ -5,16 +5,42 @@ export default function checkForExistingType(
     type,
     rest,
     onFailure,
-    getClientCorrelationId = null
+    getClientCorrelationId = null,
+    globalCallBackUrl = null
 ) {
     if (paymentTypes[type]) {
         const correlationId = uuidv4();
-        // can be restricted to call in POST methords only later
-        if (getClientCorrelationId) getClientCorrelationId(correlationId);
         let restWithcorrelationId = { correlationId, ...rest };
+
+        // CALL BACK TO PASS CORRELATION ID TO CLIENT
+        if (getClientCorrelationId) getClientCorrelationId(correlationId);
+
+        // check individual request have a callback mentioned
+        if (
+            rest.hasOwnProperty('notificationMethod') &&
+            rest.notificationMethod === 'polling'
+        ) {
+            if (rest.hasOwnProperty('callbackUrl')) {
+                // remove callbackUrl property to switch into polling
+                delete restWithcorrelationId.callbackUrl;
+            }
+        } else if (!rest.hasOwnProperty('callbackUrl')) {
+            // CONFIG globalCallBackUrl TO EACH REQUEST
+            if (globalCallBackUrl) {
+                restWithcorrelationId['callbackUrl'] = globalCallBackUrl;
+            }
+        }
         return paymentTypes[type](restWithcorrelationId, onFailure);
     } else {
-        onFailure('Invalid Payment Type : ' + type, '400');
+        onFailure(
+            {
+                errorCategory: 'validation',
+                errorCode: 'typeError',
+                errorDescription: 'Invalid Payment Type ',
+                errorParameters: errors,
+            },
+            '400'
+        );
         // return;
     }
 }

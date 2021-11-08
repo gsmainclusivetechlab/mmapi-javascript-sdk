@@ -2,8 +2,8 @@ import apiCall from '../apis';
 import checkForExistingType from './checkPaymentType';
 import chooseAuthType from './chooseAuthType';
 
-export default function choosePayment(paymentTypes, authHeaderProps = null) {
-    // const { callBackUrl: globalCallBackUrl = null } = authHeaderProps;
+export default function choosePayment(paymentTypes, authHeaderProps = {}) {
+    const { callbackUrl: globalCallBackUrl } = authHeaderProps;
     return (clientProps) => {
         // check for required basic props in called function
         if (
@@ -23,7 +23,8 @@ export default function choosePayment(paymentTypes, authHeaderProps = null) {
                 type,
                 rest,
                 onFailure,
-                getClientCorrelationId
+                getClientCorrelationId,
+                globalCallBackUrl
             );
 
             if (reqConfig) {

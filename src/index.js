@@ -4,8 +4,8 @@ import sdkWithTokenHandler from './utils/initSdkWithTokenHandler';
 import generateToken from './apis/generateToken';
 
 window.gsma = {
-    initBasicAuth: (username, pass, callBackUrl) => {
-        moduleWrapperWithAuth({ username, pass, callBackUrl });
+    initBasicAuth: (username, pass, callbackUrl = null) => {
+        moduleWrapperWithAuth({ username, pass, callbackUrl });
     },
     // initStandardAuthWithToken: (apiKey, accessToken) => {
     //     moduleWrapperWithAuth({ apiKey, accessToken });
