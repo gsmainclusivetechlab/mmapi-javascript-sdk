@@ -9,16 +9,16 @@ export default function getAllTransactions(props, onError) {
     if (
         checkRequiredProps(
             props,
-            ['identifierType', 'identifier', 'offset', 'limit'],
+            ['identifierType', 'identifier'],
             onError
         )
     ) {
-        let { identifierType, identifier, offset, limit } = props;
+        let { identifierType, identifier, offset=null, limit=null } = props;
+        let params= {}
+        if(offset) params['offset']= offset;
+        if(limit) params['limit']=limit;
         return requestMaker(
             `/accounts/${identifierType}/${identifier}/transactions`
-        ).get({
-            offset,
-            limit,
-        });
+        ).get(params);
     }
 }
