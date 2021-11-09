@@ -1,9 +1,4 @@
-// merchant - types
-export const MERCHANT_PAYEE_INIT = 'initPayment';
-// export const MERCHANT_PAYER_INIT = 'initPayment';
-export const MERCHANT_AUTH_CODE = 'generatePreAuthCode';
-export const MERCHANT_PAYMENT_WITH_PREAUTH_CODE = 'paymentWithPreAuthCode';
-export const MERCHANT_REFUND = 'refund';
+
 
 // common -  types
 export const BALANCE_CHECK = 'balanceCheck';
@@ -13,6 +8,12 @@ export const REQUEST_STATE = 'requestState';
 export const TRANSACTION_REFERENCE = 'transactionReference';
 export const REVERSAL = 'reversal';
 export const TRANSACTIONS = 'transactions';
+
+// merchant - types
+export const MERCHANT_INIT_PAYMENT = 'initPayment';
+export const MERCHANT_AUTH_CODE = 'generatePreAuthCode';
+export const MERCHANT_PAYMENT_WITH_PREAUTH_CODE = 'paymentWithPreAuthCode';
+export const MERCHANT_REFUND = 'refund';
 
 // Disbursement -types
 export const DISBURSEMENT_INDIVIDUAL = 'individualDisbursement';

@@ -45,7 +45,7 @@ Once Authenticated, the client gets access to all functions that require authent
 #### Basic Authentication
 Tou Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
 ```javascript
-    window.gsma.initBasicAuth(consumerKey, consumerSecret );
+    window.gsma.initBasicAuth(consumerKey, consumerSecret, callbackUrl );
 ```
 <a name="oauth2"></a>
 #### OAuth2 based Authentication
@@ -55,6 +55,7 @@ window.gsma.initStandardaAuth({
 	username: username, 
 	pass: password,
 	apiKey: apiKey,
+	callbackUrl: globalCallbackUrl,
 	onSuccess: (res) => {
 		console.log("Authentication Success", res)}, 
 	onFailure: (res) => {

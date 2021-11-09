@@ -87,6 +87,9 @@ function generateAuthHeaderFormGivenParams(
             Authorization: `Bearer ${base64Data}`,
         });
     } else {
-        onFailure('Missing auth params', '400');
+        // onFailure('Missing auth params', '400');
+        basicAuth({
+            ...requestConfig.headers
+        });
     }
 }

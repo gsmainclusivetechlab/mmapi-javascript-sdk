@@ -26,35 +26,35 @@ GSMA_BASIC_AUTH.merchantPay({
 });
 
 //  call for pay init
-// GSMA_BASIC_AUTH.merchantPay({
-//     type: 'payeeInitiated',
-//     data: {
-//         amount: '200.00',
-//         debitParty: [
-//             {
-//                 key: 'accountid',
-//                 value: '2999',
-//             },
-//         ],
-//         creditParty: [
-//             {
-//                 key: 'accountid',
-//                 value: '2999',
-//             },
-//         ],
-//         currency: 'RWF',
-//     },
-//     // callbackUrl:
-//     //   'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
+GSMA_BASIC_AUTH.merchantPay({
+    type: 'initPayment',
+    data: {
+        amount: '200.00',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        creditParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        currency: 'RWF',
+    },
+    // callbackUrl:
+    //   'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
 
-//     onSuccess: (data, status) => {
-//         console.log('BASIC AUTH success in payInit', status, data);
-//         getState(data);
-//     },
-//     onFailure: (error, status) => {
-//         console.error('BASIC AUTH  error in payInit', error, status);
-//     },
-// });
+    onSuccess: (data, status) => {
+        console.log('BASIC AUTH success in payInit', status, data);
+        getState(data);
+    },
+    onFailure: (error, status) => {
+        console.error('BASIC AUTH  error in payInit', error, status);
+    },
+});
 
 // generate pre auth code
 // GSMA_BASIC_AUTH.merchantPay({

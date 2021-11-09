@@ -30,6 +30,7 @@ export default function checkForExistingType(
                 restWithcorrelationId['callbackUrl'] = globalCallBackUrl;
             }
         }
+        console.log("props data with client cor",restWithcorrelationId)
         return paymentTypes[type](restWithcorrelationId, onFailure);
     } else {
         onFailure(
@@ -37,7 +38,7 @@ export default function checkForExistingType(
                 errorCategory: 'validation',
                 errorCode: 'typeError',
                 errorDescription: 'Invalid Payment Type ',
-                errorParameters: errors,
+                errorParameters: [],
             },
             '400'
         );
