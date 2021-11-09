@@ -2,8 +2,8 @@
 //needed to add  api key ,call back url
 gsma.initBasicAuth(
     '59vthmq3f6i15v6jmcjskfkmh', //consumer key
-    'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb' //consumer secret key
-    // 'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback/global'
+    'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb', //consumer secret key
+    'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback' // global callbackUrl
 );
 GSMA_BASIC_AUTH = gsma.auth;
 
@@ -16,7 +16,7 @@ GSMA_BASIC_AUTH.merchantPay({
     identifier: 1,
     // callbackUrl:
     //     'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback/local',
-    notificationMethod: 'callback',
+    notificationMethod: 'polling',
     onSuccess: (data, status) => {
         console.log('BASIC AUTH success balance check', status, data);
     },

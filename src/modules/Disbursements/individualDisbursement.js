@@ -1,13 +1,12 @@
 import requestMaker from '../../utils/requestMaker';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
+// import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
 
 export default function individualDisbursement(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (
         checkRequiredProps(props, ['data'], onError) &&
-        checkRequiredProps(data, ['amount', 'currency'], onError) &&
-        transactionObjectValidtor(data, ['amount'], onError)
+        checkRequiredProps(data, ['amount', 'currency'], onError) 
     ) {
         let header = {
             'X-CorrelationID': correlationId,

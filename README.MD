@@ -10,6 +10,7 @@
 	* [Executing after Authentication](#auth)
 5. [Payment Modules](#modules)
 	* [Merchant Payment Module](#merchantPayment)
+	* [Disbursements](#disbursements)
 
 <a name="integration"></a>
 ## Integrating SDK to your Application
@@ -134,21 +135,40 @@ window.gsma.auth.merchantPay({
 <a name="modules"></a>
 ## Payment Modules
 <a name="merchantPayment"></a>
-### Merchant Payment Module
-Contains functions for all the use case scenarios within Merchant Payments Use case.
+### Merchant Payment 
+Contains functions for all the use case scenarios within Merchant Payments.
 
 Function | Scenarios | Parameters
 --------------|-----------|------------
-payeeInitiated | Payee-Initiated Merchant Payment, Payee-Initiated Merchant Payment using the Polling Method | callbackUrl, data
-payerInitiated | Payer-Initiated Merchant Payment | callbackUrl, data
-requestState  | Payee-Initiated Merchant Payment Failure, Payer-Initiated Merchant Payment Failure | serverCorrelationId
-transactionReference | Get Details of a Transaction Reference | transactionReference
-preAuthCode | Auth Code generation for paymentWithAuthCode | identifierType, identifier, data, callbackUrl
+initPayment | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data
+requestState  | Request state object to determine the outcome of the payment request | serverCorrelationId
+transactionReference | Get representation of complete payment transaction | transactionReference
+generatePreAuthCode | Auth Code generation for paymentWithAuthCode | identifierType, identifier, data, callbackUrl
 paymentWithAuthCode | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code | callbackUrl, data, and amount, currency, oneTimeCode within the data object
 refund | Merchant Payment Refund | data, callbackUrl and amount, currency within data object
 reversal | Merchant Payment Reversal | transactionReference
-payments | Retrieve Payments for a Merchant | identifierType, identifier, offset, limit
+transactions | Retrieve Payments for a Merchant | identifierType, identifier, offset, limit
 balanceCheck | Obtain a Merchant Balance | identifierType, identifier
+serviceAvailability | Check for Service Availability | -
+retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
+
+<a name="disbursements"></a>
+### Disbursements
+Contains functions for all the use case scenarios within Disbursements.
+
+Function | Scenarios | Parameters
+--------------|-----------|------------
+individualDisbursement | Individual disbursement using Callback or Polling Method | callbackUrl, data
+bulkDisbursement | Bulk Disbursement using ‘one-shot’ or with 'Maker / Checker' | callbackUrl, data and data must contain transactions
+requestState  | Request state object to determine the outcome of the individual disbursement request | serverCorrelationId
+transactionReference | Get a representation of completed disbursement | transactionReference
+bulkDisbursementStatus | Get a representation of the batch transactions object | batchId
+bulkDisbursementCompleted | Get all transactions that have been completed | batchId
+bulkDisbursementRejected | Get all transactions that have been rejected | batchId
+bulkDisbursementApproval | Checker submit a request to approve the transaction batch | callbackUrl,batchId
+reversal | Reverse an individual disbursement transaction | transactionReference
+transactions |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
+balanceCheck | Obtain a Disbursement Organisation Balance | identifierType, identifier
 serviceAvailability | Check for Service Availability | -
 retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
 
