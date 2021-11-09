@@ -3,13 +3,13 @@
 1. [Integrating SDK to your Application](#integration)
 2. [Initialization Methods](#initMethods)
 3. [Executing Functions](#execution)
-* [Authentication Functions](#authMethods)
+4. [Authentication Functions](#authMethods)
 	* [Basic Authentication](#basicAuth)
 	* [OAuth2 based Authentication](#oauth2)
 	* [Executing without Authentication](#noAuth)
 	* [Executing after Authentication](#auth)
-4. [Payment Modules](#modules)
-* [Merchant Payment Module](#merchantPayment)
+5. [Payment Modules](#modules)
+	* [Merchant Payment Module](#merchantPayment)
 
 <a name="integration"></a>
 ## Integrating SDK to your Application
@@ -28,11 +28,11 @@ To list all the available modules within the SDK.
 ## Initialization Methods
 Functions and modules that are available in `window.gsma`
 
-Function |  Parameters | Utility 
--------|------|------------|---------
-initBasicAuth |  username, pass | This function is used for basic authentication of MobileMoney SDK
+Function | Parameters | Utility 
+--------------|-----------|------------
+initBasicAuth | username, pass | This function is used for basic authentication of MobileMoney SDK 
 initStandardAuth |username, pass, apiKey, onSuccess, onFailure | This function is used for OAuth2 based authentication of MobileMoney SDK where access token is handled by SDK. 
-noAuth |  - | If the client is not logged in using any of the authentication all the use cases and their respective functions will be available in this module, if they don't require Authentication.
+noAuth | - | If the client is not logged in using any of the authentication all the use cases and their respective functions will be available in this module, if they don't require Authentication. 
 auth | - | If the client is logged in using any of the authentication all the use cases and their respective functions will be available in this module.
 <a name="execution"></a>
 ## Executing Functions
@@ -151,3 +151,4 @@ payments | Retrieve Payments for a Merchant | identifierType, identifier, offset
 balanceCheck | Obtain a Merchant Balance | identifierType, identifier
 serviceAvailability | Check for Service Availability | -
 retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
+
