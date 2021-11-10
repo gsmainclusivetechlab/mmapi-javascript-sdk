@@ -12,7 +12,7 @@ export default function reversal(props, onError) {
             onError
         )
     ) {
-        let {
+        const {
             data = { type: 'reversal' },
             correlationId,
             callbackUrl,

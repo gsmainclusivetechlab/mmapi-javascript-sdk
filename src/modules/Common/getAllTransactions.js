@@ -9,7 +9,7 @@ export default function getAllTransactions(props, onError) {
     if (
         checkRequiredProps(
             props,
-            ['identifierType', 'identifier', 'offset', 'limit'],
+            ['identifierType', 'identifier'],
             onError
         )
     ) {
