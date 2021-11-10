@@ -1,11 +1,27 @@
 gsma.noAuth.merchantPay({
-    type: 'balanceCheck',
-    identifierType: 'accountid',
-    identifier: 1,
-    onSuccess: (status, data) => {
-        console.log('NO-AUTH  success balance check', status, data);
+    type: 'initPayment',
+    data: {
+        amount: '200.00',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        creditParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        currency: 'RWF',
     },
-    onFailure: (status, data) => {
-        console.log('NO-AUTH  error balance check', status, data);
+    //     callbackUrl:
+    //   'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
+    onSuccess: ( data) => {
+        console.log('NO-AUTH  success initPayment',  data);
+    },
+    onFailure: (error, status) => {
+        console.error('NO-AUTH  error in payInit', error, status);
     },
 });

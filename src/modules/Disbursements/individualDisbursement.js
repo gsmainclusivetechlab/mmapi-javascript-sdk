@@ -1,7 +1,8 @@
 import requestMaker from '../../utils/requestMaker';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
 // import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
-export default function merchantTransactionInit(props, onError) {
+
+export default function individualDisbursement(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (
         checkRequiredProps(props, ['data'], onError) &&
@@ -15,7 +16,7 @@ export default function merchantTransactionInit(props, onError) {
         }
 
         return requestMaker(
-            '/transactions/type/merchantpay', //url
+            '/transactions/type/disbursement', //url
             header //  headers
         ).post(
             data //data

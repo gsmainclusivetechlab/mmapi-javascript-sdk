@@ -18,7 +18,7 @@ export default function fetchHandler(
         apiInstance(reqConfig)
             .then((res) => {
                 return successHandler
-                    ? successHandler(res?.data, res?.status)
+                    ? successHandler(res?.data, res?.headers, res?.status)
                     : null;
             })
             .catch((error) => {

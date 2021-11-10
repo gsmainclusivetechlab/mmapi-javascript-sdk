@@ -1,11 +1,12 @@
 import requestMaker from '../../utils/requestMaker';
 import checkRequiredProps from '../../utils/checkRequiredKeys';
-// import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
-export default function merchantTransactionInit(props, onError) {
+import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
+
+export default function bulkDisbursement(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (
         checkRequiredProps(props, ['data'], onError) &&
-        checkRequiredProps(data, ['amount', 'currency'], onError) 
+        checkRequiredProps(data, ['transactions'], onError)
     ) {
         let header = {
             'X-CorrelationID': correlationId,
@@ -15,7 +16,7 @@ export default function merchantTransactionInit(props, onError) {
         }
 
         return requestMaker(
-            '/transactions/type/merchantpay', //url
+            '/batchtransactions', //url
             header //  headers
         ).post(
             data //data
