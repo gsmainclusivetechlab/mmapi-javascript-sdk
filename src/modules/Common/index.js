@@ -6,6 +6,7 @@ import {
     TRANSACTION_REFERENCE,
     REVERSAL,
     TRANSACTIONS,
+    INTERNATIONAL_REQ_QUOTATION
 } from '../../const/paymentTypes';
 import requestMaker from '../../utils/requestMaker';
 import balanceCheck from './balanceCheck';
@@ -14,6 +15,7 @@ import getRequestState from './getRequestState';
 import getTransactionReference from './getTransactionReference';
 import reversal from './reversal';
 import getAllTransactions from './getAllTransactions';
+import requestQuotation from '../Common/requestQuotation'
 export const common = {
     [BALANCE_CHECK]: balanceCheck,
     [SERVICE_AVAILABILITY]: () => requestMaker('/heartbeat').get(),
@@ -22,4 +24,5 @@ export const common = {
     [TRANSACTION_REFERENCE]: getTransactionReference,
     [REVERSAL]: reversal,
     [TRANSACTIONS]: getAllTransactions,
+    [INTERNATIONAL_REQ_QUOTATION]: requestQuotation,
 };

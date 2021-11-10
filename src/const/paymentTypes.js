@@ -8,6 +8,7 @@ export const REQUEST_STATE = 'requestState';
 export const TRANSACTION_REFERENCE = 'transactionReference';
 export const REVERSAL = 'reversal';
 export const TRANSACTIONS = 'transactions';
+export const INTERNATIONAL_REQ_QUOTATION = 'requestQuotation'
 
 // merchant 
 export const MERCHANT_INIT_PAYMENT = 'initPayment';
@@ -24,5 +25,4 @@ export const DISBURSEMENT_BULK_REJECTED = 'bulkDisbursementRejected';
 export const DISBURSEMENT_BULK_APPROVAL = 'bulkDisbursementApproval';
 
 // International 
-export const INTERNATIONAL_REQ_QUOTATION = 'requestQuotation'
 export const INTERNATIONAL_TRANSFER = 'transfer'
