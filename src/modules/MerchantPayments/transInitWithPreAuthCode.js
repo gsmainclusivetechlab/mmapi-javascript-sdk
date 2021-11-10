@@ -7,11 +7,9 @@ export default (props, onError) => {
             props,
             ['identifierType', 'identifier', 'data'],
             onError
-        ) &&
-        checkRequiredProps(props.data, ['currency', 'amount'], onError)
+        )
     ) {
-        let { identifierType, identifier, data, correlationId, callbackUrl } =
-            props;
+        const { identifierType, identifier, data, correlationId, callbackUrl } = props;
         let header = {
             'X-CorrelationID': correlationId,
         };

@@ -5,8 +5,7 @@ import checkRequiredProps from '../../utils/checkRequiredKeys';
 export default function individualDisbursement(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (
-        checkRequiredProps(props, ['data'], onError) &&
-        checkRequiredProps(data, ['amount', 'currency'], onError) 
+        checkRequiredProps(props, ['data'], onError) 
     ) {
         let header = {
             'X-CorrelationID': correlationId,

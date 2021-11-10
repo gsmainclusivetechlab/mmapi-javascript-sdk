@@ -5,8 +5,7 @@ import { transactionObjectValidtor } from '../../utils/transactionObjectValidato
 export default function bulkDisbursement(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (
-        checkRequiredProps(props, ['data'], onError) &&
-        checkRequiredProps(data, ['transactions'], onError)
+        checkRequiredProps(props, ['data'], onError)
     ) {
         let header = {
             'X-CorrelationID': correlationId,
