@@ -11,7 +11,7 @@
 5. [Payment Modules](#modules)
 	* [Merchant Payment Module](#merchantPayment)
 	* [Disbursements](#disbursements)
-	*[International Transfers](#international)
+	* [International Transfers](#international)
 
 <a name="integration"></a>
 ## Integrating SDK to your Application
