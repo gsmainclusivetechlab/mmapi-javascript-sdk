@@ -183,3 +183,8 @@ Function | Scenarios | Parameters
 --------------|-----------|------------
 requestQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data
 transfer | Sending FSP submits a transaction request to the receiving FSP | callbackUrl, data 
+reversal | Reverse an individual disbursement transaction | transactionReference
+transactions |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
+balanceCheck | Obtain a Disbursement Organisation Balance | identifierType, identifier
+serviceAvailability | Check for Service Availability | -
+retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
