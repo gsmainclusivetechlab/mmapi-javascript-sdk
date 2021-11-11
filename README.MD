@@ -12,6 +12,7 @@
 	* [Merchant Payment Module](#merchantPayment)
 	* [Disbursements](#disbursements)
 	* [International Transfers](#international)
+	* [P2P](#p2p)
 
 <a name="integration"></a>
 ## Integrating SDK to your Application
@@ -183,8 +184,23 @@ Function | Scenarios | Parameters
 --------------|-----------|------------
 requestQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data
 transfer | Sending FSP submits a transaction request to the receiving FSP | callbackUrl, data 
-reversal | Reverse an individual disbursement transaction | transactionReference
-transactions |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
-balanceCheck | Obtain a Disbursement Organisation Balance | identifierType, identifier
+reversal | Reverse an international transaction | transactionReference
+transactions |  Retrieve all transactions | identifierType, identifier, offset, limit
+balanceCheck | Obtain Balance | identifierType, identifier
+serviceAvailability | Check for Service Availability | -
+retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
+
+<a name="p2p"></a>
+### P2P Transfers
+Contains functions for all the use case scenarios within P2P Transfers.
+
+Function | Scenarios | Parameters
+--------------|-----------|------------
+getRecepientName | confirm the recipient name | identifierType, identifier
+requestQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data
+transfer |  Perform the transfer with the receiving FSP | callbackUrl, data 
+reversal | Reverse an p2p transaction | transactionReference
+transactions |  Retrieve all transactions | identifierType, identifier, offset, limit
+balanceCheck | Obtain Balance | identifierType, identifier
 serviceAvailability | Check for Service Availability | -
 retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
