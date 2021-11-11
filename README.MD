@@ -11,6 +11,7 @@
 5. [Payment Modules](#modules)
 	* [Merchant Payment Module](#merchantPayment)
 	* [Disbursements](#disbursements)
+	*[International Transfers](#international)
 
 <a name="integration"></a>
 ## Integrating SDK to your Application
@@ -173,3 +174,12 @@ balanceCheck | Obtain a Disbursement Organisation Balance | identifierType, iden
 serviceAvailability | Check for Service Availability | -
 retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
 
+
+<a name="international"></a>
+### International Transfers
+Contains functions for all the use case scenarios within International Transfers.
+
+Function | Scenarios | Parameters
+--------------|-----------|------------
+requestQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data
+transfer | Sending FSP submits a transaction request to the receiving FSP | callbackUrl, data 
