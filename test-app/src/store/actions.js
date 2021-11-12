@@ -1,0 +1,12 @@
+// action - customization reducer
+export const SET_MENU = "@customization/SET_MENU";
+export const MENU_OPEN = "@customization/MENU_OPEN";
+export const SET_FONT_FAMILY = "@customization/SET_FONT_FAMILY";
+export const SET_BORDER_RADIUS = "@customization/SET_BORDER_RADIUS";
+export const SET_AUTH = "@customization/SET_AUTH";
+export const UPDATE_HEADER = "@formData/UPDATE_HEADER";
+export const UPDATE_BODY = "@formData/UPDATE_BODY";
+export const RESET_FORM = "@formData/RESET_FORM";
+export const ADD_TO_CLIPBOARD = "@clipboard/ADD_TO_CLIPBOARD";
+export const DELETE_FROM_CLIPBOARD = "@clipboard/DELETE_FROM_CLIPBOARD";
+export const RESET_CLIPBOARD = "@clipboard/RESET_CLIPBOARD";
