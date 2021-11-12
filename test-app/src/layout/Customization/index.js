@@ -133,7 +133,7 @@ const Customization = () => {
         return (
           <div className="container form-container">
             <TextField
-              id="outlined-basic"
+              id="outlined-basic-usr-name"
               label="Username"
               variant="outlined"
               size="small"
@@ -142,7 +142,7 @@ const Customization = () => {
               onChange={(e) => setFormParams("username", e.target.value)}
             />
             <TextField
-              id="outlined-basic"
+              id="outlined-basic-pwd"
               type="password"
               label="Password"
               variant="outlined"
@@ -184,10 +184,10 @@ const Customization = () => {
         return (
           <div className="container form-container">
             <TextField
-              id="outlined-basic"
+              id="outlined-basic-cons-key"
               label="Consumer Key"
               variant="outlined"
-              defaultValue={process.env.CONSUMER_KEY}
+              defaultValue={process.env.REACT_APP_CONSUMER_KEY}
               size="small"
               onClick={(e) => setFormParams("username", e.target.value)}
               onChange={(e) => {
@@ -195,12 +195,12 @@ const Customization = () => {
               }}
             />
             <TextField
-              id="outlined-basic"
+              id="outlined-basic-cons-secret"
               type="password"
               label="Consumer Secret"
               variant="outlined"
               size="small"
-              defaultValue={process.env.CONSUMER_SECRET}
+              defaultValue={process.env.REACT_APP_CONSUMER_SECRET}
               onClick={(e) => setFormParams("password", e.target.value)}
               onChange={(e) => {
                 setFormParams("password", e.target.value);

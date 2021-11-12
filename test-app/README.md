@@ -3,15 +3,32 @@
 Step 1: Clone the repository<br />
 Step 2: pull the latest build from test-app branch<br />
 Step 3: npm install<br />
-Step 4: Add REACT_APP_CLIENT_API_KEY with the Client API key as value in .env<br />
-Step 5: Add SKIP_PREFLIGHT_CHECK=true in .env<br />
-Step 5: npm start<br />
-Step 6: Type `chrome.exe --user-data-dir="C:/Chrome" --disable-web-security` in Windows Run command window to open an instance of Google Chrome to disable CORS.<br/>
-Step 7: Go to http://localhost:3000/<br/>
+Step 4: Add `REACT_APP_CLIENT_API_KEY` with the Client API key as value in .env<br />
+Step 5: Add `REACT_APP_CONSUMER_KEY` with the Consumer key as value in .env<br />
+Step 6: Add `REACT_APP_CONSUMER_SECRET` with the Consumer Secret as value in .env<br />
+Step 7: Add `SKIP_PREFLIGHT_CHECK=true` in .env<br />
+Step 8: npm start<br />
+Step 9: Type `chrome.exe --user-data-dir="C:/Chrome" --disable-web-security` in Windows Run command window to open an instance of Google Chrome with CORS disable.<br/>
+Step 10: Go to `http://localhost:3000/`<br/>
+
+# Test App - SDK Integration:
+
+### Method 1:
+
+Step 1: Run `npm run build` in SDK.<br/>
+Step 2: Go to [/dist](/dist), Copy `mmsdk.min.js`, and Paste it to [/public](./public) folder of Test App.<br/>
+Step 3: Go to [/public/index.html](./public/index.html) of Test App.<br />
+Step 4: Import SDK by appending `<script src="/mmsdk.min.js"></script>` in the header of the html page.<br/>
+
+### Method 2:
+
+Step 1: Run `npm start` in SDK.<br/>
+Step 2: Go to [/public/index.html](./public/index.html) of Test App.<br />
+Step 3: Import SDK by appending `<script src="http://localhost:8080/mmsdk.min.js"></script>` in the header of the html page.<br/>
 
 # Add more APIs to test:
 
-Step 1: Go to [/src/menu-items/pages.js](/src/menu-items/pages.js)<br />
+Step 1: Go to [/src/menu-items/pages.js](./src/menu-items/pages.js)<br />
 Step 2: Modify the page based on the requirements using the methods mentioned below<br />
 
 ## To Create a new Use Case:
