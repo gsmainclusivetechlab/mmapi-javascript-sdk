@@ -1,4 +1,4 @@
-# Installation:
+# MMAPI SDK - Test App Installation:
 
 Step 1: Clone the repository<br />
 Step 2: pull the latest build from test-app branch<br />
@@ -6,7 +6,7 @@ Step 3: npm install<br />
 Step 4: Add REACT_APP_CLIENT_API_KEY with the Client API key as value in .env<br />
 Step 5: Add SKIP_PREFLIGHT_CHECK=true in .env<br />
 Step 5: npm start<br />
-Step 6: Type chrome.exe --user-data-dir="C:/Chrome" --disable-web-security in Windows Run command window to open an instance of Google Chrome to disable CORS.<br/>
+Step 6: Type `chrome.exe --user-data-dir="C:/Chrome" --disable-web-security` in Windows Run command window to open an instance of Google Chrome to disable CORS.<br/>
 Step 7: Go to http://localhost:3000/<br/>
 
 # Add more APIs to test:
