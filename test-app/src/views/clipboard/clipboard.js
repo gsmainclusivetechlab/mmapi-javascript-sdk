@@ -95,7 +95,9 @@ const Clipboard = (props) => {
                 }
               })
             ) : (
-              <p>Nothing stored in Clipboard</p>
+              <p style={{ margin: "0px", padding: "1rem" }}>
+                Nothing stored in Clipboard
+              </p>
             )}
           </MenuList>
         </Paper>

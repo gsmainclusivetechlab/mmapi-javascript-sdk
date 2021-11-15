@@ -7,14 +7,18 @@ import {
   Paper,
 } from "@material-ui/core";
 import { CopyAll } from "@material-ui/icons";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { UPDATE_HEADER, UPDATE_BODY, ADD_TO_CLIPBOARD } from "store/actions";
 const FormGenerator = (props) => {
   const { component, variant, parent } = props;
   const formData = useSelector((state) => state.formData);
   const dispatch = useDispatch();
+  const [fieldData, setFieldData] = useState(
+    component.defaultValue ? component.defaultValue : null
+  );
   const setFormData = (variant, key, value) => {
+    setFieldData(value);
     switch (variant) {
       case "header":
         if (value !== "") {
@@ -71,41 +75,13 @@ const FormGenerator = (props) => {
         return null;
     }
   };
-  const copyToClipboard = (variant, key, parent) => {
-    console.log({ variant, key, parent });
-    if (formData[variant] && parent) {
-      let dataPointer = formData[variant];
-      const parentList = parent.split(".");
-      for (let counter = 0; counter <= parentList.length - 1; counter++) {
-        if (counter === parentList.length - 1) {
-          if (!dataPointer[parentList[counter]]) {
-            return false;
-          }
-          dispatch({
-            type: ADD_TO_CLIPBOARD,
-            data: {
-              [`${parent}.${key}`]: dataPointer[parentList[counter]][key],
-            },
-          });
-        } else {
-          if (!dataPointer[parentList[counter]]) {
-            return false;
-          }
-          dataPointer = dataPointer[parentList[counter]];
-          console.log(dataPointer);
-        }
-      }
-    }
-    if (
-      formData[variant] &&
-      formData[variant][key] &&
-      String(formData[variant][key]).trim().length > 0
-    ) {
-      dispatch({
-        type: ADD_TO_CLIPBOARD,
-        data: { [key]: formData[variant][key] },
-      });
-    }
+  const copyToClipboard = () => {
+    dispatch({
+      type: ADD_TO_CLIPBOARD,
+      data: {
+        [parent ? `${parent}.${component.id}` : component.id]: fieldData,
+      },
+    });
   };
   switch (component.type) {
     case "string":
@@ -180,7 +156,9 @@ const FormGenerator = (props) => {
             endAdornment={
               <InputAdornment position="end" sx={{ ml: 0, mr: 2 }}>
                 <IconButton
-                  onClick={() => copyToClipboard(variant, component.id, parent)}
+                  onClick={() =>
+                    copyToClipboard(`${variant}-json`, component.id, parent)
+                  }
                   edge="end"
                 >
                   <CopyAll />

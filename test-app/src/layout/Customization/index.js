@@ -62,6 +62,13 @@ const Customization = () => {
     if (authorised) {
       setAuthorised(false);
     }
+    if (authMethod !== 0 && Object.keys(formState).length === 0) {
+      setFormState({
+        username: process.env.REACT_APP_CONSUMER_KEY,
+        password: process.env.REACT_APP_CONSUMER_SECRET,
+        callbackUrl: "https://end13wxm5t7fgd6.m.pipedream.net/",
+      });
+    }
     switch (authMethod) {
       case 0:
         dispatch({ type: SET_AUTH, authType: "no-auth", authParams: {} });
