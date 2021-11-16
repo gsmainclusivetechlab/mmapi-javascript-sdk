@@ -25,3 +25,5 @@ export const DISBURSEMENT_BULK_APPROVAL = "updateBatchTransaction";
 
 // International
 export const INTERNATIONAL_TRANSFER = "createInternationalTransaction";
+export const P2P_ACCOUNT_NAME = "getRecepientName";
+export const P2P_TRANSFER = "transfer";

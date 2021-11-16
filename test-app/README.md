@@ -7,9 +7,19 @@ Step 4: Add `REACT_APP_CLIENT_API_KEY` with the Client API key as value in .env<
 Step 5: Add `REACT_APP_CONSUMER_KEY` with the Consumer key as value in .env<br />
 Step 6: Add `REACT_APP_CONSUMER_SECRET` with the Consumer Secret as value in .env<br />
 Step 7: Add `SKIP_PREFLIGHT_CHECK=true` in .env<br />
-Step 8: npm start<br />
-Step 9: Type `chrome.exe --user-data-dir="C:/Chrome" --disable-web-security` in Windows Run command window to open an instance of Google Chrome with CORS disable.<br/>
-Step 10: Go to `http://localhost:3000/`<br/>
+Step 8 (OPTIONAL): If SDK is added locally into the application, Add the following Environment variables as well in .env<br />
+
+```
+GSMA_TOKEN_URL = 'https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken'
+GSMA_BASE_URL = 'https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm'
+GSMA_BASE_URL_AUTH = 'https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm'
+CONSUMER_KEY = '(Consumer key)'
+CONSUMER_SECRET = '(Consumer Secret)'
+```
+
+Step 9: npm start<br />
+Step 10: Type `chrome.exe --user-data-dir="C:/Chrome" --disable-web-security` in Windows Run command window to open an instance of Google Chrome with CORS disable.<br/>
+Step 11: Go to `http://localhost:3000/`<br/>
 
 # Test App - SDK Integration:
 

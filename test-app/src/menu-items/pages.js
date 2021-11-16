@@ -73,7 +73,7 @@ const pages = {
           returnClientCorrelation: false,
           headers: [
             {
-              id: "viewTransaction",
+              id: "transactionReference",
               required: false,
               caption: "Transaction Reference",
               type: "string",
@@ -433,7 +433,7 @@ const pages = {
               defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
             },
             {
-              id: "viewTransaction",
+              id: "transactionReference",
               required: false,
               caption: "Transaction Reference",
               type: "string",
@@ -788,7 +788,7 @@ const pages = {
               defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
             },
             {
-              id: "viewTransaction",
+              id: "transactionReference",
               required: false,
               caption: "Transaction Reference",
               type: "string",
@@ -1101,7 +1101,7 @@ const pages = {
               defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
             },
             {
-              id: "viewTransaction",
+              id: "transactionReference",
               required: false,
               caption: "Transaction Reference",
               type: "string",
@@ -1313,7 +1313,7 @@ const pages = {
               defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
             },
             {
-              id: "viewTransaction",
+              id: "transactionReference",
               required: false,
               caption: "Transaction Reference",
               type: "string",
