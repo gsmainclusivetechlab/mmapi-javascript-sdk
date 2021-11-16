@@ -141,17 +141,17 @@ Contains functions for all the use case scenarios within Merchant Payments.
 
 Function | Scenarios | Parameters
 --------------|-----------|------------
-initPayment | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data
-requestState  | Request state object to determine the outcome of the payment request | serverCorrelationId
-transactionReference | Get representation of complete payment transaction | transactionReference
-generatePreAuthCode | Auth Code generation for paymentWithAuthCode | identifierType, identifier, data, callbackUrl
-paymentWithAuthCode | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code | callbackUrl, data, and amount, currency, oneTimeCode within the data object
-refund | Merchant Payment Refund | data, callbackUrl and amount, currency within data object
-reversal | Merchant Payment Reversal | transactionReference
-transactions | Retrieve Payments for a Merchant | identifierType, identifier, offset, limit
-balanceCheck | Obtain a Merchant Balance | identifierType, identifier
-serviceAvailability | Check for Service Availability | -
-retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
+createMerchantTransaction | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data
+viewRequestState  | Request state object to determine the outcome of the payment request | serverCorrelationId
+viewTransaction | Get representation of complete payment transaction | transactionReference
+createAuthorisationCode | Auth Code generation for paymentWithAuthCode | identifierType, identifier, data, callbackUrl
+createMerchantTransaction | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code | callbackUrl, data, and amount, currency, oneTimeCode within the data object
+createRefundTransaction | Merchant Payment Refund | data, callbackUrl and amount, currency within data object
+createReversal | Merchant Payment Reversal | transactionReference
+viewAccountTransaction | Retrieve Payments for a Merchant | identifierType, identifier, offset, limit
+viewAccountBalance | Obtain a Merchant Balance | identifierType, identifier
+viewServiceAvailability | Check for Service Availability | -
+viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
 <a name="disbursements"></a>
 ### Disbursements
@@ -159,17 +159,17 @@ Contains functions for all the use case scenarios within Disbursements.
 
 Function | Scenarios | Parameters
 --------------|-----------|------------
-individualDisbursement | Individual disbursement using Callback or Polling Method | callbackUrl, data
-bulkDisbursement | Bulk Disbursement using ‘one-shot’ or with 'Maker / Checker' | callbackUrl, data and data must contain transactions
-requestState  | Request state object to determine the outcome of the individual disbursement request | serverCorrelationId
-transactionReference | Get a representation of completed disbursement | transactionReference
-bulkDisbursementStatus | Get a representation of the batch transactions object | batchId
-bulkDisbursementCompleted | Get all transactions that have been completed | batchId
-bulkDisbursementRejected | Get all transactions that have been rejected | batchId
-bulkDisbursementApproval | Checker submit a request to approve the transaction batch | callbackUrl,batchId
-reversal | Reverse an individual disbursement transaction | transactionReference
-transactions |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
-balanceCheck | Obtain a Disbursement Organisation Balance | identifierType, identifier
-serviceAvailability | Check for Service Availability | -
-retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
+createDisbursementTransaction | Individual disbursement using Callback or Polling Method | callbackUrl, data
+createBatchTransaction | Bulk Disbursement using ‘one-shot’ or with 'Maker / Checker' | callbackUrl, data and data must contain transactions
+viewRequestState  | Request state object to determine the outcome of the individual disbursement request | serverCorrelationId
+viewTransaction | Get a representation of completed disbursement | transactionReference
+viewBatchTransaction | Get a representation of the batch transactions object | batchId
+viewBatchCompletions | Get all transactions that have been completed | batchId
+viewBatchRejections | Get all transactions that have been rejected | batchId
+updateBatchTransaction | Checker submit a request to approve the transaction batch | callbackUrl,batchId
+createReversal | Reverse an individual disbursement transaction | transactionReference
+viewAccountTransaction |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
+viewAccountBalance | Obtain a Disbursement Organisation Balance | identifierType, identifier
+viewServiceAvailability | Check for Service Availability | -
+viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
