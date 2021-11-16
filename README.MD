@@ -181,10 +181,11 @@ Contains functions for all the use case scenarios within International Transfers
 
 Function | Scenarios | Parameters
 --------------|-----------|------------
-requestQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data
-transfer | Sending FSP submits a transaction request to the receiving FSP | callbackUrl, data 
-reversal | Reverse an individual disbursement transaction | transactionReference
-transactions |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
-balanceCheck | Obtain a Disbursement Organisation Balance | identifierType, identifier
-serviceAvailability | Check for Service Availability | -
-retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId
+createQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data
+viewQuotation | View a specific quotation | quotationReference
+createInternationalTransaction | Sending FSP submits a transaction request to the receiving FSP | callbackUrl, data 
+createReversal | Reverse an individual disbursement transaction | transactionReference
+viewAccountTransaction |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
+viewAccountBalance | Obtain a Disbursement Organisation Balance | identifierType, identifier
+viewServiceAvailability | Check for Service Availability | -
+viewResponse | Retrieve a Missing API Response | clientCorrelationId
