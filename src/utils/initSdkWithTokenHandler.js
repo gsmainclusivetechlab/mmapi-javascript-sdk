@@ -11,8 +11,8 @@ export default function tokenGenerator({
     onFailure,
 }) {
     // if user has token in cache
-    if (sessionStorage.getItem('token')) {
-        const tokenData = JSON.parse(sessionStorage.getItem('token'));
+    if (sessionStorage.getItem('mmSdkToken')) {
+        const tokenData = JSON.parse(sessionStorage.getItem('mmSdkToken'));
         const { access_token: accessToken, expires_at } = tokenData;
 
         // if token not expired
@@ -66,5 +66,5 @@ const setExpireTokenInStorage = ({ access_token, expires_in }) => {
         expires_at: new Date().getTime() / 1000 + expires_in,
         created_at: new Date().getTime() / 1000,
     };
-    sessionStorage.setItem('token', JSON.stringify(tokenSaveData));
+    sessionStorage.setItem('mmSdkToken', JSON.stringify(tokenSaveData));
 };
