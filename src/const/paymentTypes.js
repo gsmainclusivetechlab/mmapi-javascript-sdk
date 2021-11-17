@@ -12,7 +12,7 @@ export const QUOTATION_VIEW = "viewQuotation";
 // merchant - types
 export const MERCHANT_INIT_PAYMENT = "createMerchantTransaction";
 export const MERCHANT_AUTH_CODE = "createAuthorisationCode";
-// export const MERCHANT_PAYMENT_WITH_PREAUTH_CODE = 'paymentWithPreAuthCode'; // can use MERCHANT_INIT_PAYMENT itself
+export const MERCHANT_VIEW_AUTH_CODE = "viewAuthorisationCode";
 export const MERCHANT_REFUND = "createRefundTransaction";
 
 // Disbursement -types

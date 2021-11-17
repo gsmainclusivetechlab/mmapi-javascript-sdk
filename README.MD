@@ -188,6 +188,7 @@ Contains functions for all the use case scenarios within Merchant Payments.
 | viewRequestState          | Request state object to determine the outcome of the payment request    | serverCorrelationId                                                         |
 | viewTransaction           | Get representation of complete payment transaction                      | transactionReference                                                        |
 | createAuthorisationCode   | Auth Code generation for paymentWithAuthCode                            | identifierType, identifier, data, callbackUrl                               |
+| viewAuthorisationCode     | View specific Authorisation Code linked to an account                   | identifierType, identifier,authorisationCode                                |
 | createMerchantTransaction | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code    | callbackUrl, data, and amount, currency, oneTimeCode within the data object |
 | createRefundTransaction   | Merchant Payment Refund                                                 | data, callbackUrl and amount, currency within data object                   |
 | createReversal            | Merchant Payment Reversal                                               | transactionReference                                                        |

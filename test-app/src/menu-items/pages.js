@@ -236,6 +236,39 @@ const pages = {
           ],
         },
         {
+          id: "payeeInitiatedMerchantPaymentGetPreAuthCode",
+          title: "View Authorisation Code",
+          type: "item",
+          requestType: "viewAuthorisationCode",
+          requestCategory: "merchantPay",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "identifierType",
+              required: true,
+              caption: "Identifier Type",
+              type: "string",
+              defaultValue: "accountid",
+            },
+            {
+              id: "identifier",
+              required: true,
+              caption: "Identifier",
+              type: "string",
+              defaultValue: "1",
+            },
+            {
+              id: "authorisationCode",
+              required: true,
+              caption: "Authorisation Code",
+              type: "string",
+              defaultValue: "7006e6d7-d0e4-4cda-9300-8cb42bbf8915",
+            },
+          ],
+          params: [],
+        },
+        {
           id: "payeeInitiatedMerchantPaymentPreAuthCode",
           title:
             "Payee-Initiated Merchant Payment using a Pre-authorised Payment Code",
