@@ -25,6 +25,7 @@ const customizationReducer = (state = initialState, action) => {
         requestType,
         requestCategory,
         polling,
+        pollingFunction,
         returnClientCorrelation,
       } = action.item;
       return {
@@ -37,6 +38,7 @@ const customizationReducer = (state = initialState, action) => {
           requestType: requestType,
           requestCategory: requestCategory,
           polling: polling,
+          pollingFunction: pollingFunction,
           returnClientCorrelation: returnClientCorrelation,
         },
       };

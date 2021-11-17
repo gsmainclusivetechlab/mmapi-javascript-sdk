@@ -98,6 +98,7 @@ const pages = {
           requestCategory: "merchantPay",
           target: true,
           polling: false,
+
           returnClientCorrelation: true,
           headers: [
             {
@@ -185,6 +186,8 @@ const pages = {
           requestType: "createAuthorisationCode",
           requestCategory: "merchantPay",
           target: true,
+          polling: false,
+
           returnClientCorrelation: true,
           headers: [
             {
@@ -345,6 +348,8 @@ const pages = {
           requestCategory: "merchantPay",
           target: true,
           returnClientCorrelation: true,
+          polling: false,
+
           headers: [
             {
               id: "callbackUrl",
@@ -557,6 +562,7 @@ const pages = {
           requestCategory: "disbursement",
           target: true,
           polling: false,
+
           returnClientCorrelation: true,
           headers: [
             {
@@ -624,6 +630,7 @@ const pages = {
           requestCategory: "disbursement",
           target: true,
           polling: false,
+
           returnClientCorrelation: true,
           headers: [
             {
@@ -999,6 +1006,28 @@ const pages = {
             },
           ],
         },
+
+        {
+          id: "intTransferViewQuotation",
+          title: "International Transfer View Quotations",
+          type: "item",
+          requestType: "viewQuotation",
+          requestCategory: "international",
+          target: true,
+          polling: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "quotationReference",
+              required: true,
+              caption: "Quotation Reference",
+              type: "string",
+              defaultValue: "REF-1637125420801",
+            },
+          ],
+          params: [],
+        },
+
         {
           id: "intTransfer",
           title: "International Transfer - Initiate Transfer",
@@ -1096,6 +1125,26 @@ const pages = {
               ),
             },
           ],
+        },
+        {
+          id: "internationalPollingMethod",
+          title: "Check Polling Status",
+          type: "item",
+          requestType: "viewRequestState",
+          requestCategory: "international",
+          polling: true,
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "serverCorrelationId",
+              required: true,
+              caption: "Server-Correlation-ID",
+              type: "string",
+              defaultValue: "a01b2683-3121-4011-80bd-0b8dac41cead",
+            },
+          ],
+          params: [],
         },
         {
           id: "intlTransferFailure",

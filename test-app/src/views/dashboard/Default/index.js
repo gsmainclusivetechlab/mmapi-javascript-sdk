@@ -53,13 +53,13 @@ const Dashboard = () => {
     if (formData.body && Object.keys(formData.body).length > 0) {
       request.data = JSON.parse(formData.body);
     }
-    console.log("Request", request);
     setRequestJson(request);
   };
-  const checkRequestState = async (requestFunction, serverCorrelationId) => {
-    console.log("Checking Request state for Polling method");
+  const checkRequestState = (requestFunction, serverCorrelationId) => {
     return requestFunction({
-      type: "requestState",
+      type: customization.pageData.pollingFunction
+        ? customization.pageData.pollingFunction
+        : "viewRequestState",
       serverCorrelationId,
       onSuccess: (res, header, status) => {
         if (res.status === "pending") {
@@ -72,15 +72,16 @@ const Dashboard = () => {
         }
       },
       onFailure: (res, status) => {
+        console.log("POLLING FAILED :", { res, status });
         setResponseStatus(parseInt(status));
         setResponseJson(res);
-        console.log("POLLING FAILED :", { res, status });
         return true;
       },
     });
   };
   function polling(timeout, pollLimit, currentPollTime = 0) {
     setPollTime(currentPollTime);
+
     if (window.gsma && window.gsma.auth) {
       window.gsma.auth[customization.pageData.requestCategory]({
         ...requestJson,
@@ -92,7 +93,7 @@ const Dashboard = () => {
             currentPollTime++;
             if (
               !checkRequestState(
-                window.gsma.auth[customization.pageData.requestCategory],
+                customization.pageData.requestCategory,
                 res.serverCorrelationId
               )
             ) {
@@ -119,7 +120,7 @@ const Dashboard = () => {
             currentPollTime++;
             if (
               !checkRequestState(
-                window.gsma.noAuth[customization.pageData.requestCategory],
+                customization.pageData.requestCategory,
                 res.serverCorrelationId
               )
             ) {
@@ -139,7 +140,6 @@ const Dashboard = () => {
   }
   const sendRequest = () => {
     setClientCorrelId(null);
-    console.log(requestJson);
     if (customization.pageData.requestCategory) {
       if (
         window.gsma &&
@@ -154,7 +154,8 @@ const Dashboard = () => {
           onSuccess: (res, header, status) => {
             console.log("header ::", header);
             if (
-              customization.pageData.polling &&
+              (customization.pageData.polling ||
+                res.notificationMethod === "polling") &&
               res.pollLimit &&
               res.status === "pending"
             ) {
@@ -184,7 +185,8 @@ const Dashboard = () => {
             : false,
           onSuccess: (res, header, status) => {
             if (
-              customization.pageData.polling &&
+              (customization.pageData.polling ||
+                res.notificationMethod === "polling") &&
               res.pollLimit &&
               res.status === "pending"
             ) {
