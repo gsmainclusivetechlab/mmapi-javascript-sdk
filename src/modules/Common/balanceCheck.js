@@ -1,11 +1,14 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+import {
+    checkRequiredProps,
+    requestMaker,
+    generateIdentifierUrl,
+} from '../../utils';
 
 export default function balanceCheck(props, onError) {
-    if (checkRequiredProps(props, ['identifierType', 'identifier'], onError)) {
-        const { identifierType, identifier } = props;
-        return requestMaker(
-            `/accounts/${identifierType}/${identifier}/balance`
-        ).get();
+    if (checkRequiredProps(props, ['accountId'], onError)) {
+        const { accountId } = props;
+        return generateIdentifierUrl(accountId, onError, (accountUrl) => {
+            return requestMaker(`/accounts/${accountUrl}/balance`).get();
+        });
     }
 }

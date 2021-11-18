@@ -1,20 +1,13 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+import { checkRequiredProps, requestMaker } from '../../utils';
 /**
  * @param  {} props
  * @param  {} onError
  */
 export default function reversal(props, onError) {
-    if (
-        checkRequiredProps(
-            props,
-            ['correlationId', 'transactionReference'],
-            onError
-        )
-    ) {
+    if (checkRequiredProps(props, ['transactionReference'], onError)) {
         const {
             data = { type: 'reversal' },
-            correlationId,
+            correlationId = '',
             callbackUrl,
             transactionReference,
         } = props;

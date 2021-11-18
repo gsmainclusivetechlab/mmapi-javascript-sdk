@@ -1,5 +1,4 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+import { checkRequiredProps, requestMaker } from '../../utils';
 /**
  * Function to get the transaction object of previously created transaction
  * @param  {} props must contain transactionReference which is available while requesting state or from else where
