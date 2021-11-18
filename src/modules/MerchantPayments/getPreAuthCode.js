@@ -1,5 +1,8 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+import {
+    checkRequiredProps,
+    requestMaker,
+    generateIdentifierUrl,
+} from '../../utils';
 /**
  * Function to get all transaction for a specific account
  * @param  {} props must contain account identifier deatails and page offset & limit
@@ -7,16 +10,13 @@ import checkRequiredProps from '../../utils/checkRequiredKeys';
  */
 export default function getPreAuthCode(props, onError) {
     if (
-        checkRequiredProps(
-            props,
-            ['identifierType', 'identifier','authorisationCode'],
-            onError
-        )
+        checkRequiredProps(props, ['accountId', 'authorisationCode'], onError)
     ) {
-        const { identifierType, identifier,authorisationCode } = props;
-      
-        return requestMaker(
-            `/accounts/${identifierType}/${identifier}/authorisationcodes/${authorisationCode}`
-        ).get();
+        const { accountId, authorisationCode } = props;
+        return generateIdentifierUrl(accountId, onError, (accountUrl) => {
+            return requestMaker(
+                `/accounts/${accountUrl}/authorisationcodes/${authorisationCode}`
+            ).get();
+        });
     }
 }

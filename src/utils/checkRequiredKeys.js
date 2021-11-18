@@ -1,4 +1,4 @@
-const checkRequiredKeys = (allObjs = null, keys = [], onError) => {
+const checkRequiredKeys = (allObjs = null, keys = [], onError = null) => {
     if (keys.length > 0) {
         let errors = [];
         keys.forEach((k) => {
@@ -6,7 +6,7 @@ const checkRequiredKeys = (allObjs = null, keys = [], onError) => {
                 errors.push({ key: k, value: '' });
             }
         });
-        if (errors.length > 0) {
+        if (onError && errors.length > 0) {
             onError(
                 {
                     errorCategory: 'validation',
@@ -17,7 +17,6 @@ const checkRequiredKeys = (allObjs = null, keys = [], onError) => {
                 },
                 '400'
             );
-            // onError('00', hasErrors);
             return false;
         } else {
             return true;

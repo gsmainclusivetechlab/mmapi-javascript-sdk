@@ -30,7 +30,7 @@ export default function checkForExistingType(
                 restWithcorrelationId['callbackUrl'] = globalCallBackUrl;
             }
         }
-        console.log("props data with client cor",restWithcorrelationId)
+
         return paymentTypes[type](restWithcorrelationId, onFailure);
     } else {
         onFailure(
@@ -42,6 +42,5 @@ export default function checkForExistingType(
             },
             '400'
         );
-        // return;
     }
 }

@@ -1,24 +1,25 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+import {
+    generateIdentifierUrl,
+    checkRequiredProps,
+    requestMaker,
+} from '../../utils';
 
 export default (props, onError) => {
-    if (
-        checkRequiredProps(
-            props,
-            ['identifierType', 'identifier', 'data'],
-            onError
-        )
-    ) {
-        const { identifierType, identifier, data, correlationId, callbackUrl } = props;
+    if (checkRequiredProps(props, ['data', 'accountId'], onError)) {
+        const { accountId, data, correlationId, callbackUrl } = props;
+
         let header = {
             'X-CorrelationID': correlationId,
         };
         if (callbackUrl) {
             header['X-Callback-URL'] = callbackUrl;
         }
-        return requestMaker(
-            `/accounts/${identifierType}/${identifier}/authorisationcodes`,
-            header
-        ).post(data);
+
+        return generateIdentifierUrl(accountId, onError, (accountUrl) => {
+            return requestMaker(
+                `/accounts/${accountUrl}/authorisationcodes`,
+                header
+            ).post(data);
+        });
     }
 };
