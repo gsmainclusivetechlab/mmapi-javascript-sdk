@@ -145,13 +145,13 @@ Function | Scenarios | Parameters
 createMerchantTransaction | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data
 viewRequestState  | Request state object to determine the outcome of the payment request | serverCorrelationId
 viewTransaction | Get representation of complete payment transaction | transactionReference
-createAuthorisationCode | Auth Code generation for paymentWithAuthCode | identifierType, identifier, data, callbackUrl
-viewAuthorisationCode | View specific Authorisation Code linked to an account | identifierType, identifier,authorisationCode
+createAuthorisationCode | Auth Code generation for paymentWithAuthCode | accountId, data, callbackUrl
+viewAuthorisationCode | View specific Authorisation Code linked to an account | accountId,authorisationCode
 createMerchantTransaction | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code | callbackUrl, data, and amount, currency, oneTimeCode within the data object
 createRefundTransaction | Merchant Payment Refund | data, callbackUrl and amount, currency within data object
 createReversal | Merchant Payment Reversal | transactionReference
-viewAccountTransaction | Retrieve Payments for a Merchant | identifierType, identifier, offset, limit
-viewAccountBalance | Obtain a Merchant Balance | identifierType, identifier
+viewAccountTransaction | Retrieve Payments for a Merchant | accountId, offset, limit
+viewAccountBalance | Obtain a Merchant Balance | accountId
 viewServiceAvailability | Check for Service Availability | -
 viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
@@ -170,8 +170,8 @@ viewBatchCompletions | Get all transactions that have been completed | batchId
 viewBatchRejections | Get all transactions that have been rejected | batchId
 updateBatchTransaction | Checker submit a request to approve the transaction batch | callbackUrl,batchId
 createReversal | Reverse an individual disbursement transaction | transactionReference
-viewAccountTransaction |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
-viewAccountBalance | Obtain a Disbursement Organisation Balance | identifierType, identifier
+viewAccountTransaction |  Retrieve all transactions for a disbursement organisation | accountId, offset, limit
+viewAccountBalance | Obtain a Disbursement Organisation Balance |accountId
 viewServiceAvailability | Check for Service Availability | -
 viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
@@ -186,7 +186,7 @@ createQuotation | Obtain a quotation and perform the transfer with the receiving
 viewQuotation | View a specific quotation | quotationReference
 createInternationalTransaction | Sending FSP submits a transaction request to the receiving FSP | callbackUrl, data 
 createReversal | Reverse an individual disbursement transaction | transactionReference
-viewAccountTransaction |  Retrieve all transactions for a disbursement organisation | identifierType, identifier, offset, limit
-viewAccountBalance | Obtain a Disbursement Organisation Balance | identifierType, identifier
+viewAccountTransaction |  Retrieve all transactions for a disbursement organisation | accountId, offset, limit
+viewAccountBalance | Obtain a Disbursement Organisation Balance | accountId
 viewServiceAvailability | Check for Service Availability | -
 viewResponse | Retrieve a Missing API Response | clientCorrelationId

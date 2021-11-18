@@ -1,5 +1,4 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+import { checkRequiredProps, requestMaker } from '../../utils';
 
 export default function (props, onError) {
     if (checkRequiredProps(props, ['clientCorrelationId'], onError)) {
