@@ -26,5 +26,5 @@ export const DISBURSEMENT_BULK_APPROVAL = 'bulkDisbursementApproval';
 export const INTERNATIONAL_TRANSFER = 'transfer';
 
 // P2P
-export const P2P_ACCOUNT_NAME = 'getRecepientName';
-export const P2P_TRANSFER = 'transfer';
+export const P2P_ACCOUNT_NAME = 'viewAccountName';
+export const P2P_TRANSFER = 'createTransferTransaction';
