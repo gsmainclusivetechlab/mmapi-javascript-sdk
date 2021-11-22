@@ -1,11 +1,8 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
-// import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
+import { checkRequiredProps, requestMaker } from '../../utils';
+
 export default function requestQuotation(props, onError) {
     const { correlationId, callbackUrl, data } = props;
-    if (
-        checkRequiredProps(props, ['data'], onError)
-    ) {
+    if (checkRequiredProps(props, ['data'], onError)) {
         let header = {
             'X-CorrelationID': correlationId,
         };

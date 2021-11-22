@@ -4,9 +4,9 @@ import { checkRequiredProps, requestMaker } from '../../utils';
  * @param  {} props must contain serverCorrelationId to identify the request
  * @param  {} onError triggered when there is some error in validation
  */
-export default function getRequestState(props, onError) {
-    if (checkRequiredProps(props, ['serverCorrelationId'], onError)) {
-        let { serverCorrelationId } = props;
-        return requestMaker(`/requeststates/${serverCorrelationId}`).get();
+export default function getQuotation(props, onError) {
+    if (checkRequiredProps(props, ['quotationReference'], onError)) {
+        let { quotationReference } = props;
+        return requestMaker(`/quotations/${quotationReference}`).get();
     }
 }
