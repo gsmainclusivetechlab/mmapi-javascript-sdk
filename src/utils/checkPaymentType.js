@@ -38,7 +38,12 @@ export default function checkForExistingType(
                 errorCategory: 'validation',
                 errorCode: 'typeError',
                 errorDescription: 'Invalid Payment Type ',
-                errorParameters: [],
+                errorParameters: [
+                    {
+                        key: 'type',
+                        value: type,
+                    },
+                ],
             },
             '400'
         );
