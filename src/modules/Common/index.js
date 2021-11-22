@@ -7,7 +7,8 @@ import {
     REVERSAL,
     TRANSACTIONS,
     QUOTATION_REQ,
-    QUOTATION_VIEW
+    QUOTATION_VIEW,
+    REFUND,
 } from '../../const/paymentTypes';
 import requestMaker from '../../utils/requestMaker';
 import balanceCheck from './balanceCheck';
@@ -16,8 +17,9 @@ import getRequestState from './getRequestState';
 import getTransactionReference from './getTransactionReference';
 import reversal from './reversal';
 import getAllTransactions from './getAllTransactions';
-import requestQuotation from '../Common/requestQuotation'
+import requestQuotation from '../Common/requestQuotation';
 import getQuotation from './getQuotation';
+import refund from './refund';
 export const common = {
     [BALANCE_CHECK]: balanceCheck,
     [SERVICE_AVAILABILITY]: () => requestMaker('/heartbeat').get(),
@@ -28,4 +30,5 @@ export const common = {
     [TRANSACTIONS]: getAllTransactions,
     [QUOTATION_REQ]: requestQuotation,
     [QUOTATION_VIEW]: getQuotation,
+    [REFUND]: refund,
 };
