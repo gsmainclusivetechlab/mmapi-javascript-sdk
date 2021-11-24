@@ -6,16 +6,19 @@ import p2p from './P2P';
 
 export const moduleWrapperWithAuth = (authHeaders) => {
     window.gsma.auth = {
-        merchantPay: choosePayment(merchantPayments, authHeaders),
-        disbursement: choosePayment(disbursement, authHeaders),
-        international: choosePayment(internationalTransfers, authHeaders),
-        p2p: choosePayment(p2p, authHeaders),
+        MerchantPayment: choosePayment(merchantPayments, authHeaders),
+        Disbursement: choosePayment(disbursement, authHeaders),
+        InternationalTransfer: choosePayment(
+            internationalTransfers,
+            authHeaders
+        ),
+        P2PTransfer: choosePayment(p2p, authHeaders),
     };
 };
 
 export const moduleWrapperWithoutAuth = {
-    merchantPay: choosePayment(merchantPayments),
-    disbursement: choosePayment(disbursement),
-    international: choosePayment(internationalTransfers),
-    p2p: choosePayment(p2p),
+    MerchantPayment: choosePayment(merchantPayments),
+    Disbursement: choosePayment(disbursement),
+    InternationalTransfer: choosePayment(internationalTransfers),
+    P2PTransfer: choosePayment(p2p),
 };
