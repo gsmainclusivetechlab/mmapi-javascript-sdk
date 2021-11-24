@@ -5,7 +5,7 @@ import {
 } from "../../utils";
 
 export default function debitMandate(props, onError) {
-  const { correlationId, callbackUrl, data } = props;
+  const { correlationId, callbackUrl, accountId, data } = props;
   if (checkRequiredProps(props, ["data", "accountId"], onError)) {
     let header = {
       "X-CorrelationID": correlationId,

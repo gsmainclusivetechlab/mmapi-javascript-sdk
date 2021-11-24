@@ -256,6 +256,7 @@ Contains functions for all the use case scenarios within International Transfers
 
 Contains functions for all the use case scenarios within P2P Transfers.
 
+<<<<<<< HEAD
 | Function                  | Scenarios                                                          | Parameters                                |
 | ------------------------- | ------------------------------------------------------------------ | ----------------------------------------- |
 | viewAccountName           | confirm the recipient name                                         | identifierType, identifier                |
@@ -266,3 +267,15 @@ Contains functions for all the use case scenarios within P2P Transfers.
 | balanceCheck              | Obtain Balance                                                     | identifierType, identifier                |
 | serviceAvailability       | Check for Service Availability                                     | -                                         |
 | retrieveMissingRequest    | Retrieve a Missing API Response                                    | clientCorrelationId                       |
+=======
+Function | Scenarios | Parameters
+--------------|-----------|------------
+viewAccountName | confirm the recipient name | accountId
+createQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data
+createTransferTransaction |  Perform the transfer with the receiving FSP | callbackUrl, data 
+createReversal | Reverse an p2p transaction | transactionReference
+viewAccountTransaction |  Retrieve all transactions | accountId, offset, limit
+viewAccountBalance | Obtain Balance | accountId
+viewServiceAvailability | Check for Service Availability | -
+viewResponse | Retrieve a Missing API Response | clientCorrelationId
+>>>>>>> d664761d5e3d5a1a67ecf28f5b2e27c169e7e579
