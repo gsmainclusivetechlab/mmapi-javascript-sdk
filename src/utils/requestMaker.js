@@ -1,4 +1,4 @@
-export default function GenerateReqConfig(
+export default function requestMaker(
     url = '',
     headers = null,
     tailingFunctionCall = null

@@ -18,6 +18,7 @@ const FormGenerator = (props) => {
     component.defaultValue ? component.defaultValue : null
   );
   const setFormData = (variant, key, value) => {
+    console.log({ variant, key, value });
     setFieldData(value);
     switch (variant) {
       case "header":
@@ -69,6 +70,13 @@ const FormGenerator = (props) => {
         dispatch({
           type: UPDATE_BODY,
           body: value,
+        });
+        break;
+      case "header-json":
+        console.log({ ...formData.header, [key]: value });
+        dispatch({
+          type: UPDATE_HEADER,
+          header: { ...formData.header, [key]: JSON.parse(value) },
         });
         break;
       default:

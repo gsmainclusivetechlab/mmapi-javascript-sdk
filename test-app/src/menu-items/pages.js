@@ -191,18 +191,20 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
             {
               id: "callbackUrl",
@@ -248,18 +250,20 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
             {
               id: "authorisationCode",
@@ -282,18 +286,20 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
             {
               id: "data",
@@ -490,18 +496,20 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -516,18 +524,20 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
             {
               id: "offset",
@@ -846,18 +856,20 @@ const pages = {
           target: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -871,18 +883,20 @@ const pages = {
           target: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
             {
               id: "offset",
@@ -1202,18 +1216,20 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -1228,18 +1244,21 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+
+                null,
+                2
+              ),
             },
             {
               id: "offset",
@@ -1290,7 +1309,7 @@ const pages = {
           id: "p2pAccountName",
           title: "Get P2P Account Name",
           type: "item",
-          requestType: "getRecepientName",
+          requestType: "viewAccountName",
           requestCategory: "p2p",
           target: true,
           returnClientCorrelation: true,
@@ -1309,6 +1328,22 @@ const pages = {
               type: "string",
               defaultValue: "1",
             },
+            // {
+            //   id: "accountId",
+            //   required: true,
+            //   caption: "Account ID",
+            //   type: "json",
+            //   defaultValue: JSON.stringify(
+            //     [
+            //       {
+            //         key: "accountid",
+            //         value: "1",
+            //       },
+            //     ],
+            //     null,
+            //     2
+            //   ),
+            // },
           ],
           params: [],
         },
@@ -1316,7 +1351,7 @@ const pages = {
           id: "p2ptransfer",
           title: "P2P Transfer",
           type: "item",
-          requestType: "transfer",
+          requestType: "createTransferTransaction",
           requestCategory: "p2p",
           target: true,
           returnClientCorrelation: true,
@@ -1414,18 +1449,20 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -1440,18 +1477,20 @@ const pages = {
           returnClientCorrelation: true,
           headers: [
             {
-              id: "identifierType",
+              id: "accountId",
               required: true,
-              caption: "Identifier Type",
-              type: "string",
-              defaultValue: "accountid",
-            },
-            {
-              id: "identifier",
-              required: true,
-              caption: "Identifier",
-              type: "string",
-              defaultValue: "1",
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
             },
             {
               id: "offset",
@@ -1489,6 +1528,176 @@ const pages = {
             },
           ],
           params: [],
+        },
+      ],
+    },
+    {
+      id: "recurring",
+      title: "Recurring Payments",
+      type: "collapse",
+      icon: icons.IconKey,
+      children: [
+        {
+          id: "createAccountDebitMandate",
+          title: "Create Account Debit Mandate",
+          type: "item",
+          requestType: "createAccountDebitMandate",
+          requestCategory: "recurring",
+          target: true,
+          polling: false,
+          returnClientCorrelation: false,
+          headers: [
+            {
+              id: "clientCorrelationId",
+              required: false,
+              caption: "Client Correlation Id",
+              type: "string",
+              defaultValue: "a409a9d7-76ad-4ea3-b87f-3d282d6bea8f",
+            },
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+            {
+              id: "accountId",
+              required: true,
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
+            },
+          ],
+          params: [
+            {
+              id: "data",
+              required: true,
+              caption: "JSON Body",
+              type: "json",
+              defaultValue: JSON.stringify(
+                {
+                  payee: [
+                    {
+                      key: "accountId",
+                      value: "1",
+                    },
+                  ],
+                  startDate: "2018-11-20",
+                  requestDate: "2021-11-24T12:44:34.223Z",
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        },
+        {
+          id: "viewAccountDebitMandate",
+          title: "Get Account Debit Mandate",
+          type: "item",
+          requestType: "viewAccountDebitMandate",
+          requestCategory: "recurring",
+          target: true,
+          polling: false,
+          returnClientCorrelation: false,
+          headers: [
+            {
+              id: "clientCorrelationId",
+              required: false,
+              caption: "Client Correlation Id",
+              type: "string",
+              defaultValue: "a409a9d7-76ad-4ea3-b87f-3d282d6bea8f",
+            },
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+            {
+              id: "accountId",
+              required: true,
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
+            },
+            {
+              id: "mandateReference",
+              required: true,
+              caption: "Mandate Reference",
+              type: "string",
+              defaultValue: "REF-1637758263349",
+            },
+          ],
+          params: [],
+        },
+        {
+          id: "payeeInitiatedMerchantPayment",
+          title: "Create Merchant Transaction",
+          type: "item",
+          requestType: "createMerchantTransaction",
+          requestCategory: "recurring",
+          target: true,
+          polling: false,
+
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+          ],
+          params: [
+            {
+              id: "body",
+              required: true,
+              caption: "JSON Body",
+              type: "json",
+              defaultValue: JSON.stringify(
+                {
+                  amount: "200.00",
+                  debitParty: [
+                    {
+                      key: "accountid",
+                      value: "1",
+                    },
+                  ],
+                  creditParty: [
+                    {
+                      key: "accountid",
+                      value: "30",
+                    },
+                  ],
+                  currency: "RWF",
+                },
+                null,
+                2
+              ),
+            },
+          ],
         },
       ],
     },

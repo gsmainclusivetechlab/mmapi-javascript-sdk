@@ -6,7 +6,7 @@ export default function tokenGenerator({
     username,
     pass,
     apiKey,
-    callbackUrl=null,
+    callbackUrl = null,
     onSuccess,
     onFailure,
 }) {
@@ -21,16 +21,13 @@ export default function tokenGenerator({
             checkForTokenExpire(expires_at) &&
             accessToken.length > 0
         ) {
-            console.log('sdk using existing token');
             // All moduled are initated with new accessToken and api key
-            moduleWrapperWithAuth({ apiKey, accessToken ,callbackUrl});
+            moduleWrapperWithAuth({ apiKey, accessToken, callbackUrl });
             onSuccess('You can access our functions using : window.gsma.auth');
         } else {
-            console.log('sdk use new token as old one expired');
             getToken({ username, pass, apiKey, onSuccess, onFailure });
         }
     } else {
-        console.log('sdk generate token');
         getToken({ username, pass, apiKey, onSuccess, onFailure });
     }
 }
@@ -46,7 +43,7 @@ function getToken({ username, pass, apiKey, onSuccess, onFailure }) {
             moduleWrapperWithAuth({
                 apiKey,
                 accessToken,
-                callbackUrl
+                callbackUrl,
             });
 
             onSuccess('You can access our functions using : window.gsma.auth');

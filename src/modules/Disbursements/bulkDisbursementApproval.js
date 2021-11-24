@@ -1,6 +1,4 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
-import { transactionObjectValidtor } from '../../utils/transactionObjectValidator';
+import { requestMaker, checkRequiredProps } from '../../utils';
 
 export default function bulkDisbursementApproval(props, onError) {
     const {

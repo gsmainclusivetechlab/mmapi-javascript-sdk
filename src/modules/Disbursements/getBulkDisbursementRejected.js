@@ -1,5 +1,4 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+import { requestMaker, checkRequiredProps } from '../../utils';
 /**
  * Function to get the state of any previously called request
  * @param  {} props must contain serverCorrelationId to identify the request

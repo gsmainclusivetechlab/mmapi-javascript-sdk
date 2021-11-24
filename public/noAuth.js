@@ -1,27 +1,26 @@
 gsma.noAuth.merchantPay({
-    type: 'initPayment',
+    type: 'createAuthorisationCode',
     data: {
-        amount: '200.00',
-        debitParty: [
-            {
-                key: 'accountid',
-                value: '2999',
-            },
-        ],
-        creditParty: [
-            {
-                key: 'accountid',
-                value: '2999',
-            },
-        ],
-        currency: 'RWF',
+        requestDate: '2018-07-03T10:43:27.405Z',
+        currency: 'GBP',
+        amount: '1000.00',
     },
-    //     callbackUrl:
-    //   'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
-    onSuccess: ( data) => {
-        console.log('NO-AUTH  success initPayment',  data);
+    callbackUrl:
+        'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
+    accountId: [
+        {
+            key: 'accountid',
+            value: '2000',
+        },
+        {
+            key: 'accountid',
+            value: '2000',
+        },
+    ],
+    onSuccess: (data) => {
+        console.log('NO-AUTH  success auth code', data);
     },
     onFailure: (error, status) => {
-        console.error('NO-AUTH  error in payInit', error, status);
+        console.error('NO-AUTH  error auth code', error, status);
     },
 });
