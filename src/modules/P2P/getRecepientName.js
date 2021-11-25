@@ -1,15 +1,18 @@
-import requestMaker from '../../utils/requestMaker';
-import checkRequiredProps from '../../utils/checkRequiredKeys';
+import {
+    checkRequiredProps,
+    requestMaker,
+    generateIdentifierUrl,
+} from '../../utils';
 /**
  * Function to get recepient name
  * @param  {} props must contain identifierType and identifier
  * @param  {} onError triggered when there is some error in validation
  */
 export default function getRecepientName(props, onError) {
-    if (checkRequiredProps(props, ['identifierType', 'identifier'], onError)) {
-        let { identifierType, identifier } = props;
-        return requestMaker(
-            `/accounts/${identifierType}/${identifier}/accountname`
-        ).get();
+    if (checkRequiredProps(props, ['accountId'], onError)) {
+        const { accountId } = props;
+        return generateIdentifierUrl(accountId, onError, (accountUrl) => {
+            return requestMaker(`/accounts/${accountUrl}/accountname`).get();
+        });
     }
 }

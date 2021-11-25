@@ -1,5 +1,4 @@
 import { checkRequiredProps, requestMaker } from '../../utils';
-
 export default function p2pTransfer(props, onError) {
     const { correlationId, callbackUrl, data } = props;
     if (checkRequiredProps(props, ['data'], onError)) {
