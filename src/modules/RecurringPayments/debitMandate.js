@@ -5,15 +5,15 @@ import {
 } from '../../utils';
 
 export default function debitMandate(props, onError) {
-    const { correlationId, callbackUrl, data } = props;
     if (checkRequiredProps(props, ['data', 'accountId'], onError)) {
+        const { correlationId, callbackUrl, data, accountId } = props;
+
         let header = {
             'X-CorrelationID': correlationId,
         };
         if (callbackUrl) {
             header['X-Callback-URL'] = callbackUrl;
         }
-
         return generateIdentifierUrl(accountId, onError, (accountUrl) => {
             return requestMaker(
                 `/accounts/${accountUrl}/debitmandates`, //url
