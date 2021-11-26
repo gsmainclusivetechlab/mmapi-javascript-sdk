@@ -13,7 +13,7 @@ export const moduleWrapperWithAuth = (authHeaders) => {
             authHeaders
         ),
         P2PTransfer: choosePayment(p2p, authHeaders),
-        Recurring: choosePayment(RecurringPayments, authHeaders),
+        RecurringPayment: choosePayment(RecurringPayments, authHeaders),
     };
 };
 
@@ -22,5 +22,5 @@ export const moduleWrapperWithoutAuth = {
     Disbursement: choosePayment(disbursement),
     InternationalTransfer: choosePayment(internationalTransfers),
     P2PTransfer: choosePayment(p2p),
-    Recurring: choosePayment(RecurringPayments),
+    RecurringPayment: choosePayment(RecurringPayments),
 };

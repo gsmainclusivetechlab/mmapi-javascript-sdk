@@ -83,8 +83,8 @@ window.gsma.noAuth.[use-case]({
 ```
 For Example:
 ```javascript
-window.gsma.noAuth.merchantPay({ 
-	type: 'payeeInitiated', 
+window.gsma.noAuth.MerchantPayment({ 
+	type: 'createMerchantTransaction', 
 	callbackUrl:'https://www.test.com/callbackurl',
 	data: { 
 		amount: "200.00", 
@@ -117,8 +117,8 @@ window.gsma.auth.[use-case]({
 ```
 For Example:
 ```javascript
-window.gsma.auth.merchantPay({ 
-	type: 'payeeInitiated', 
+window.gsma.auth.MerchantPayment({ 
+	type: 'createMerchantTransaction', 
 	callbackUrl:'https://www.test.com/callbackurl',
 	data: { 
 		amount: "200.00", 
@@ -139,7 +139,7 @@ window.gsma.auth.merchantPay({
 <a name="modules"></a>
 ## Payment Modules
 <a name="merchantPayment"></a>
-### Merchant Payment 
+### Merchant Payment (MerchantPayment)
 Contains functions for all the use case scenarios within Merchant Payments.
 
 Function | Scenarios | Parameters
@@ -158,7 +158,7 @@ viewServiceAvailability | Check for Service Availability | -
 viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
 <a name="disbursements"></a>
-### Disbursements
+### Disbursements (Disbursement)
 Contains functions for all the use case scenarios within Disbursements.
 
 Function | Scenarios | Parameters
@@ -179,7 +179,7 @@ viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
 
 <a name="international"></a>
-### International Transfers
+### International Transfers (InternationalTransfer)
 Contains functions for all the use case scenarios within International Transfers.
 
 Function | Scenarios | Parameters
@@ -194,7 +194,7 @@ viewServiceAvailability | Check for Service Availability | -
 viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
 <a name="p2p"></a>
-### P2P Transfers
+### P2P Transfers (P2PTransfer)
 Contains functions for all the use case scenarios within P2P Transfers.
 
 Function | Scenarios | Parameters
@@ -209,7 +209,7 @@ viewServiceAvailability | Check for Service Availability | -
 viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
 <a name="recurringPayments"></a>
-### Recurring Payments
+### Recurring Payments (RecurringPayment)
 Contains functions for all the use case scenarios within Recurring Payments.
 
 Function | Scenarios | Parameters
