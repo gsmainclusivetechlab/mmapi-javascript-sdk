@@ -208,8 +208,8 @@ viewAccountBalance | Obtain Balance | accountId
 viewServiceAvailability | Check for Service Availability | -
 viewResponse | Retrieve a Missing API Response | clientCorrelationId
 
-<a name="Recurring Payments"></a>
-### recurringPayments
+<a name="recurringPayments"></a>
+### Recurring Payments
 Contains functions for all the use case scenarios within Recurring Payments.
 
 Function | Scenarios | Parameters
