@@ -23,5 +23,5 @@ export const moduleWrapperWithoutAuth = {
   InternationalTransfer: choosePayment(internationalTransfers),
   P2PTransfer: choosePayment(p2p),
   RecurringPayment: choosePayment(RecurringPayments),
-  AccountLinking: choosePayment(accountLinking, authHeaders),
+  AccountLinking: choosePayment(accountLinking),
 };

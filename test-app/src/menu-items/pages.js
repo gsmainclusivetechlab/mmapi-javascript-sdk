@@ -1864,7 +1864,7 @@ const pages = {
           ],
         },
         {
-          id: "linkedAccountTransfer",
+          id: "linkedAccountTransferByPolling",
           title: "Transfer to Linked Account by Polling Method",
           type: "item",
           requestType: "createTransferTransaction",
