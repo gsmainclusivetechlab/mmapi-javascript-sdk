@@ -1,6 +1,5 @@
 
 GSMA_BASIC_AUTH = gsma.auth;
-console.log('key', GSMA_BASIC_AUTH);
 // GSMA_BASIC_AUTH.disbursement({
 //     type: 'individualDisbursement',
 //     data: {

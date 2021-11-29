@@ -37,7 +37,6 @@ import { IconSettings } from "@tabler/icons";
 
 const Customization = () => {
   const theme = useTheme();
-  console.log(window);
   const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
   // const formData = useSelector((state) => state.formData);

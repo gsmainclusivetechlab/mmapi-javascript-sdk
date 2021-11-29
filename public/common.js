@@ -1,17 +1,5 @@
 GSMA_BASIC_AUTH=gsma.auth
-function getState({serverCorrelationId}){
-    GSMA_BASIC_AUTH.international({
-        type: 'requestState',
-        serverCorrelationId:serverCorrelationId,
-        onSuccess: (data, header, status) => {
-            console.log('BASIC AUTH success international getState', status, data);
-            getReference(data)
-        },
-        onFailure: (error, header, status) => {
-            console.error('BASIC AUTH error international getState', error);
-        },
-    });
-}
+
 
 // retrive missing apis
 // GSMA_BASIC_AUTH.merchantPay({

@@ -1687,6 +1687,223 @@ const pages = {
         },
       ],
     },
+    {
+      id: "accountLinking",
+      title: "Account Linking",
+      type: "collapse",
+      icon: icons.IconKey,
+      children: [
+        {
+          id: "createAccountLink",
+          title: "Setup an Account Link",
+          type: "item",
+          requestType: "createAccountLink",
+          requestCategory: "AccountLinking",
+          target: true,
+          polling: false,
+          returnClientCorrelation: false,
+          headers: [
+            {
+              id: "clientCorrelationId",
+              required: false,
+              caption: "Client Correlation Id",
+              type: "string",
+              defaultValue: "a409a9d7-76ad-4ea3-b87f-3d282d6bea8f",
+            },
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+            {
+              id: "accountId",
+              required: true,
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
+            },
+          ],
+          params: [
+            {
+              id: "data",
+              required: true,
+              caption: "JSON Body",
+              type: "json",
+              defaultValue: JSON.stringify(
+                {
+                  sourceAccountIdentifiers: [
+                    {
+                      key: "accountid",
+                      value: "2999",
+                    },
+                  ],
+                  status: "active",
+                  mode: "both",
+                  customData: [
+                    {
+                      key: "keytest",
+                      value: "keyvalue",
+                    },
+                  ],
+                  requestingOrganisation: {
+                    requestingOrganisationIdentifierType: "organisationid",
+                    requestingOrganisationIdentifier: "12345",
+                  },
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        },
+        {
+          id: "viewAccountLink",
+          title: "Get Account Linking Status",
+          type: "item",
+          requestType: "viewAccountLink",
+          requestCategory: "AccountLinking",
+          target: true,
+          polling: false,
+          returnClientCorrelation: false,
+          headers: [
+            {
+              id: "clientCorrelationId",
+              required: false,
+              caption: "Client Correlation Id",
+              type: "string",
+              defaultValue: "a409a9d7-76ad-4ea3-b87f-3d282d6bea8f",
+            },
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+            {
+              id: "accountId",
+              required: true,
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
+            },
+            {
+              id: "linkReference",
+              required: true,
+              caption: "Link Reference",
+              type: "string",
+              defaultValue: "REF-1638168563421",
+            },
+          ],
+          params: [],
+        },
+        {
+          id: "linkedAccountTransfer",
+          title: "Transfer to Linked Account",
+          type: "item",
+          requestType: "createTransferTransaction",
+          requestCategory: "AccountLinking",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+          ],
+          params: [
+            {
+              id: "data",
+              required: true,
+              caption: "JSON Body",
+              type: "json",
+              defaultValue: JSON.stringify(
+                {
+                  amount: "200.00",
+                  creditParty: [
+                    {
+                      key: "linkref",
+                      value: "REF-1638168563421",
+                    },
+                  ],
+                  currency: "RWF",
+                  debitParty: [
+                    {
+                      key: "accountid",
+                      value: "1",
+                    },
+                  ],
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        },
+        {
+          id: "linkedAccountTransfer",
+          title: "Transfer to Linked Account by Polling Method",
+          type: "item",
+          requestType: "createTransferTransaction",
+          requestCategory: "AccountLinking",
+          polling: true,
+          target: true,
+          returnClientCorrelation: true,
+          headers: [],
+          params: [
+            {
+              id: "data",
+              required: true,
+              caption: "JSON Body",
+              type: "json",
+              defaultValue: JSON.stringify(
+                {
+                  amount: "200.00",
+                  creditParty: [
+                    {
+                      key: "linkref",
+                      value: "REF-1638168563421",
+                    },
+                  ],
+                  currency: "RWF",
+                  debitParty: [
+                    {
+                      key: "accountid",
+                      value: "1",
+                    },
+                  ],
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 export default pages;

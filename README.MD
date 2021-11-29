@@ -2,19 +2,28 @@
 
 ## Table of Contents
 
-1. [Integrating SDK to your Application](#integration)
-2. [Initialization Methods](#initMethods)
-3. [Executing Functions](#execution)
-4. [Authentication Functions](#authMethods)
-   - [Basic Authentication](#basicAuth)
-   - [OAuth2 based Authentication](#oauth2)
-   - [Executing without Authentication](#noAuth)
-   - [Executing after Authentication](#auth)
-5. [Payment Modules](#modules)
-   - [Merchant Payment Module](#merchantPayment)
-   - [Disbursements](#disbursements)
-   - [International Transfers](#international)
-   - [P2P](#p2p)
+1.  [Integrating SDK to your Application](#integration)
+2.  [Initialization Methods](#initMethods)
+3.  [Executing Functions](#execution)
+4.  [Authentication Functions](#authMethods)
+    - [Basic Authentication](#basicAuth)
+    - [OAuth2 based Authentication](#oauth2)
+    - [Executing without Authentication](#noAuth)
+    - [Executing after Authentication](#auth)
+5.  [Payment Modules](#modules)
+    <<<<<<< HEAD
+    - [Merchant Payment Module](#merchantPayment)
+    - [Disbursements](#disbursements)
+    - [International Transfers](#international)
+    - # [P2P](#p2p)
+
+
+        * [Merchant Payment Module](#merchantPayment)
+        * [Disbursements](#disbursements)
+        * [International Transfers](#international)
+        * [P2P](#p2p)
+        * [Recurring Payments](#recurringPayments)
+    > > > > > > > debb5dc5df44356156defbaa9e2e016f99073aa9
 
 <a name="integration"></a>
 
@@ -108,8 +117,8 @@ window.gsma.noAuth.[use-case]({
 For Example:
 
 ```javascript
-window.gsma.noAuth.merchantPay({
-  type: "payeeInitiated",
+window.gsma.noAuth.MerchantPayment({
+  type: "createMerchantTransaction",
   callbackUrl: "https://www.test.com/callbackurl",
   data: {
     amount: "200.00",
@@ -150,8 +159,8 @@ window.gsma.auth.[use-case]({
 For Example:
 
 ```javascript
-window.gsma.auth.merchantPay({
-  type: "payeeInitiated",
+window.gsma.auth.MerchantPayment({
+  type: "createMerchantTransaction",
   callbackUrl: "https://www.test.com/callbackurl",
   data: {
     amount: "200.00",
@@ -178,7 +187,7 @@ window.gsma.auth.merchantPay({
 
 <a name="merchantPayment"></a>
 
-### Merchant Payment
+### Merchant Payment (MerchantPayment)
 
 Contains functions for all the use case scenarios within Merchant Payments.
 
@@ -199,7 +208,9 @@ Contains functions for all the use case scenarios within Merchant Payments.
 
 <a name="disbursements"></a>
 
-### Disbursements
+### Disbursements (Disbursement)
+
+Contains functions for all the use case scenarios within Disbursements.
 
 | Function                      | Scenarios                                                                            | Parameters                                           |
 | ----------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- |
@@ -235,7 +246,7 @@ Contains functions for all the use case scenarios within Merchant Payments.
 
 <a name="international"></a>
 
-### International Transfers
+### International Transfers (InternationalTransfer)
 
 Contains functions for all the use case scenarios within International Transfers.
 
@@ -252,30 +263,54 @@ Contains functions for all the use case scenarios within International Transfers
 
 <a name="p2p"></a>
 
-### P2P Transfers
+### P2P Transfers (P2PTransfer)
 
 Contains functions for all the use case scenarios within P2P Transfers.
 
 <<<<<<< HEAD
-| Function                  | Scenarios                                                          | Parameters                                |
+| Function | Scenarios | Parameters |
 | ------------------------- | ------------------------------------------------------------------ | ----------------------------------------- |
-| viewAccountName           | confirm the recipient name                                         | identifierType, identifier                |
-| createQuotation           | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data                         |
-| createTransferTransaction | Perform the transfer with the receiving FSP                        | callbackUrl, data                         |
-| reversal                  | Reverse an p2p transaction                                         | transactionReference                      |
-| transactions              | Retrieve all transactions                                          | identifierType, identifier, offset, limit |
-| balanceCheck              | Obtain Balance                                                     | identifierType, identifier                |
-| serviceAvailability       | Check for Service Availability                                     | -                                         |
-| retrieveMissingRequest    | Retrieve a Missing API Response                                    | clientCorrelationId                       |
+| viewAccountName | confirm the recipient name | identifierType, identifier |
+| createQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data |
+| createTransferTransaction | Perform the transfer with the receiving FSP | callbackUrl, data |
+| reversal | Reverse an p2p transaction | transactionReference |
+| transactions | Retrieve all transactions | identifierType, identifier, offset, limit |
+| balanceCheck | Obtain Balance | identifierType, identifier |
+| serviceAvailability | Check for Service Availability | - |
+| retrieveMissingRequest | Retrieve a Missing API Response | clientCorrelationId |
 =======
 Function | Scenarios | Parameters
 --------------|-----------|------------
 viewAccountName | confirm the recipient name | accountId
 createQuotation | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data
-createTransferTransaction |  Perform the transfer with the receiving FSP | callbackUrl, data 
+createTransferTransaction | Perform the transfer with the receiving FSP | callbackUrl, data
 createReversal | Reverse an p2p transaction | transactionReference
-viewAccountTransaction |  Retrieve all transactions | accountId, offset, limit
+viewAccountTransaction | Retrieve all transactions | accountId, offset, limit
 viewAccountBalance | Obtain Balance | accountId
 viewServiceAvailability | Check for Service Availability | -
 viewResponse | Retrieve a Missing API Response | clientCorrelationId
->>>>>>> d664761d5e3d5a1a67ecf28f5b2e27c169e7e579
+<<<<<<< HEAD
+
+> > > > > > > # d664761d5e3d5a1a67ecf28f5b2e27c169e7e579
+
+<a name="recurringPayments"></a>
+
+### Recurring Payments (RecurringPayment)
+
+Contains functions for all the use case scenarios within Recurring Payments.
+
+| Function                  | Scenarios                                                               | Parameters                   |
+| ------------------------- | ----------------------------------------------------------------------- | ---------------------------- |
+| createAccountDebitMandate | recurring payment via a debit mandate                                   | callbackUrl, data, accountId |
+| createMerchantTransaction | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data            |
+| viewRequestState          | Request state object to determine the outcome of the payment request    | serverCorrelationId          |
+| viewTransaction           | Get representation of complete payment transaction                      | transactionReference         |
+| createRefundTransaction   | Service Providers can issue a refund to payers                          | data, callbackUrl            |
+| createReversal            | service provider may need to reverse a transaction                      | transactionReference         |
+| viewAccountDebitMandate   | Obtain Debit Mandate by mandateReference                                | accountId, mandateReference  |
+| viewAccountTransaction    | Retrieve all transactions                                               | accountId, offset, limit     |
+| viewAccountBalance        | Obtain Balance                                                          | accountId                    |
+| viewServiceAvailability   | Check for Service Availability                                          | -                            |
+| viewResponse              | Retrieve a Missing API Response                                         | clientCorrelationId          |
+
+> > > > > > > debb5dc5df44356156defbaa9e2e016f99073aa9
