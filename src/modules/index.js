@@ -11,7 +11,7 @@ export const moduleWrapperWithAuth = (authHeaders) => {
     Disbursement: choosePayment(disbursement, authHeaders),
     InternationalTransfer: choosePayment(internationalTransfers, authHeaders),
     P2PTransfer: choosePayment(p2p, authHeaders),
-    AccountLinking: choosePayment(accountLinking),
+    AccountLinking: choosePayment(accountLinking, authHeaders),
   };
 };
 
