@@ -43,6 +43,7 @@ const Dashboard = () => {
     setResponseStatus(null);
     setResponseHeader(null);
     setClientCorrelId(null);
+    setPollTime(0);
     changeAPIUrl();
   }, [customization.pageData.pageTitle, customization.authType]);
   const generateRequest = () => {
@@ -95,6 +96,7 @@ const Dashboard = () => {
     });
   };
   const sendRequest = () => {
+    pollTime > 0 && setPollTime(0);
     setClientCorrelId(null);
     if (customization.pageData.requestCategory) {
       if (
@@ -351,9 +353,7 @@ const Dashboard = () => {
                 </span>
               )}
             </div>
-            <span>
-              {customization.pageData.polling ? `Polled Time:${pollTime}` : ""}
-            </span>
+            <span>{pollTime > 0 ? `Polled Time:${pollTime}` : ""}</span>
           </div>
           <Paper
             elevation={2}
