@@ -55,15 +55,30 @@ const Dashboard = () => {
     }
     setRequestJson(request);
   };
-  const checkRequestState = (requestFunction, serverCorrelationId) => {
+
+  const checkRequestState = (
+    requestFunction,
+    serverCorrelationId,
+    currentPollTime = 0,
+    pollLimit
+  ) => {
     return requestFunction({
       type: customization.pageData.pollingFunction
         ? customization.pageData.pollingFunction
         : "viewRequestState",
       serverCorrelationId,
       onSuccess: (res, header, status) => {
-        if (res.status === "pending") {
-          return false;
+        console.log(`Polling Response (${currentPollTime}):`, res);
+        if (res.status === "pending" || currentPollTime === pollLimit) {
+          setTimeout(() => {
+            setPollTime(parseInt(currentPollTime) + 1);
+            checkRequestState(
+              requestFunction,
+              serverCorrelationId,
+              parseInt(currentPollTime) + 1,
+              pollLimit
+            );
+          }, 2000);
         } else {
           setResponseStatus(parseInt(status));
           setResponseJson(res);
@@ -79,65 +94,6 @@ const Dashboard = () => {
       },
     });
   };
-  function polling(timeout, pollLimit, currentPollTime = 0) {
-    setPollTime(currentPollTime);
-
-    if (window.gsma && window.gsma.auth) {
-      window.gsma.auth[customization.pageData.requestCategory]({
-        ...requestJson,
-        onSuccess: (res, header, status) => {
-          setResponseStatus(parseInt(status));
-          setResponseJson(res);
-          setResponseHeader(header);
-          if (res.status === "pending" && currentPollTime < pollLimit) {
-            currentPollTime++;
-            if (
-              !checkRequestState(
-                customization.pageData.requestCategory,
-                res.serverCorrelationId
-              )
-            ) {
-              setTimeout(() => {
-                polling(timeout, pollLimit, currentPollTime);
-              }, timeout);
-            }
-          }
-        },
-        onFailure: (res, status) => {
-          setResponseStatus(parseInt(status));
-          setResponseJson(res);
-          console.log("POLLING FAILED :", { res, status });
-        },
-      });
-    } else {
-      window.gsma.noAuth[customization.pageData.requestCategory]({
-        ...requestJson,
-        onSuccess: (res, header, status) => {
-          setResponseStatus(parseInt(status));
-          setResponseJson(res);
-          setResponseHeader(header);
-          if (res.status === "pending" && currentPollTime < pollLimit) {
-            currentPollTime++;
-            if (
-              !checkRequestState(
-                customization.pageData.requestCategory,
-                res.serverCorrelationId
-              )
-            ) {
-              setTimeout(() => {
-                polling(timeout, pollLimit, currentPollTime);
-              }, timeout);
-            }
-          }
-        },
-        onFailure: (res, status) => {
-          setResponseStatus(parseInt(status));
-          setResponseJson(res);
-          console.log("POLLING FAILED :", { res, status });
-        },
-      });
-    }
-  }
   const sendRequest = () => {
     setClientCorrelId(null);
     if (customization.pageData.requestCategory) {
@@ -159,14 +115,13 @@ const Dashboard = () => {
               res.pollLimit &&
               res.status === "pending"
             ) {
-              if (
-                !checkRequestState(
-                  window.gsma.auth[customization.pageData.requestCategory],
-                  res.serverCorrelationId
-                )
-              ) {
-                polling(2000, res.pollLimit);
-              }
+              setPollTime(1);
+              checkRequestState(
+                window.gsma.auth[customization.pageData.requestCategory],
+                res.serverCorrelationId,
+                1,
+                res.pollLimit
+              );
             }
             setResponseStatus(parseInt(status));
             setResponseJson(res);
@@ -190,14 +145,13 @@ const Dashboard = () => {
               res.pollLimit &&
               res.status === "pending"
             ) {
-              if (
-                !checkRequestState(
-                  window.gsma.noAuth[customization.pageData.requestCategory],
-                  res.serverCorrelationId
-                )
-              ) {
-                polling(2000, res.pollLimit);
-              }
+              setPollTime(1);
+              checkRequestState(
+                window.gsma.noAuth[customization.pageData.requestCategory],
+                res.serverCorrelationId,
+                1,
+                res.pollLimit
+              );
             }
             setResponseStatus(parseInt(status));
             setResponseHeader(header);
