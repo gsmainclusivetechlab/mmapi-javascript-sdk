@@ -1704,13 +1704,6 @@ const pages = {
           returnClientCorrelation: false,
           headers: [
             {
-              id: "clientCorrelationId",
-              required: false,
-              caption: "Client Correlation Id",
-              type: "string",
-              defaultValue: "a409a9d7-76ad-4ea3-b87f-3d282d6bea8f",
-            },
-            {
               id: "callbackUrl",
               required: false,
               caption: "X-Callback-URL",
@@ -1777,13 +1770,6 @@ const pages = {
           polling: false,
           returnClientCorrelation: false,
           headers: [
-            {
-              id: "clientCorrelationId",
-              required: false,
-              caption: "Client Correlation Id",
-              type: "string",
-              defaultValue: "a409a9d7-76ad-4ea3-b87f-3d282d6bea8f",
-            },
             {
               id: "callbackUrl",
               required: false,
@@ -1901,6 +1887,122 @@ const pages = {
               ),
             },
           ],
+        },
+        {
+          id: "linkedAccountTransferReversal",
+          title: "Transfer to Linked Account Reversal",
+          type: "item",
+          requestType: "createReversal",
+          requestCategory: "AccountLinking",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+            {
+              id: "transactionReference",
+              required: false,
+              caption: "Transaction Reference",
+              type: "string",
+              defaultValue: "REF-1638178338614",
+            },
+          ],
+          params: [],
+        },
+        {
+          id: "linkedAccountFSPBalance",
+          title: "Obtain FSP Balance",
+          type: "item",
+          requestType: "viewAccountBalance",
+          requestCategory: "AccountLinking",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "accountId",
+              required: true,
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
+            },
+          ],
+          params: [],
+        },
+        {
+          id: "linkedAccountFSPRetrieve",
+          title: "Retrieve Transactions for an FSP",
+          type: "item",
+          requestType: "viewAccountTransaction",
+          requestCategory: "AccountLinking",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "accountId",
+              required: true,
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
+            },
+            {
+              id: "offset",
+              required: true,
+              caption: "Offset",
+              type: "string",
+              defaultValue: "0",
+            },
+            {
+              id: "limit",
+              required: true,
+              caption: "Limit",
+              type: "string",
+              defaultValue: "10",
+            },
+          ],
+          params: [],
+        },
+        {
+          id: "linkedAccountresponses",
+          title: "Retrieve a Missing API Response",
+          type: "item",
+          requestType: "viewResponse",
+          requestCategory: "AccountLinking",
+          target: true,
+          polling: false,
+          returnClientCorrelation: false,
+          headers: [
+            {
+              id: "clientCorrelationId",
+              required: false,
+              caption: "Client Correlation Id",
+              type: "string",
+              defaultValue: "58099533-ab33-4733-8ecb-bda85d86b223",
+            },
+          ],
+          params: [],
         },
       ],
     },
