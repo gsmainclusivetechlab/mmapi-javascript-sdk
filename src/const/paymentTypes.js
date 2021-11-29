@@ -8,12 +8,12 @@ export const REVERSAL = "createReversal";
 export const TRANSACTIONS = "viewAccountTransaction";
 export const QUOTATION_REQ = "createQuotation";
 export const QUOTATION_VIEW = "viewQuotation";
-export const REFUND = "createRefundTransaction";
 
 // merchant - types
 export const MERCHANT_INIT_PAYMENT = "createMerchantTransaction";
 export const MERCHANT_AUTH_CODE = "createAuthorisationCode";
 export const MERCHANT_VIEW_AUTH_CODE = "viewAuthorisationCode";
+export const MERCHANT_REFUND = "createRefundTransaction";
 
 // Disbursement -types
 export const DISBURSEMENT_INDIVIDUAL = "createDisbursementTransaction";
@@ -33,3 +33,7 @@ export const P2P_TRANSFER = "createTransferTransaction";
 // Recurring Payments
 export const RECURRING_DEBIT_MANDATE = "createAccountDebitMandate";
 export const RECURRING_VIEW_DEBIT_MANDATE = "viewAccountDebitMandate";
+// Account Linking
+export const SETUP_ACCOUNT_LINK = "createAccountLink";
+export const VIEW_ACCOUNT_LINK = "viewAccountLink";
+export const LINKED_ACCOUNT_TRANSFER = "createTransferTransaction";
