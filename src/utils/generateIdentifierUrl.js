@@ -1,5 +1,6 @@
 function generateIdentifierUrl(accountId, onError, callRequestMaker) {
     let identifierUrl = '';
+    // check type array if needed
     if (accountId.length > 0) {
         if (accountId.length === 1) {
             const { key = '', value = '' } = accountId[0];

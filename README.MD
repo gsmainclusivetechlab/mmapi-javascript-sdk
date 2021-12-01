@@ -15,6 +15,7 @@
    - [Disbursements](#disbursements)
    - [International Transfers](#international)
    - [P2P](#p2p)
+   - [Recurring Payments](#recurringPayments)
    - [Account Linking](#accountLinking)
 
 <a name="integration"></a>
@@ -109,8 +110,8 @@ window.gsma.noAuth.[use-case]({
 For Example:
 
 ```javascript
-window.gsma.noAuth.merchantPay({
-  type: "payeeInitiated",
+window.gsma.noAuth.MerchantPayment({
+  type: "createMerchantTransaction",
   callbackUrl: "https://www.test.com/callbackurl",
   data: {
     amount: "200.00",
@@ -151,8 +152,8 @@ window.gsma.auth.[use-case]({
 For Example:
 
 ```javascript
-window.gsma.auth.merchantPay({
-  type: "payeeInitiated",
+window.gsma.auth.MerchantPayment({
+  type: "createMerchantTransaction",
   callbackUrl: "https://www.test.com/callbackurl",
   data: {
     amount: "200.00",
@@ -179,7 +180,7 @@ window.gsma.auth.merchantPay({
 
 <a name="merchantPayment"></a>
 
-### Merchant Payment
+### Merchant Payment (MerchantPayment)
 
 Contains functions for all the use case scenarios within Merchant Payments.
 
@@ -200,7 +201,9 @@ Contains functions for all the use case scenarios within Merchant Payments.
 
 <a name="disbursements"></a>
 
-### Disbursements
+### Disbursements (Disbursement)
+
+Contains functions for all the use case scenarios within Disbursements.
 
 Contains functions for all the use case scenarios within Disbursements.
 
@@ -222,7 +225,7 @@ Contains functions for all the use case scenarios within Disbursements.
 
 <a name="international"></a>
 
-### International Transfers
+### International Transfers (InternationalTransfer)
 
 Contains functions for all the use case scenarios within International Transfers.
 
@@ -239,7 +242,7 @@ Contains functions for all the use case scenarios within International Transfers
 
 <a name="p2p"></a>
 
-### P2P Transfers
+### P2P Transfers (P2PTransfer)
 
 Contains functions for all the use case scenarios within P2P Transfers.
 
@@ -254,9 +257,29 @@ Contains functions for all the use case scenarios within P2P Transfers.
 | viewServiceAvailability   | Check for Service Availability                                     | -                        |
 | viewResponse              | Retrieve a Missing API Response                                    | clientCorrelationId      |
 
+<a name="recurringPayments"></a>
+
+### Recurring Payments (RecurringPayment)
+
+Contains functions for all the use case scenarios within Recurring Payments.
+
+| Function                  | Scenarios                                                               | Parameters                   |
+| ------------------------- | ----------------------------------------------------------------------- | ---------------------------- |
+| createAccountDebitMandate | recurring payment via a debit mandate                                   | callbackUrl, data, accountId |
+| createMerchantTransaction | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data            |
+| viewRequestState          | Request state object to determine the outcome of the payment request    | serverCorrelationId          |
+| viewTransaction           | Get representation of complete payment transaction                      | transactionReference         |
+| createRefundTransaction   | Service Providers can issue a refund to payers                          | data, callbackUrl            |
+| createReversal            | service provider may need to reverse a transaction                      | transactionReference         |
+| viewAccountDebitMandate   | Obtain Debit Mandate by mandateReference                                | accountId, mandateReference  |
+| viewAccountTransaction    | Retrieve all transactions                                               | accountId, offset, limit     |
+| viewAccountBalance        | Obtain Balance                                                          | accountId                    |
+| viewServiceAvailability   | Check for Service Availability                                          | -                            |
+| viewResponse              | Retrieve a Missing API Response                                         | clientCorrelationId          |
+
 <a name="accountLinking"></a>
 
-### Account Linking
+### Account Linking (AccountLinking)
 
 Contains functions for all the use case scenarios within Account Linking.
 
