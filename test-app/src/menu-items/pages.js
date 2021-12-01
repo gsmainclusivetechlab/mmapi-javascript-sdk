@@ -484,7 +484,21 @@ const pages = {
               defaultValue: "REF-1466171557592",
             },
           ],
-          params: [],
+          params: [
+            {
+              id: "data",
+              required: true,
+              caption: "JSON Body",
+              type: "json",
+              defaultValue: JSON.stringify(
+                {
+                  transactionReference: "REF-1466171557592",
+                },
+                null,
+                2
+              ),
+            },
+          ],
         },
         {
           id: "merchantPaymentBalance",
@@ -1684,6 +1698,148 @@ const pages = {
               ),
             },
           ],
+        },
+        {
+          id: "recurringPaymentRefund",
+          title: "Recurring Payment Refund",
+          type: "item",
+          requestType: "createRefundTransaction",
+          requestCategory: "RecurringPayment",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+          ],
+          params: [
+            {
+              id: "data",
+              required: true,
+              caption: "JSON Body",
+              type: "json",
+              defaultValue: JSON.stringify(
+                {
+                  amount: "200.00",
+                  debitParty: [
+                    {
+                      key: "accountid",
+                      value: "1",
+                    },
+                  ],
+                  creditParty: [
+                    {
+                      key: "accountid",
+                      value: "30",
+                    },
+                  ],
+                  currency: "RWF",
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        },
+        {
+          id: "recurringPaymentReversal",
+          title: "Recurring Payment Reversal",
+          type: "item",
+          requestType: "createReversal",
+          requestCategory: "RecurringPayment",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "callbackUrl",
+              required: false,
+              caption: "X-Callback-URL",
+              type: "string",
+              defaultValue: "https://end13wxm5t7fgd6.m.pipedream.net/",
+            },
+            {
+              id: "transactionReference",
+              required: false,
+              caption: "Transaction Reference",
+              type: "string",
+              defaultValue: "REF-1638335834640",
+            },
+          ],
+          params: [],
+        },
+        {
+          id: "recurringPaymentBalance",
+          title: "Obtain a Service Provider Balance",
+          type: "item",
+          requestType: "viewAccountBalance",
+          requestCategory: "RecurringPayment",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "accountId",
+              required: true,
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
+            },
+          ],
+          params: [],
+        },
+        {
+          id: "recurringPaymentRetrieve",
+          title: "Retrieve Payments for a Service Provider",
+          type: "item",
+          requestType: "viewAccountTransaction",
+          requestCategory: "RecurringPayment",
+          target: true,
+          returnClientCorrelation: true,
+          headers: [
+            {
+              id: "accountId",
+              required: true,
+              caption: "Account ID",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "accountid",
+                    value: "1",
+                  },
+                ],
+                null,
+                2
+              ),
+            },
+            {
+              id: "offset",
+              required: true,
+              caption: "Offset",
+              type: "string",
+              defaultValue: "0",
+            },
+            {
+              id: "limit",
+              required: true,
+              caption: "Limit",
+              type: "string",
+              defaultValue: "10",
+            },
+          ],
+          params: [],
         },
       ],
     },
