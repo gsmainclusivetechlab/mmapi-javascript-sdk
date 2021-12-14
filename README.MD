@@ -207,81 +207,81 @@ Contains functions for all the use case scenarios within Merchant Payments.
     <td>Payee-Initiated Merchant Payment</td>
     <td><a href="src/docs/transactions/createMerchantTransaction.md">Payee Initiated Merchant Payment</a></td>
     <td>createMerchantTransaction</td>
-    <td>Transaction $transaction, string $callBackUrl = null</td>
+    <td>data,callbackUrl</td>
   </tr>
   <tr>
     <td rowspan="3">Payee-Initiated Merchant Payment using the Polling Method</td>
-    <td><a href="docs/merchantPayment/createMerchantTransaction.Readme.md">Payee Initiated Merchant Payment</a></td>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">Payee Initiated Merchant Payment</a></td>
     <td>createMerchantTransaction</td>
-    <td>Transaction $transaction, string $callBackUrl = null</td>
+    <td>data</td>
   </tr>
   <tr>
-    <td><a href="docs/merchantPayment/viewRequestState.Readme.md">Poll to Determine the Request State</a></td>
+    <td><a href="src/docs/supporting/viewRequestState.md">Poll to Determine the Request State</a></td>
     <td>viewRequestState</td>
-    <td>string $serverCorrelationId</td>
+    <td>serverCorrelationId</td>
   </tr>
   <tr>
-    <td><a href="docs/merchantPayment/viewTransaction.Readme.md">Retrieve a Transaction</a></td>
+    <td><a href="src/docs/transactions/viewTransaction.md">Retrieve a Transaction</a></td>
     <td>viewTransaction</td>
-    <td>string $transactionReference</td>
+    <td>transactionReference</td>
   </tr>
   <tr>
     <td>Payer-Initiated Merchant Payment</td>
-    <td><a href="docs/merchantPayment/createMerchantTransaction.Readme.md">Payer Initiated Merchant Payment</a></td>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">Payer Initiated Merchant Payment</a></td>
     <td>createMerchantTransaction</td>
-    <td>Transaction $transaction, string $callBackUrl = null</td>
+    <td>data,callbackUrl</td>
   </tr>
   <tr>
     <td rowspan="3">Payee-Initiated Merchant Payment using a Pre-authorised Payment Code</td>
-    <td><a href="docs/merchantPayment/createAuthorisationCode.Readme.md">Obtain an Authorisation Code</a></td>
+    <td><a href="src/docs/accounts/createAuthorisationCode.md">Obtain an Authorisation Code</a></td>
     <td>createAuthorisationCode</td>
-    <td>array $accountIdentifier, AuthorisationCode $authorisationCode</td>
+    <td>accountId, data, callbackUrl</td>
   </tr>
   <tr>
-    <td><a href="docs/merchantPayment/createMerchantTransaction.Readme.md">Perform a Merchant Payment</a></td>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">Perform a Merchant Payment</a></td>
     <td>createMerchantTransaction</td>
-    <td>Transaction $transaction, string $callBackUrl = null</td>
+    <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td><a href="docs/merchantPayment/viewAuthorisationCode.Readme.md">View An Authorisation Code</a></td>
+    <td><a href="src/docs/accounts/viewAuthorisationCode.md">View An Authorisation Code</a></td>
     <td>viewAuthorisationCode</td>
-    <td>string $accountIdentifier, string $authorisationCode</td>
+    <td>accountId,authorisationCode</td>
   </tr>
   <tr>
     <td>Merchant Payment Refund</td>
-    <td><a href="docs/merchantPayment/createRefundTransaction.Readme.md">Perform a Merchant Payment Refund</a></td>
+    <td><a href="src/docs/transactions/createRefundTransaction.md">Perform a Merchant Payment Refund</a></td>
     <td>createRefundTransaction</td>
-    <td>string $transactionReference, Reversal $reversal=null, string $callBackUrl=null</td>
+    <td>data, callbackUrl </td>
   </tr>
   <tr>
     <td>Merchant Payment Reversal</td>
-    <td><a href="docs/merchantPayment/createReversal.Readme.md">Perform a Merchant Payment Reversal</a></td>
+    <td><a href="src/docs/transactions/createReversal.md">Perform a Merchant Payment Reversal</a></td>
     <td>createReversal</td>
-    <td>string $transactionReference, Reversal $reversal=null, string $callBackUrl=null</td>
+    <td>transactionReference</td>
   </tr>
   <tr>
     <td>Obtain a Merchant Balance</td>
-    <td><a href="docs/merchantPayment/viewAccountBalance.Readme.md">Get an Account Balance</a></td>
+    <td><a href="src/docs/accounts/viewAccountBalance.md">Get an Account Balance</a></td>
     <td>viewAccountBalance</td>
-    <td>array $accountIdentifier, array $filter=null</td>
+    <td>accountId</td>
   </tr>
   <tr>
     <td>Retrieve Payments for a Merchant</td>
-    <td><a href="docs/merchantPayment/viewAccountTransactions.Readme.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td><a href="src/docs/accounts/viewAccountTransaction.md">Retrieve a Set of Transactions for an Account</a></td>
     <td>viewAccountTransactions</td>
-    <td>array $accountIdentifier, array $filter=null</td>
+    <td>accountId, offset, limit</td>
   </tr>
   <tr>
     <td>Check for Service Availability</td>
-    <td><a href="docs/merchantPayment/viewServiceAvailability.Readme.md">Check for Service Availability</a></td>
+    <td><a href="src/docs/supporting/viewServiceAvailability.md">Check for Service Availability</a></td>
     <td>viewServiceAvailability</td>
     <td>NA</td>
   </tr>
   <tr>
     <td>Retrieve a Missing API Response</td>
-    <td><a href="docs/merchantPayment/viewResponse.Readme.md">Retrieve a Missing Response</a></td>
+    <td><a href="src/docs/supporting/viewResponse.md">Retrieve a Missing Response</a></td>
     <td>viewResponse</td>
-    <td>string $clientCorrelationId, Object $objRef=null</td>
+    <td>clientCorrelationId</td>
   </tr>
 </tbody>
 </table>
