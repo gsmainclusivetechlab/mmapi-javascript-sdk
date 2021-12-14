@@ -205,7 +205,7 @@ Contains functions for all the use case scenarios within Merchant Payments.
 <tbody>
   <tr>
     <td>Payee-Initiated Merchant Payment</td>
-    <td><a href="docs/merchantPayment/createMerchantTransaction.Readme.md">Payee Initiated Merchant Payment</a></td>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">Payee Initiated Merchant Payment</a></td>
     <td>createMerchantTransaction</td>
     <td>Transaction $transaction, string $callBackUrl = null</td>
   </tr>
