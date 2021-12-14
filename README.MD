@@ -193,21 +193,98 @@ window.gsma.auth.MerchantPayment({
 ### Merchant Payment (MerchantPayment)
 
 Contains functions for all the use case scenarios within Merchant Payments.
-
-| Function                                                                          | Scenarios                                                               | Parameters                                                                  |
-| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [createMerchantTransaction](./src/docs/transactions/createMerchantTransaction.md) | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data                                                           |
-| [viewRequestState](./src/docs/supporting/viewRequestState.md)                     | Request state object to determine the outcome of the payment request    | serverCorrelationId                                                         |
-| [viewTransaction](./src/docs/transactions/viewTransaction.md)                     | Get representation of complete payment transaction                      | transactionReference                                                        |
-| [createAuthorisationCode](./src/docs/accounts/createAuthorisationCode.md)         | Auth Code generation for paymentWithAuthCode                            | accountId, data, callbackUrl                                                |
-| [viewAuthorisationCode](./src/docs/accounts/viewAuthorisationCode.md)             | View specific Authorisation Code linked to an account                   | accountId,authorisationCode                                                 |
-| [createMerchantTransaction](./src/docs/transactions/createMerchantTransaction.md) | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code    | callbackUrl, data, and amount, currency, oneTimeCode within the data object |
-| [createRefundTransaction](./src/docs/transactions/createRefundTransaction.md)     | Merchant Payment Refund                                                 | data, callbackUrl and amount, currency within data object                   |
-| [createReversal](./src/docs/transactions/createReversal.md)                       | Merchant Payment Reversal                                               | transactionReference                                                        |
-| [viewAccountTransaction](./src/docs/accounts/viewAccountTransaction.md)           | Retrieve Payments for a Merchant                                        | accountId, offset, limit                                                    |
-| [viewAccountBalance](./src/docs/accounts/viewAccountBalance.md)                   | Obtain a Merchant Balance                                               | accountId                                                                   |
-| [viewServiceAvailability](./src/docs/supporting/viewServiceAvailability.md)       | Check for Service Availability                                          | -                                                                           |
-| [viewResponse](./src/docs/supporting/viewResponse.md)                             | Retrieve a Missing API Response                                         | clientCorrelationId                                                         |
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Payee-Initiated Merchant Payment</td>
+    <td><a href="docs/merchantPayment/createMerchantTransaction.Readme.md">Payee Initiated Merchant Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>Transaction $transaction, string $callBackUrl = null</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Payee-Initiated Merchant Payment using the Polling Method</td>
+    <td><a href="docs/merchantPayment/createMerchantTransaction.Readme.md">Payee Initiated Merchant Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>Transaction $transaction, string $callBackUrl = null</td>
+  </tr>
+  <tr>
+    <td><a href="docs/merchantPayment/viewRequestState.Readme.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>string $serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/merchantPayment/viewTransaction.Readme.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>string $transactionReference</td>
+  </tr>
+  <tr>
+    <td>Payer-Initiated Merchant Payment</td>
+    <td><a href="docs/merchantPayment/createMerchantTransaction.Readme.md">Payer Initiated Merchant Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>Transaction $transaction, string $callBackUrl = null</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Payee-Initiated Merchant Payment using a Pre-authorised Payment Code</td>
+    <td><a href="docs/merchantPayment/createAuthorisationCode.Readme.md">Obtain an Authorisation Code</a></td>
+    <td>createAuthorisationCode</td>
+    <td>array $accountIdentifier, AuthorisationCode $authorisationCode</td>
+  </tr>
+  <tr>
+    <td><a href="docs/merchantPayment/createMerchantTransaction.Readme.md">Perform a Merchant Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>Transaction $transaction, string $callBackUrl = null</td>
+  </tr>
+  <tr>
+    <td><a href="docs/merchantPayment/viewAuthorisationCode.Readme.md">View An Authorisation Code</a></td>
+    <td>viewAuthorisationCode</td>
+    <td>string $accountIdentifier, string $authorisationCode</td>
+  </tr>
+  <tr>
+    <td>Merchant Payment Refund</td>
+    <td><a href="docs/merchantPayment/createRefundTransaction.Readme.md">Perform a Merchant Payment Refund</a></td>
+    <td>createRefundTransaction</td>
+    <td>string $transactionReference, Reversal $reversal=null, string $callBackUrl=null</td>
+  </tr>
+  <tr>
+    <td>Merchant Payment Reversal</td>
+    <td><a href="docs/merchantPayment/createReversal.Readme.md">Perform a Merchant Payment Reversal</a></td>
+    <td>createReversal</td>
+    <td>string $transactionReference, Reversal $reversal=null, string $callBackUrl=null</td>
+  </tr>
+  <tr>
+    <td>Obtain a Merchant Balance</td>
+    <td><a href="docs/merchantPayment/viewAccountBalance.Readme.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>array $accountIdentifier, array $filter=null</td>
+  </tr>
+  <tr>
+    <td>Retrieve Payments for a Merchant</td>
+    <td><a href="docs/merchantPayment/viewAccountTransactions.Readme.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>array $accountIdentifier, array $filter=null</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="docs/merchantPayment/viewServiceAvailability.Readme.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="docs/merchantPayment/viewResponse.Readme.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>string $clientCorrelationId, Object $objRef=null</td>
+  </tr>
+</tbody>
+</table>
 
 <a name="disbursements"></a>
 
@@ -230,6 +307,8 @@ Contains functions for all the use case scenarios within Disbursements.
 | viewAccountBalance            | Obtain a Disbursement Organisation Balance                                           | accountId                                            |
 | viewServiceAvailability       | Check for Service Availability                                                       | -                                                    |
 | viewResponse                  | Retrieve a Missing API Response                                                      | clientCorrelationId                                  |
+
+
 
 <a name="international"></a>
 
