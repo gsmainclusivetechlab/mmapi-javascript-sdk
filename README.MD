@@ -409,18 +409,82 @@ Contains functions for all the use case scenarios within Disbursements.
 ### International Transfers (InternationalTransfer)
 
 Contains functions for all the use case scenarios within International Transfers.
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">International Transfer via Hub</td>
+    <td><a href="/docs/internationalTransfer/createQuotation.Readme.md">Request a International Transfer Quotation</a></td>
+    <td>createQuotation</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/internationalTransfer/createInternationalTransaction.Readme.md">Perform an International Transfer</a></td>
+    <td>createInternationalTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.Readme.md">View A Quotation</a></td>
+    <td>viewQuotation</td>
+    <td>quotationReference</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Bilateral International Transfer</td>
+    <td><a href="/docs/internationalTransfer/createQuotation.Readme.md">Request a International Transfer Quotation</a></td>
+    <td>createQuotation</td>
+    <td>data,callbackUrl</td>
+  </tr>
 
-| Function                       | Scenarios                                                          | Parameters               |
-| ------------------------------ | ------------------------------------------------------------------ | ------------------------ |
-| createQuotation                | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data        |
-| viewQuotation                  | View a specific quotation                                          | quotationReference       |
-| createInternationalTransaction | Sending FSP submits a transaction request to the receiving FSP     | callbackUrl, data        |
-| createReversal                 | Reverse an individual disbursement transaction                     | transactionReference     |
-| viewAccountTransaction         | Retrieve all transactions for a disbursement organisation          | accountId, offset, limit |
-| viewAccountBalance             | Obtain a Disbursement Organisation Balance                         | accountId                |
-| viewServiceAvailability        | Check for Service Availability                                     | -                        |
-| viewResponse                   | Retrieve a Missing API Response                                    | clientCorrelationId      |
-
+ <tr>
+    <td><a href="/docs/internationalTransfer/createInternationalTransaction.Readme.md">Perform an International Transfer</a></td>
+    <td>createInternationalTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.Readme.md">View A Quotation</a></td>
+    <td>viewQuotation</td>
+    <td>quotationReference</td>
+  </tr>
+  <tr>
+  <tr>
+    <td>International Transfer Reversal</td>
+    <td><a href="/docs/internationalTransfer/createReversal.Readme.md">Perform a Transaction Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain an FSP Balance</td>
+    <td><a href="src/docs/accounts/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td>Retrieve Transactions for an FSP</td>
+    <td><a href="src/docs/accounts/viewAccountTransaction.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId, offset, limit</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="src/docs/supporting/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="src/docs/supporting/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
 <a name="p2p"></a>
 
 ### P2P Transfers (P2PTransfer)
