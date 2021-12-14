@@ -292,23 +292,117 @@ Contains functions for all the use case scenarios within Merchant Payments.
 
 Contains functions for all the use case scenarios within Disbursements.
 
-| Function                      | Scenarios                                                                            | Parameters                                           |
-| ----------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- |
-| createDisbursementTransaction | Individual disbursement using Callback or Polling Method                             | callbackUrl, data                                    |
-| createBatchTransaction        | Bulk Disbursement using ‘one-shot’ or with 'Maker / Checker'                         | callbackUrl, data and data must contain transactions |
-| viewRequestState              | Request state object to determine the outcome of the individual disbursement request | serverCorrelationId                                  |
-| viewTransaction               | Get a representation of completed disbursement                                       | transactionReference                                 |
-| viewBatchTransaction          | Get a representation of the batch transactions object                                | batchId                                              |
-| viewBatchCompletions          | Get all transactions that have been completed                                        | batchId                                              |
-| viewBatchRejections           | Get all transactions that have been rejected                                         | batchId                                              |
-| updateBatchTransaction        | Checker submit a request to approve the transaction batch                            | callbackUrl,batchId                                  |
-| createReversal                | Reverse an individual disbursement transaction                                       | transactionReference                                 |
-| viewAccountTransaction        | Retrieve all transactions for a disbursement organisation                            | accountId, offset, limit                             |
-| viewAccountBalance            | Obtain a Disbursement Organisation Balance                                           | accountId                                            |
-| viewServiceAvailability       | Check for Service Availability                                                       | -                                                    |
-| viewResponse                  | Retrieve a Missing API Response                                                      | clientCorrelationId                                  |
-
-
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Individual Disbursement</td>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">Create a Individual Disbursement request </a></td>
+    <td>createDisbursementTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="4">Bulk Disbursement</td>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">Create A Transaction Batch</a></td>
+    <td>createBatchTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/supporting/viewRequestState.md">View A Transaction Batch</a></td>
+    <td>viewBatchTransaction</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/transactions/viewTransaction.md">View Batch Completions</a></td>
+    <td>viewBatchCompletions</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">View Batch Rejections</a></td>
+    <td>viewBatchRejections</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td rowspan="5">Bulk Disbursement with Maker / Checker</td>
+    <td><a href="src/docs/accounts/createAuthorisationCode.md">Create A Transaction Batch</a></td>
+    <td>createBatchTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">Update A Transaction Batch</a></td>
+    <td>updateBatchTransaction</td>
+    <td>callbackUrl,batchId</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/supporting/viewRequestState.md">View A Transaction Batch</a></td>
+    <td>viewBatchTransaction</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/transactions/viewTransaction.md">View Batch Completions</a></td>
+    <td>viewBatchCompletions</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">View Batch Rejections</a></td>
+    <td>viewBatchRejections</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Individual Disbursement Using the Polling Method</td>
+    <td><a href="src/docs/transactions/createMerchantTransaction.md">Create a Individual Disbursement request </a></td>
+    <td>createDisbursementTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/supporting/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="src/docs/transactions/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Disbursement Reversal</td>
+    <td><a href="src/docs/accounts/viewAccountBalance.md">Perform a Disbursement Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain a Disbursement Organisation Balance</td>
+    <td><a href="src/docs/accounts/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td>Retrieve Transactions for a Disbursement Organisation</td>
+    <td><a href="src/docs/accounts/viewAccountTransaction.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId, offset, limit</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="src/docs/supporting/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="src/docs/supporting/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
 
 <a name="international"></a>
 
