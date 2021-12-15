@@ -283,60 +283,60 @@ Contains functions for all the use case scenarios within Disbursements.
 <tbody>
   <tr>
     <td>Individual Disbursement</td>
-    <td><a href="docs/disbursement/createMerchantTransaction.md">Create a Individual Disbursement request </a></td>
+    <td><a href="docs/disbursement/createDisbursementTransaction.md">Create a Individual Disbursement request </a></td>
     <td>createDisbursementTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
     <td rowspan="4">Bulk Disbursement</td>
-    <td><a href="docs/disbursement/createMerchantTransaction.md">Create A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/createBatchTransaction.md">Create A Transaction Batch</a></td>
     <td>createBatchTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/viewRequestState.md">View A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/viewBatchTransaction.md">View A Transaction Batch</a></td>
     <td>viewBatchTransaction</td>
     <td>batchId</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/viewTransaction.md">View Batch Completions</a></td>
+    <td><a href="docs/disbursement/viewBatchCompletions.md">View Batch Completions</a></td>
     <td>viewBatchCompletions</td>
     <td>batchId</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/createMerchantTransaction.md">View Batch Rejections</a></td>
+    <td><a href="docs/disbursement/viewBatchRejections.md">View Batch Rejections</a></td>
     <td>viewBatchRejections</td>
     <td>batchId</td>
   </tr>
   <tr>
     <td rowspan="5">Bulk Disbursement with Maker / Checker</td>
-    <td><a href="docs/disbursement/createAuthorisationCode.md">Create A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/createBatchTransaction.md">Create A Transaction Batch</a></td>
     <td>createBatchTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/createMerchantTransaction.md">Update A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/updateBatchTransaction.md">Update A Transaction Batch</a></td>
     <td>updateBatchTransaction</td>
     <td>callbackUrl,batchId</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/viewRequestState.md">View A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/viewBatchTransaction.md">View A Transaction Batch</a></td>
     <td>viewBatchTransaction</td>
     <td>batchId</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/viewTransaction.md">View Batch Completions</a></td>
+    <td><a href="docs/disbursement/viewBatchCompletions.md">View Batch Completions</a></td>
     <td>viewBatchCompletions</td>
     <td>batchId</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/createMerchantTransaction.md">View Batch Rejections</a></td>
+    <td><a href="docs/disbursement/viewBatchRejections.md">View Batch Rejections</a></td>
     <td>viewBatchRejections</td>
     <td>batchId</td>
   </tr>
   <tr>
     <td rowspan="3">Individual Disbursement Using the Polling Method</td>
-    <td><a href="docs/disbursement/createMerchantTransaction.md">Create a Individual Disbursement request </a></td>
+    <td><a href="docs/disbursement/createDisbursementTransaction.md">Create a Individual Disbursement request </a></td>
     <td>createDisbursementTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
@@ -352,7 +352,7 @@ Contains functions for all the use case scenarios within Disbursements.
   </tr>
   <tr>
     <td>Disbursement Reversal</td>
-    <td><a href="docs/disbursement/viewAccountBalance.md">Perform a Disbursement Reversal</a></td>
+    <td><a href="docs/disbursement/createReversal.md">Perform a Disbursement Reversal</a></td>
     <td>createReversal</td>
     <td>transactionReference</td>
   </tr>
@@ -364,7 +364,7 @@ Contains functions for all the use case scenarios within Disbursements.
   </tr>
   <tr>
     <td>Retrieve Transactions for a Disbursement Organisation</td>
-    <td><a href="docs/disbursement/viewAccountTransaction.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td><a href="docs/disbursement/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
     <td>viewAccountTransactions</td>
     <td>accountId, offset, limit</td>
   </tr>
