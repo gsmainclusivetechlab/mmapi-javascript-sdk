@@ -1,10 +1,10 @@
 # Retrieve a Missing API Response` (viewResponse)`
 
-Here, `viewResponse` creates a request to /responses/{clientCorrelationId}
+Here, `viewResponse` creates a GET request to /responses/{clientCorrelationId}
+
+> `This endpoint returns a specific response.`
 
 ## Usage/Examples
-
-### Example Input
 
 ```
 {
@@ -17,10 +17,7 @@ Here, `viewResponse` creates a request to /responses/{clientCorrelationId}
 
 ### Example Output
 
-onSuccess:
-
 ```
-response:
 {
   "transactionReference": "REF-1635943592995",
   "creditParty": [
@@ -490,26 +487,4 @@ response:
 
 status:
     200
-```
-
-onFailure:
-
-```
-response
-
-{
-  "errorCategory": "identification",
-  "errorCode": "identifierError",
-  "errorDescription": "Resource does not exists",
-  "errorDateTime": "2021-12-07T08:33:10.964Z",
-  "errorParameters": [
-    {
-      "key": "providedValue",
-      "value": "cc56daf1-b2dd-4553-aeba-43d21d81f5c8"
-    }
-  ]
-}
-
-status
-    404
 ```

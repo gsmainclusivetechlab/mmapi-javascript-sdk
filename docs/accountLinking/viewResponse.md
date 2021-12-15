@@ -1,22 +1,15 @@
-# View specific Authorisation Code linked to an account `(viewAuthorisationCode)`
+# Retrieve a Missing API Response` (viewResponse)`
 
-Here, `viewAuthorisationCode` creates a request to /accounts/{identifierType}/{identifier}/authorisationcodes or /accounts/{accountId}/authorisationcodes depending on the number of account IDs provided.
+Here, `viewResponse` creates a GET request to /responses/{clientCorrelationId}
+
+> `This endpoint returns a specific response.`
 
 ## Usage/Examples
 
-### Example Input
-
 ```
 {
-   "accountId": [
-    {
-      "key": "accountid",
-      "value": "1"
-    }
-  ],
-  "authorisationCode": "7006e6d7-d0e4-4cda-9300-8cb42bbf8915",
-  "type": "createAuthorisationCode",
-  "getClientCorrelationId":(response)=>{},
+  "clientCorrelationId": "cc56daf1-b2dd-4553-aeba-43d61d81f5c8",
+  "type": "viewResponse",
    "onSuccess":(response, header, status)=>{},
    "onFailure": (response, status) => {}
 }
@@ -24,20 +17,16 @@ Here, `viewAuthorisationCode` creates a request to /accounts/{identifierType}/{i
 
 ### Example Output
 
-onSuccess:
-
 ```
-response:
-
 {
-  "authorisationCode": "7006e6d7-d0e4-4cda-9300-8cb42bbf8915",
-  "codeState": "active",
-  "amount": "200.00",
-  "currency": "RWF",
-  "amountType": "exact",
-  "codeLifetime": 600,
-  "holdFundsIndicator": true,
-  "redemptionAccountIdentifiers": [
+  "transactionReference": "REF-1635943592995",
+  "creditParty": [
+    {
+      "key": "accountid",
+      "value": "30"
+    }
+  ],
+  "debitParty": [
     {
       "key": "msisdn",
       "value": "+449999999"
@@ -487,51 +476,15 @@ response:
       "value": "REF-1638335490120"
     }
   ],
-  "creationDate": "2021-11-17T04:45:43",
-  "modificationDate": "2021-11-17T04:45:43",
-  "requestDate": "2021-11-17T04:45:43"
-}
-
-header:
-{
-  "access-control-allow-headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-  "access-control-allow-methods": "DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
-  "access-control-allow-origin": "*",
-  "content-length": "154",
-  "content-type": "application/json; charset=utf-8",
-  "date": "Tue, 07 Dec 2021 06:43:33 GMT",
-  "etag": "W/\"9a-2OzSO7YK/EW4aY4bXcNiaDXc+B8\"",
-  "x-amz-apigw-id": "J91XUED6rPEFZ-A=",
-  "x-amzn-remapped-content-length": "154",
-  "x-amzn-requestid": "05046859-db02-4751-80b6-3677f4cb40fb",
-  "x-amzn-trace-id": "Root=1-61af0295-5a1941fd2eecf3305cc50f76;Sampled=0",
-  "x-powered-by": "Express"
+  "type": "merchantpay",
+  "transactionStatus": "completed",
+  "amount": "200.00",
+  "currency": "RWF",
+  "creationDate": "2021-11-03T12:46:33",
+  "modificationDate": "2021-11-03T12:46:33",
+  "requestDate": "2021-11-03T12:46:33"
 }
 
 status:
     200
-
-
-```
-
-onFailure
-
-```
-response:
-
-{
-  "errorCategory": "identification",
-  "errorCode": "identifierError",
-  "errorDescription": "Authorization code does not exists",
-  "errorDateTime": "2021-12-07T06:53:34.908Z",
-  "errorParameters": [
-    {
-      "key": "providedValue",
-      "value": "7006e6d7-d0e4-4cda-9312-8cb42bbf8915"
-    }
-  ]
-}
-
-status:
-    404
 ```

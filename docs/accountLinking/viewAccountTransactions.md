@@ -1,10 +1,14 @@
-# Get Account balance `(viewAccountTransaction)`
+# View Account Specific Transaction
 
-Here, `viewAccountTransactions` creates a request to /accounts/{identifierType}/{identifier}/transactions or /accounts/{accountId}/transactions depending on the number of account IDs provided.
+Here, if only a single account ID is provided, `viewAccountTransactions` creates a GET request to /accounts/{identifierType}/{identifier}/transactions
+
+> `This endpoint returns transactions linked to a specific account where one identifier suffices to uniquely identify an account.`
+
+Here, if only a single account ID is provided, `viewAccountTransactions` creates a GET request to /accounts/{accountId}/transactions depending on the number of account IDs provided.
+
+> `This endpoint returns transactions linked to a specific account where a single identifier is not sufficient to identify an account.`
 
 ## Usage/Examples
-
-### Example Input
 
 ```
 {
@@ -24,8 +28,6 @@ Here, `viewAccountTransactions` creates a request to /accounts/{identifierType}/
 ```
 
 ### Example Output
-
-onSuccess:
 
 ```
 response:
@@ -1140,46 +1142,6 @@ response:
   }
 ]
 
-header:
-{
-  "access-control-allow-headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-  "access-control-allow-methods": "DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
-  "access-control-allow-origin": "*",
-  "content-length": "72359",
-  "content-type": "application/json; charset=utf-8",
-  "date": "Tue, 07 Dec 2021 08:13:39 GMT",
-  "etag": "W/\"11aa7-eAGPO8Dr4LbBqfC8vcGnZdcKwNs\"",
-  "x-amz-apigw-id": "J-CjnGVxrPEFi0A=",
-  "x-amzn-remapped-content-length": "72359",
-  "x-amzn-requestid": "fedd411d-cdc8-4242-933d-ae3970e5e862",
-  "x-amzn-trace-id": "Root=1-61af17b0-7c1b585c0d91160a770f75ee;Sampled=0",
-  "x-powered-by": "Express"
-}
-
 status:
     202
-
-
-```
-
-onFailure
-
-```
-response:
-
-{
-  "errorCategory": "identification",
-  "errorCode": "identifierError",
-  "errorDescription": "Account does not exist",
-  "errorDateTime": "2021-12-07T08:16:40.536Z",
-  "errorParameters": [
-    {
-      "key": "providedValue",
-      "value": "10"
-    }
-  ]
-}
-
-status:
-    404
 ```
