@@ -492,7 +492,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td>Optional <a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
     <td>createTransferTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
