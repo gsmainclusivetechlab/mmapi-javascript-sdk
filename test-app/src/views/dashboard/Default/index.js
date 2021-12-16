@@ -82,7 +82,7 @@ const Dashboard = () => {
           }, 2000);
         } else {
           setResponseStatus(parseInt(status));
-          setResponseJson(res);
+          setResponseJson(JSON.parse(JSON.stringify(res)));
           setResponseHeader(header);
           return true;
         }
@@ -90,7 +90,7 @@ const Dashboard = () => {
       onFailure: (res, status) => {
         console.log("POLLING FAILED :", { res, status });
         setResponseStatus(parseInt(status));
-        setResponseJson(res);
+        setResponseJson(JSON.parse(JSON.stringify(res)));
         return true;
       },
     });
@@ -126,12 +126,12 @@ const Dashboard = () => {
               );
             }
             setResponseStatus(parseInt(status));
-            setResponseJson(res);
+            setResponseJson(JSON.parse(JSON.stringify(res)));
             setResponseHeader(header);
           },
           onFailure: (res, status) => {
             setResponseStatus(parseInt(status));
-            setResponseJson(res);
+            setResponseJson(JSON.parse(JSON.stringify(res)));
           },
         });
       } else if (window.gsma.noAuth[customization.pageData.requestCategory]) {
@@ -157,12 +157,12 @@ const Dashboard = () => {
             }
             setResponseStatus(parseInt(status));
             setResponseHeader(header);
-            setResponseJson(res);
+            setResponseJson(JSON.parse(JSON.stringify(res)));
           },
           onFailure: (res, status) => {
             console.log(res);
             setResponseStatus(parseInt(status));
-            setResponseJson(res);
+            setResponseJson(JSON.parse(JSON.stringify(res)));
           },
         });
       } else {

@@ -5,9 +5,10 @@ export const RETRIEVE_MISSING_API = "viewResponse";
 export const REQUEST_STATE = "viewRequestState";
 export const TRANSACTION_REFERENCE = "viewTransaction";
 export const REVERSAL = "createReversal";
-export const TRANSACTIONS = "viewAccountTransaction";
+export const TRANSACTIONS = "viewAccountTransactions";
 export const QUOTATION_REQ = "createQuotation";
 export const QUOTATION_VIEW = "viewQuotation";
+export const REFUND = "createRefundTransaction";
 
 // merchant - types
 export const MERCHANT_INIT_PAYMENT = "createMerchantTransaction";

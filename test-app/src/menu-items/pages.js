@@ -532,7 +532,7 @@ const pages = {
           id: "merchantPaymentRetrieve",
           title: "Retrieve Payments for a Merchant",
           type: "item",
-          requestType: "viewAccountTransaction",
+          requestType: "viewAccountTransactions",
           requestCategory: "MerchantPayment",
           target: true,
           returnClientCorrelation: true,
@@ -554,18 +554,24 @@ const pages = {
               ),
             },
             {
-              id: "offset",
+              id: "filter",
               required: true,
-              caption: "Offset",
-              type: "string",
-              defaultValue: "0",
-            },
-            {
-              id: "limit",
-              required: true,
-              caption: "Limit",
-              type: "string",
-              defaultValue: "10",
+              caption: "Filter",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "offset",
+                    value: "0",
+                  },
+                  {
+                    key: "limit",
+                    value: "10",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -892,7 +898,7 @@ const pages = {
           id: "disbursementRetrieve",
           title: "Retrieve Payments for a Disbursement Organisation",
           type: "item",
-          requestType: "viewAccountTransaction",
+          requestType: "viewAccountTransactions",
           requestCategory: "Disbursement",
           target: true,
           headers: [
@@ -913,18 +919,24 @@ const pages = {
               ),
             },
             {
-              id: "offset",
+              id: "filter",
               required: true,
-              caption: "Offset",
-              type: "string",
-              defaultValue: "0",
-            },
-            {
-              id: "limit",
-              required: true,
-              caption: "Limit",
-              type: "string",
-              defaultValue: "10",
+              caption: "Filter",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "offset",
+                    value: "0",
+                  },
+                  {
+                    key: "limit",
+                    value: "10",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -1252,7 +1264,7 @@ const pages = {
           id: "intlFSPRetrieve",
           title: "Retrieve Transactions for an FSP",
           type: "item",
-          requestType: "viewAccountTransaction",
+          requestType: "viewAccountTransactions",
           requestCategory: "InternationalTransfer",
           target: true,
           returnClientCorrelation: true,
@@ -1275,18 +1287,24 @@ const pages = {
               ),
             },
             {
-              id: "offset",
+              id: "filter",
               required: true,
-              caption: "Offset",
-              type: "string",
-              defaultValue: "0",
-            },
-            {
-              id: "limit",
-              required: true,
-              caption: "Limit",
-              type: "string",
-              defaultValue: "10",
+              caption: "Filter",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "offset",
+                    value: "0",
+                  },
+                  {
+                    key: "limit",
+                    value: "10",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -1568,7 +1586,7 @@ const pages = {
           id: "p2pFSPRetrieve",
           title: "Retrieve Transactions for an FSP",
           type: "item",
-          requestType: "viewAccountTransaction",
+          requestType: "viewAccountTransactions",
           requestCategory: "P2PTransfer",
           target: true,
           returnClientCorrelation: true,
@@ -1590,18 +1608,24 @@ const pages = {
               ),
             },
             {
-              id: "offset",
+              id: "filter",
               required: true,
-              caption: "Offset",
-              type: "string",
-              defaultValue: "0",
-            },
-            {
-              id: "limit",
-              required: true,
-              caption: "Limit",
-              type: "string",
-              defaultValue: "10",
+              caption: "Filter",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "offset",
+                    value: "0",
+                  },
+                  {
+                    key: "limit",
+                    value: "10",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -1900,7 +1924,7 @@ const pages = {
           id: "recurringPaymentRetrieve",
           title: "Retrieve Payments for a Service Provider",
           type: "item",
-          requestType: "viewAccountTransaction",
+          requestType: "viewAccountTransactions",
           requestCategory: "RecurringPayment",
           target: true,
           returnClientCorrelation: true,
@@ -1922,18 +1946,24 @@ const pages = {
               ),
             },
             {
-              id: "offset",
+              id: "filter",
               required: true,
-              caption: "Offset",
-              type: "string",
-              defaultValue: "0",
-            },
-            {
-              id: "limit",
-              required: true,
-              caption: "Limit",
-              type: "string",
-              defaultValue: "10",
+              caption: "Filter",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "offset",
+                    value: "0",
+                  },
+                  {
+                    key: "limit",
+                    value: "10",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
@@ -2199,7 +2229,7 @@ const pages = {
           id: "linkedAccountFSPRetrieve",
           title: "Retrieve Transactions for an FSP",
           type: "item",
-          requestType: "viewAccountTransaction",
+          requestType: "viewAccountTransactions",
           requestCategory: "AccountLinking",
           target: true,
           returnClientCorrelation: true,
@@ -2221,18 +2251,24 @@ const pages = {
               ),
             },
             {
-              id: "offset",
+              id: "filter",
               required: true,
-              caption: "Offset",
-              type: "string",
-              defaultValue: "0",
-            },
-            {
-              id: "limit",
-              required: true,
-              caption: "Limit",
-              type: "string",
-              defaultValue: "10",
+              caption: "Filter",
+              type: "json",
+              defaultValue: JSON.stringify(
+                [
+                  {
+                    key: "offset",
+                    value: "0",
+                  },
+                  {
+                    key: "limit",
+                    value: "10",
+                  },
+                ],
+                null,
+                2
+              ),
             },
           ],
           params: [],
