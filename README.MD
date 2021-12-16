@@ -471,16 +471,91 @@ Contains functions for all the use case scenarios within International Transfers
 
 Contains functions for all the use case scenarios within P2P Transfers.
 
-| Function                  | Scenarios                                                          | Parameters               |
-| ------------------------- | ------------------------------------------------------------------ | ------------------------ |
-| viewAccountName           | confirm the recipient name                                         | accountId                |
-| createQuotation           | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data        |
-| createTransferTransaction | Perform the transfer with the receiving FSP                        | callbackUrl, data        |
-| createReversal            | Reverse an p2p transaction                                         | transactionReference     |
-| viewAccountTransaction    | Retrieve all transactions                                          | accountId, offset, limit |
-| viewAccountBalance        | Obtain Balance                                                     | accountId                |
-| viewServiceAvailability   | Check for Service Availability                                     | -                        |
-| viewResponse              | Retrieve a Missing API Response                                    | clientCorrelationId      |
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">P2P Transfer via Switch</td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.Readme.md">Retrieve the Name of the Recipient</a></td>
+    <td>viewAccountName</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createQuotation.Readme.md">Request a P2P Quotation</a></td>
+    <td>createQuotation</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td>Optional <a href="/docs/p2pTransfer/createTransferTransaction.Readme.md">Perform a P2P Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Bilateral P2P Transfer</td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.Readme.md">Retrieve the Name of the Recipient</a></td>
+    <td>viewAccountName</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.Readme.md">Perform a P2P Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">‘On-us’ P2P Transfer Initiated by a Third Party Provider</td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.Readme.md">Retrieve the Name of the Recipient</a></td>
+    <td>viewAccountName</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createQuotation.Readme.md">Request a P2P Quotation</a></td>
+    <td>createQuotation</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.Readme.md">Perform a P2P Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td>P2P Transfer Reversal</td>
+    <td><a href="/docs/p2pTransfer/createReversal.Readme.md">Perform a Transaction Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain an FSP Balance</td>
+    <td><a href="/docs/p2pTransfer/viewAccountBalance.Readme.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+   <tr>
+    <td>Retrieve Transactions for an FSP</td>
+    <td><a href="/docs/p2pTransfer/viewAccountTransactions.Readme.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId, offset, limit</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/p2pTransfer/viewServiceAvailability.Readme.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Retrieve a Missing API Response</td>
+    <td><a href="/docs/p2pTransfer/viewResponse.Readme.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
 
 <a name="recurringPayments"></a>
 
