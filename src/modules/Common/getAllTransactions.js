@@ -10,10 +10,12 @@ import {
  */
 export default function getAllTransactions(props, onError) {
     if (checkRequiredProps(props, ['accountId'], onError)) {
-        let { accountId, offset = null, limit = null } = props;
+        let { accountId, filter=[] } = props;
         let params = {};
-        if (offset) params['offset'] = offset;
-        if (limit) params['limit'] = limit;
+        filter.length>0 && filter.map(filers=>{
+            if(filers.key)
+            params[filers.key]=filers.value
+        })
         return generateIdentifierUrl(accountId, onError, (accountUrl) => {
             return requestMaker(`/accounts/${accountUrl}/transactions`).get(
                 params
