@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // material-ui
-import { Button, Grid, Paper, Chip } from "@material-ui/core";
+import { Button, Grid, Paper, Chip, CircularProgress } from "@material-ui/core";
 import FormGenerator from "../../../ui-component/formGenerator";
 import { RESET_FORM } from "store/actions";
 
@@ -11,6 +11,7 @@ const Dashboard = () => {
   const customization = useSelector((state) => state.customization);
   const formData = useSelector((state) => state.formData);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [requestJson, setRequestJson] = useState(JSON.parse("{}"));
   const [responseJson, setResponseJson] = useState(null);
   const [responseHeader, setResponseHeader] = useState(null);
@@ -84,11 +85,13 @@ const Dashboard = () => {
           setResponseStatus(parseInt(status));
           setResponseJson(JSON.parse(JSON.stringify(res)));
           setResponseHeader(header);
+          setLoading(false);
           return true;
         }
       },
       onFailure: (res, status) => {
         console.log("POLLING FAILED :", { res, status });
+        setLoading(false);
         setResponseStatus(parseInt(status));
         setResponseJson(JSON.parse(JSON.stringify(res)));
         return true;
@@ -96,6 +99,7 @@ const Dashboard = () => {
     });
   };
   const sendRequest = () => {
+    setLoading(true);
     pollTime > 0 && setPollTime(0);
     setClientCorrelId(null);
     if (customization.pageData.requestCategory) {
@@ -126,10 +130,12 @@ const Dashboard = () => {
               );
             }
             setResponseStatus(parseInt(status));
+            setLoading(false);
             setResponseJson(JSON.parse(JSON.stringify(res)));
             setResponseHeader(header);
           },
           onFailure: (res, status) => {
+            setLoading(false);
             setResponseStatus(parseInt(status));
             setResponseJson(JSON.parse(JSON.stringify(res)));
           },
@@ -158,11 +164,13 @@ const Dashboard = () => {
             setResponseStatus(parseInt(status));
             setResponseHeader(header);
             setResponseJson(JSON.parse(JSON.stringify(res)));
+            setLoading(false);
           },
           onFailure: (res, status) => {
             console.log(res);
             setResponseStatus(parseInt(status));
             setResponseJson(JSON.parse(JSON.stringify(res)));
+            setLoading(false);
           },
         });
       } else {
@@ -266,6 +274,9 @@ const Dashboard = () => {
             onClick={() => sendRequest()}
           >
             Send Request
+            {loading && (
+              <CircularProgress color="inherit" size={16} sx={{ ml: "1rem" }} />
+            )}
           </Button>
         </Grid>
         <Grid
@@ -366,7 +377,9 @@ const Dashboard = () => {
             }}
           >
             <pre id="response-json">
-              {JSON.stringify(responseJson, null, 2)}
+              {!(typeof responseJson === "string")
+                ? JSON.stringify(responseJson, null, 2)
+                : responseJson}
             </pre>
           </Paper>
         </Grid>
