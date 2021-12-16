@@ -45,17 +45,23 @@ Once Authenticated, the client gets access to all functions that require authent
 
 #### Basic Authentication
 
-Tou Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
+To Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
 
 ```javascript
 window.gsma.initBasicAuth(consumerKey, consumerSecret, callbackUrl);
 ```
+## Note
+
+> callbackUrl is an optional parameter. If no callbackUrl is provided during Authentication Initialization or with the Input data, the notification method will be polling.
+> Once callbackUrl is defined globaly, define `notificationMethod:'polling'` to switch into polling for each requests.
+
+
 
 <a name="oauth2"></a>
 
 #### OAuth2 based Authentication
 
-Tou Authenticate using OAuth2 based Authentication method, you can use `initStandardaAuth()` with an object with username, pass, apiKey, onSuccess and onFailure as parameter. here, onSuccess and onFailure are callback functions, which gives the client a response of Authentication Status.
+To Authenticate using OAuth2 based Authentication method, you can use `initStandardaAuth()` with an object with username, pass, apiKey, onSuccess and onFailure as parameter. here, onSuccess and onFailure are callback functions, which gives the client a response of Authentication Status.
 
 ```javascript
 window.gsma.initStandardaAuth({
@@ -71,7 +77,10 @@ window.gsma.initStandardaAuth({
   },
 });
 ```
+## Note
 
+> callbackUrl is an optional parameter. If no callbackUrl is provided during Authentication Initialization or with the Input data, the notification method will be polling.
+> Once callbackUrl is defined globaly, define `notificationMethod:'polling'` to switch into polling for each requests.
 <a name="noAuth"></a>
 
 ### Executing without Authentication
