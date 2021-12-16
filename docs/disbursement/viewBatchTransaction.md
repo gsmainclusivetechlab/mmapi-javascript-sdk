@@ -1,4 +1,4 @@
-# View A Transaction Batch
+# View a Transaction Batch
 
 `Here, viewBatchTransaction(batchId) creates a GET request to /batchtransactions/{batchId}`
 

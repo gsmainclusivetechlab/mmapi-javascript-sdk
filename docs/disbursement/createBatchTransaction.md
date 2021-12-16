@@ -1,4 +1,4 @@
-# Create A Transaction Batch
+# Create a Transaction Batch
 
 `Here, createBatchTransaction creates a POST request to /batchtransactions`
 

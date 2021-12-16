@@ -1,4 +1,4 @@
-# View A Transaction
+# View a Transaction
 
 Here, `viewTransaction` creates a GET request to /transactions/{transactionReference}
 

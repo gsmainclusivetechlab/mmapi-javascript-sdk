@@ -289,12 +289,12 @@ Contains functions for all the use case scenarios within Disbursements.
   </tr>
   <tr>
     <td rowspan="4">Bulk Disbursement</td>
-    <td><a href="docs/disbursement/createBatchTransaction.md">Create A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/createBatchTransaction.md">Create a Transaction Batch</a></td>
     <td>createBatchTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/viewBatchTransaction.md">View A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/viewBatchTransaction.md">View a Transaction Batch</a></td>
     <td>viewBatchTransaction</td>
     <td>batchId</td>
   </tr>
@@ -310,17 +310,17 @@ Contains functions for all the use case scenarios within Disbursements.
   </tr>
   <tr>
     <td rowspan="5">Bulk Disbursement with Maker / Checker</td>
-    <td><a href="docs/disbursement/createBatchTransaction.md">Create A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/createBatchTransaction.md">Create a Transaction Batch</a></td>
     <td>createBatchTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/updateBatchTransaction.md">Update A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/updateBatchTransaction.md">Update a Transaction Batch</a></td>
     <td>updateBatchTransaction</td>
     <td>callbackUrl,batchId</td>
   </tr>
   <tr>
-    <td><a href="docs/disbursement/viewBatchTransaction.md">View A Transaction Batch</a></td>
+    <td><a href="docs/disbursement/viewBatchTransaction.md">View a Transaction Batch</a></td>
     <td>viewBatchTransaction</td>
     <td>batchId</td>
   </tr>
@@ -411,7 +411,7 @@ Contains functions for all the use case scenarios within International Transfers
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.Readme.md">View A Quotation</a></td>
+    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.Readme.md">View a Quotation</a></td>
     <td>viewQuotation</td>
     <td>quotationReference</td>
   </tr>
@@ -428,7 +428,7 @@ Contains functions for all the use case scenarios within International Transfers
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.Readme.md">View A Quotation</a></td>
+    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.Readme.md">View a Quotation</a></td>
     <td>viewQuotation</td>
     <td>quotationReference</td>
   </tr>
@@ -483,74 +483,74 @@ Contains functions for all the use case scenarios within P2P Transfers.
 <tbody>
   <tr>
     <td rowspan="3">P2P Transfer via Switch</td>
-    <td><a href="/docs/p2pTransfer/viewAccountName.Readme.md">Retrieve the Name of the Recipient</a></td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.md">Retrieve the Name of the Recipient</a></td>
     <td>viewAccountName</td>
     <td>accountId</td>
   </tr>
   <tr>
-    <td><a href="/docs/p2pTransfer/createQuotation.Readme.md">Request a P2P Quotation</a></td>
+    <td><a href="/docs/p2pTransfer/createQuotation.md">Request a P2P Quotation</a></td>
     <td>createQuotation</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td>Optional <a href="/docs/p2pTransfer/createTransferTransaction.Readme.md">Perform a P2P Transfer</a></td>
+    <td>Optional <a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
     <td>createTransferTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
     <td rowspan="2">Bilateral P2P Transfer</td>
-    <td><a href="/docs/p2pTransfer/viewAccountName.Readme.md">Retrieve the Name of the Recipient</a></td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.md">Retrieve the Name of the Recipient</a></td>
     <td>viewAccountName</td>
     <td>accountId</td>
   </tr>
   <tr>
-    <td><a href="/docs/p2pTransfer/createTransferTransaction.Readme.md">Perform a P2P Transfer</a></td>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
     <td>createTransferTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
     <td rowspan="3">‘On-us’ P2P Transfer Initiated by a Third Party Provider</td>
-    <td><a href="/docs/p2pTransfer/viewAccountName.Readme.md">Retrieve the Name of the Recipient</a></td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.md">Retrieve the Name of the Recipient</a></td>
     <td>viewAccountName</td>
     <td>accountId</td>
   </tr>
   <tr>
-    <td><a href="/docs/p2pTransfer/createQuotation.Readme.md">Request a P2P Quotation</a></td>
+    <td><a href="/docs/p2pTransfer/createQuotation.md">Request a P2P Quotation</a></td>
     <td>createQuotation</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td><a href="/docs/p2pTransfer/createTransferTransaction.Readme.md">Perform a P2P Transfer</a></td>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
     <td>createTransferTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
     <td>P2P Transfer Reversal</td>
-    <td><a href="/docs/p2pTransfer/createReversal.Readme.md">Perform a Transaction Reversal</a></td>
+    <td><a href="/docs/p2pTransfer/createReversal.md">Perform a Transaction Reversal</a></td>
     <td>createReversal</td>
     <td>transactionReference</td>
   </tr>
   <tr>
     <td>Obtain an FSP Balance</td>
-    <td><a href="/docs/p2pTransfer/viewAccountBalance.Readme.md">Get an Account Balance</a></td>
+    <td><a href="/docs/p2pTransfer/viewAccountBalance.md">Get an Account Balance</a></td>
     <td>viewAccountBalance</td>
     <td>accountId</td>
   </tr>
    <tr>
     <td>Retrieve Transactions for an FSP</td>
-    <td><a href="/docs/p2pTransfer/viewAccountTransactions.Readme.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td><a href="/docs/p2pTransfer/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
     <td>viewAccountTransactions</td>
     <td>accountId, offset, limit</td>
   </tr>
   <tr>
     <td>Check for Service Availability</td>
-    <td><a href="/docs/p2pTransfer/viewServiceAvailability.Readme.md">Check for Service Availability</a></td>
+    <td><a href="/docs/p2pTransfer/viewServiceAvailability.md">Check for Service Availability</a></td>
     <td>viewServiceAvailability</td>
     <td>NA</td>
   </tr>
   <tr>
     <td rowspan="2">Retrieve a Missing API Response</td>
-    <td><a href="/docs/p2pTransfer/viewResponse.Readme.md">Retrieve a Missing Response</a></td>
+    <td><a href="/docs/p2pTransfer/viewResponse.md">Retrieve a Missing Response</a></td>
     <td>viewResponse</td>
     <td>clientCorrelationId</td>
   </tr>

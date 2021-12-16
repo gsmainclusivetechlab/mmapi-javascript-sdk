@@ -1,4 +1,4 @@
-# Create A Reversal
+# Create a Reversal
 
 Here, `createReversal` creates a POST request to /transactions/{transactionReference}/reversals
 
