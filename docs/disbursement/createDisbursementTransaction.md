@@ -1,4 +1,4 @@
-# Create A Disbursement Transaction
+# Create a Disbursement Transaction
 
 `Here, createDisbursementTransaction creates a POST request to /transactions/type/disbursement`
 

@@ -1,4 +1,4 @@
-# Update A Transaction Batch
+# Update a Transaction Batch
 
 `Here, updateBatchTransaction creates a PATCH request to /batchtransactions/{batchId}`
 

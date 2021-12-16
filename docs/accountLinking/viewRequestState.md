@@ -1,4 +1,4 @@
-# View A Request State
+# View a Request State
 
 Here, `viewRequestState` creates a GET request to /requeststates/{serverCorrelationId}
 
