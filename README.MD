@@ -164,7 +164,6 @@ window.gsma.auth.MerchantPayment({
 - [Disbursements](#disbursements)
 - [International Transfers](#international)
 - [P2P Transfers](#p2p)
-- [Recurring Payments](#recurringPayments)
 
 <a name="merchantPayment"></a>
 
@@ -401,41 +400,41 @@ Contains functions for all the use case scenarios within International Transfers
 <tbody>
   <tr>
     <td rowspan="3">International Transfer via Hub</td>
-    <td><a href="/docs/internationalTransfer/createQuotation.Readme.md">Request a International Transfer Quotation</a></td>
+    <td><a href="/docs/internationalTransfer/createQuotation.md">Request a International Transfer Quotation</a></td>
     <td>createQuotation</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td><a href="/docs/internationalTransfer/createInternationalTransaction.Readme.md">Perform an International Transfer</a></td>
+    <td><a href="/docs/internationalTransfer/createInternationalTransaction.md">Perform an International Transfer</a></td>
     <td>createInternationalTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.Readme.md">View a Quotation</a></td>
+    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.md">View a Quotation</a></td>
     <td>viewQuotation</td>
     <td>quotationReference</td>
   </tr>
   <tr>
     <td rowspan="3">Bilateral International Transfer</td>
-    <td><a href="/docs/internationalTransfer/createQuotation.Readme.md">Request a International Transfer Quotation</a></td>
+    <td><a href="/docs/internationalTransfer/createQuotation.md">Request a International Transfer Quotation</a></td>
     <td>createQuotation</td>
     <td>data,callbackUrl</td>
   </tr>
 
  <tr>
-    <td><a href="/docs/internationalTransfer/createInternationalTransaction.Readme.md">Perform an International Transfer</a></td>
+    <td><a href="/docs/internationalTransfer/createInternationalTransaction.md">Perform an International Transfer</a></td>
     <td>createInternationalTransaction</td>
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.Readme.md">View a Quotation</a></td>
+    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.md">View a Quotation</a></td>
     <td>viewQuotation</td>
     <td>quotationReference</td>
   </tr>
   <tr>
   <tr>
     <td>International Transfer Reversal</td>
-    <td><a href="/docs/internationalTransfer/createReversal.Readme.md">Perform a Transaction Reversal</a></td>
+    <td><a href="/docs/internationalTransfer/createReversal.md">Perform a Transaction Reversal</a></td>
     <td>createReversal</td>
     <td>transactionReference</td>
   </tr>
@@ -558,21 +557,3 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="recurringPayments"></a>
-
-### Recurring Payments (RecurringPayment)
-
-Contains functions for all the use case scenarios within Recurring Payments.
-
-| Function                  | Scenarios                                                               | Parameters                   |
-| ------------------------- | ----------------------------------------------------------------------- | ---------------------------- |
-| createAccountDebitMandate | recurring payment via a debit mandate                                   | callbackUrl, data, accountId |
-| createMerchantTransaction | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data            |
-| viewRequestState          | Request state object to determine the outcome of the payment request    | serverCorrelationId          |
-| viewTransaction           | Get representation of complete payment transaction                      | transactionReference         |
-| createRefundTransaction   | Service Providers can issue a refund to payers                          | data, callbackUrl            |
-| createReversal            | service provider may need to reverse a transaction                      | transactionReference         |
-| viewAccountDebitMandate   | Obtain Debit Mandate by mandateReference                                | accountId, mandateReference  |
-| viewAccountTransaction    | Retrieve all transactions                                               | accountId, offset, limit     |
-| viewAccountBalance        | Obtain Balance                                                          | accountId                    |
-| viewServiceAvailability   | Check for Service Availability                                          | -                            |
-| viewResponse              | Retrieve a Missing API Response                                         | clientCorrelationId          |
