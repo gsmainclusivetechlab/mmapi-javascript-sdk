@@ -1,6 +1,24 @@
-# MMAPI JavaScript SDK
+# mmapi-JavaScript-sdk
 
-<a name="integration"></a>
+The SDK provides separate use cases to handle necessary MMAPI functionality including Merchant Payments, Disbursements, International Transfers, P2P Transfers, Recurring Payments, Account Linking, Bill Payments and Agent Services (including Cash-In and Cash-Out). Each use case exposes use case scenarios
+to customize your application integrations as needed. The SDK also includes a Samples, so you can test interactions before integration.
+
+## Index
+
+This document contains the following sections:
+
+-   [Requirements](#requirements)
+-   [Setting Up](#setting-up)
+    -   [Integrating SDK to your Application](#setting-up)
+-   [Use Cases](#use-cases)
+
+<a name="requirements"></a>
+## Requirements
+
+-   Any Browser
+
+<a name="setting-up"></a>
+## Setting Up
 
 ## Integrating SDK to your Application
 
