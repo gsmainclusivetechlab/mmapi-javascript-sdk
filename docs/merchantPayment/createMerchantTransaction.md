@@ -46,8 +46,18 @@ Here, `createMerchantTransaction` creates a POST request to /transactions/type/m
 status:
     202
 ```
-
-
+### Example Output - polling
+```
+{
+  "serverCorrelationId": "249ab21e-9646-459a-a1fb-bbef7ea64ad7",
+  "status": "completed",
+  "notificationMethod": "polling",
+  "objectReference": "REF-1639993982505",
+  "pollLimit": 100
+}
+status:
+    200
+```    
 ---
 
 **NOTE**

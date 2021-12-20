@@ -38,7 +38,7 @@ Here, if Multiple account IDs are provided `createAuthorisationCode` creates a P
 }
 ```
 
-### Example Output
+### Example Output - Callback
 
 ```
 {
@@ -52,3 +52,25 @@ Here, if Multiple account IDs are provided `createAuthorisationCode` creates a P
 status:
     202
 ```
+
+### Example Output - Polling
+
+```
+{
+  "serverCorrelationId": "7d53cf1a-555e-4e53-becd-0ee3e40d2004",
+  "status": "completed",
+  "notificationMethod": "polling",
+  "objectReference": "df5210ca-6487-4c9c-83b1-7e00ec1fc41a",
+  "pollLimit": 100
+}
+
+status:
+    200
+```
+---
+
+**NOTE**
+
+In asynchronous flows, a callback mechanism or polling mechanism is utilised to allow the client to determine the request's final state. Use the [viewRequestState()](viewRequestState.md) function for the polling mechanism to receive the status of a request, and the [viewTransaction()](viewTransaction.md) function to acquire the final representation of the AuthorisationCode object.
+
+---

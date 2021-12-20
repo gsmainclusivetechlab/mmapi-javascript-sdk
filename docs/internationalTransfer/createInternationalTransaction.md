@@ -80,7 +80,7 @@
 }
 ```
 
-### Example Output
+### Example Output -Callback
 
 ```
 {
@@ -94,6 +94,22 @@
 status:
     202
 ```
+
+### Example Output - Polling
+
+```
+{
+  "serverCorrelationId": "91787a40-c6c8-43c4-aab5-4d53368a73bd",
+  "status": "completed",
+  "notificationMethod": "polling",
+  "objectReference": "REF-1640012929598",
+  "pollLimit": 100
+}
+
+status:
+    200
+```
+
 ---
 
 **NOTE**

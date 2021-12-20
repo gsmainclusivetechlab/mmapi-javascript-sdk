@@ -17,7 +17,7 @@ Here, `createReversal` creates a POST request to /transactions/{transactionRefer
 }
 ```
 
-### Example Output
+### Example Output - Callback
 
 ```
 {
@@ -26,6 +26,20 @@ Here, `createReversal` creates a POST request to /transactions/{transactionRefer
   "notificationMethod": "callback",
   "objectReference": "1",
   "pollLimit": 100
+}
+
+status:
+    202
+```
+### Example Output - Polling
+
+```
+{
+   "serverCorrelationId":"161fa457-1f9a-4d89-a725-5b556cb89214",
+   "status":"pending",
+   "notificationMethod":"polling",
+   "objectReference":"12482",
+   "pollLimit":100
 }
 
 status:

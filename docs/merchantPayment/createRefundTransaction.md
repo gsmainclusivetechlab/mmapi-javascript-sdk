@@ -32,7 +32,7 @@ Here, `createRefundTransaction` creates a POST request to /transactions/type/adj
 }
 ```
 
-### Example Output
+### Example Output - Callback
 
 ```
 {
@@ -46,3 +46,25 @@ Here, `createRefundTransaction` creates a POST request to /transactions/type/adj
 status:
     202
 ```
+
+### Example Output - Polling
+
+```
+{
+  "serverCorrelationId": "b1be7f00-c611-4f48-8d74-75ce4b42a40c",
+  "status": "completed",
+  "notificationMethod": "polling",
+  "objectReference": "REF-1640008128898",
+  "pollLimit": 100
+}
+status:
+    200
+
+```
+---
+
+**NOTE**
+
+In asynchronous flows, a callback mechanism or polling mechanism is utilised to allow the client to determine the request's final state. Use the [viewRequestState()](viewRequestState.md) function for the polling mechanism to receive the status of a request, and the [viewTransaction()](viewTransaction.md) function to acquire the final representation of the Transaction object.
+
+---
