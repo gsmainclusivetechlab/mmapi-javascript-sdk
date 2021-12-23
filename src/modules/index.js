@@ -5,6 +5,7 @@ import internationalTransfers from "./InternationalTransfers";
 import p2p from "./P2P";
 import RecurringPayments from "./RecurringPayments";
 import accountLinking from "./AccountLinking";
+import BillPayments from "./BillPayments";
 
 export const moduleWrapperWithAuth = (authHeaders) => {
   window.gsma.auth = {
@@ -14,6 +15,7 @@ export const moduleWrapperWithAuth = (authHeaders) => {
     P2PTransfer: choosePayment(p2p, authHeaders),
     RecurringPayment: choosePayment(RecurringPayments, authHeaders),
     AccountLinking: choosePayment(accountLinking, authHeaders),
+    BillPayment: choosePayment(BillPayments, authHeaders),
   };
 };
 
@@ -24,4 +26,5 @@ export const moduleWrapperWithoutAuth = {
   P2PTransfer: choosePayment(p2p),
   RecurringPayment: choosePayment(RecurringPayments),
   AccountLinking: choosePayment(accountLinking),
+  BillPayment: choosePayment(BillPayments),
 };
