@@ -80,7 +80,7 @@
 }
 ```
 
-### Example Output
+### Example Output -Callback
 
 ```
 {
@@ -94,3 +94,26 @@
 status:
     202
 ```
+
+### Example Output - Polling
+
+```
+{
+  "serverCorrelationId": "91787a40-c6c8-43c4-aab5-4d53368a73bd",
+  "status": "completed",
+  "notificationMethod": "polling",
+  "objectReference": "REF-1640012929598",
+  "pollLimit": 100
+}
+
+status:
+    200
+```
+
+---
+
+**NOTE**
+
+In asynchronous flows, a callback mechanism or polling mechanism is utilised to allow the client to determine the request's final state. Use the [viewRequestState()](viewRequestState.md) function for the polling mechanism to receive the status of a request, and the [viewTransaction()](viewTransaction.md) function to acquire the final representation of the Transaction object.
+
+---

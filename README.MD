@@ -1,6 +1,24 @@
-# MMAPI JavaScript SDK
+# mmapi-JavaScript-sdk
 
-<a name="integration"></a>
+The SDK provides separate use cases to handle necessary MMAPI functionality including Merchant Payments, Disbursements, International Transfers, P2P Transfers, Recurring Payments, Account Linking, Bill Payments and Agent Services (including Cash-In and Cash-Out). Each use case exposes use case scenarios
+to customize your application integrations as needed. The SDK also includes a Samples, so you can test interactions before integration.
+
+## Index
+
+This document contains the following sections:
+
+-   [Requirements](#requirements)
+-   [Setting Up](#setting-up)
+    -   [Integrating SDK to your Application](#setting-up)
+-   [Use Cases](#use-cases)
+
+<a name="requirements"></a>
+## Requirements
+
+-   Any Browser
+
+<a name="setting-up"></a>
+## Setting Up
 
 ## Integrating SDK to your Application
 
@@ -45,17 +63,23 @@ Once Authenticated, the client gets access to all functions that require authent
 
 #### Basic Authentication
 
-Tou Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
+To Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
 
 ```javascript
 window.gsma.initBasicAuth(consumerKey, consumerSecret, callbackUrl);
 ```
+## Note
+
+> callbackUrl is an optional parameter. If no callbackUrl is provided during Authentication Initialization or with the Input data, the notification method will be polling.
+> Once callbackUrl is defined globaly, define `notificationMethod:'polling'` to switch into polling for each requests.
+
+
 
 <a name="oauth2"></a>
 
 #### OAuth2 based Authentication
 
-Tou Authenticate using OAuth2 based Authentication method, you can use `initStandardaAuth()` with an object with username, pass, apiKey, onSuccess and onFailure as parameter. here, onSuccess and onFailure are callback functions, which gives the client a response of Authentication Status.
+To Authenticate using OAuth2 based Authentication method, you can use `initStandardaAuth()` with an object with username, pass, apiKey, onSuccess and onFailure as parameter. here, onSuccess and onFailure are callback functions, which gives the client a response of Authentication Status.
 
 ```javascript
 window.gsma.initStandardaAuth({
@@ -71,7 +95,10 @@ window.gsma.initStandardaAuth({
   },
 });
 ```
+## Note
 
+> callbackUrl is an optional parameter. If no callbackUrl is provided during Authentication Initialization or with the Input data, the notification method will be polling.
+> Once callbackUrl is defined globaly, define `notificationMethod:'polling'` to switch into polling for each requests.
 <a name="noAuth"></a>
 
 ### Executing without Authentication
@@ -492,7 +519,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
     <td>data,callbackUrl</td>
   </tr>
   <tr>
-    <td>Optional <a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
     <td>createTransferTransaction</td>
     <td>data,callbackUrl</td>
   </tr>

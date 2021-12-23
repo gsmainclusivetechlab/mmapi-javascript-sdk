@@ -17,7 +17,7 @@ Here, `createReversal` creates a POST request to /transactions/{transactionRefer
 }
 ```
 
-### Example Output
+### Example Output - Callback
 
 ```
 {
@@ -31,3 +31,24 @@ Here, `createReversal` creates a POST request to /transactions/{transactionRefer
 status:
     202
 ```
+### Example Output - Polling
+
+```
+{
+   "serverCorrelationId":"161fa457-1f9a-4d89-a725-5b556cb89214",
+   "status":"pending",
+   "notificationMethod":"polling",
+   "objectReference":"12482",
+   "pollLimit":100
+}
+
+status:
+    202
+```
+---
+
+**NOTE**
+
+In asynchronous flows, a callback mechanism or polling mechanism is utilised to allow the client to determine the request's final state. Use the [viewRequestState()](viewRequestState.md) function for the polling mechanism to receive the status of a request, and the [viewTransaction()](viewTransaction.md) function to acquire the final representation of the Transaction object.
+
+---
