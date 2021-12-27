@@ -33,3 +33,13 @@ export const P2P_TRANSFER = 'createTransferTransaction';
 // Recurring Payments
 export const RECURRING_DEBIT_MANDATE = 'createAccountDebitMandate';
 export const RECURRING_VIEW_DEBIT_MANDATE = 'viewAccountDebitMandate';
+
+// Agent Service
+export const AGENT_INIT_CASH_OUT = 'createWithdrawalTransaction';
+export const AGENT_GENERATE_AUTH_CODE = 'createAuthorisationCode';
+export const AGENT_VIEW_AUTH_CODE = 'viewAuthorisationCode';
+export const AGENT_VIEW_ACCOUNT_NAME = 'viewAccountName';
+export const AGENR_DEPOSIT = 'createDepositTransaction';
+export const AGENT_CREATE_ACCOUNT= 'createAccount';
+export const AGENT_VIEW_ACCOUNT = 'viewAccount';
+export const AGENT_UPDATE_ACCOUNT = 'updateAccountIdentity';
