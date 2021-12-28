@@ -9,10 +9,21 @@ import {
  * @param  {} onError triggered when there is some error in validation
  */
 export default function updateAccount(props, onError) {
-    if (checkRequiredProps(props, ['accountId','identityId','data'], onError)) {
-        const { accountId } = props;
+    if (checkRequiredProps(props, ['accountId', 'identityId'], onError)) {
+        const {
+            accountId,
+            data = [
+                {
+                    op: 'replace',
+                    path: '/kycVerificationStatus',
+                    value: 'verified',
+                },
+            ],
+        } = props;
         return generateIdentifierUrl(accountId, onError, (accountUrl) => {
-            return requestMaker(`/accounts/${accountUrl}/identities/${identityId}`).patch(data);
+            return requestMaker(
+                `/accounts/${accountUrl}/identities/${identityId}`
+            ).patch(data);
         });
     }
 }
