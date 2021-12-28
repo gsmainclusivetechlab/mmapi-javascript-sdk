@@ -584,3 +584,176 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="recurringPayments"></a>
+### Recurring Payments
+
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Setup a Recurring Payment</td>
+    <td><a href="/docs/recurringPayment/createAccountDebitMandate.md">Setup a Recurring Payment</a></td>
+    <td>createAccountDebitMandate</td>
+    <td>callbackUrl, data, accountId</td>
+  </tr>
+
+  <tr>
+    <td>Take a Recurring Payment</td>
+    <td><a href="/docs/recurringPayment/createMerchantTransaction.md">Take a Recurring Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>callbackUrl, data</td>
+  </tr>
+
+  <tr>
+    <td rowspan="3">Take a Recurring Payment using the Polling Method</td>
+    <td><a href="/docs/recurringPayment/createMerchantTransaction.md">Take a Recurring Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>data</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/recurringPayment/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/recurringPayment/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+
+  <tr>
+    <td>Recurring Payment Refund</td>
+    <td><a href="/docs/recurringPayment/createRefundTransaction.md">Perform a Recurring Payment Refund</a></td>
+    <td>createRefundTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+
+  <tr>
+    <td>Recurring Payment Reversal</td>
+    <td><a href="/docs/recurringPayment/createReversal.md">Perform a Merchant Payment Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">Payer sets up a Recurring Payment using MMP Channel</td>
+    <td><a href="/docs/recurringPayment/createAccountDebitMandate.md">Setup a Recurring Payment</a></td>
+    <td>createAccountDebitMandate</td>
+    <td>callbackUrl, data, accountId</td>
+	
+  </tr>
+  <tr>
+    <td>Optional <a href="/docs/recurringPayment/createAccountDebitMandate.md">Obtain Debit Mandate by mandateReference</a></td>
+    <td>viewAccountDebitMandate</td>
+    <td>accountId, mandateReference</td>
+  </tr>
+  
+
+  <tr>
+    <td>Obtain a Service Provider Balance</td>
+    <td><a href="/docs/recurringPayment/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+
+  <tr>
+    <td>Retrieve Payments for a Service Provider</td>
+    <td><a href="/docs/recurringPayment/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId,filter</td>
+  </tr>
+
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/recurringPayment/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="/docs/recurringPayment/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
+
+### Account Linking
+
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Setup an Account Link</td>
+    <td><a href="/docs/accountLinking/createAccountLink.md">Establish an Account to Account Link</a></td>
+    <td>createAccountLink</td>
+    <td> data, accountId, callbackUrl</td>
+  </tr>
+  <tr>
+    <td>Perform a Transfer for a Linked Account</td>
+    <td><a href="/docs/accountLinking/createTransferTransaction.md">Use a Link to make a Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Perform a Transfer using an Account Link via the Polling Method</td>
+    <td><a href="/docs/accountLinking/createTransferTransaction.md">Use a Link to make a Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data</td>
+  </tr>
+  <tr>
+    <td><a href="docs/accountLinking/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/accountLinking/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Perform a Transfer Reversal</td>
+    <td><a href="/docs/accountLinking/createReversal.md">Perform a Transaction Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain a Financial Service Provider Balance</td>
+    <td><a href="/docs/accountLinking/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+   <tr>
+    <td>Retrieve Transfers for a Financial Service Provider</td>
+    <td><a href="/docs/accountLinking/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId,filter</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/accountLinking/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Retrieve a Missing API Response</td>
+    <td><a href="/docs/accountLinking/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
