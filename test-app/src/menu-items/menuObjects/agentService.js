@@ -550,17 +550,114 @@ const agentService = [
         caption: "JSON Body",
         type: "json",
         defaultValue: JSON.stringify(
-          {
-            identityId: "1",
-            op: "replace",
-            path: "/kycVerificationStatus",
-            value: "verified",
-          },
+          [
+            {
+              op: "replace",
+              path: "/kycVerificationStatus",
+              value: "verified",
+            },
+          ],
           null,
           2
         ),
       },
     ],
+  },
+  {
+    id: "agentServiceAgentBalance",
+    title: "Obtain an Agent's Balance",
+    type: "item",
+    requestType: "viewAccountBalance",
+    requestCategory: "AgentService",
+    target: true,
+    returnClientCorrelation: true,
+    headers: [
+      {
+        id: "accountId",
+        required: true,
+        caption: "Account ID",
+        type: "json",
+        defaultValue: JSON.stringify(
+          [
+            {
+              key: "accountid",
+              value: "1",
+            },
+          ],
+          null,
+          2
+        ),
+      },
+    ],
+    params: [],
+  },
+  {
+    id: "agentServiceRetrieve",
+    title: "Retrieve Payments for an Agent",
+    type: "item",
+    requestType: "viewAccountTransactions",
+    requestCategory: "AgentService",
+    target: true,
+    returnClientCorrelation: true,
+    headers: [
+      {
+        id: "accountId",
+        required: true,
+        caption: "Account ID",
+        type: "json",
+        defaultValue: JSON.stringify(
+          [
+            {
+              key: "accountid",
+              value: "1",
+            },
+          ],
+          null,
+          2
+        ),
+      },
+      {
+        id: "filter",
+        required: true,
+        caption: "Filter",
+        type: "json",
+        defaultValue: JSON.stringify(
+          [
+            {
+              key: "offset",
+              value: "0",
+            },
+            {
+              key: "limit",
+              value: "10",
+            },
+          ],
+          null,
+          2
+        ),
+      },
+    ],
+    params: [],
+  },
+  {
+    id: "agentServiceResponses",
+    title: "Retrieve a Missing API Response",
+    type: "item",
+    requestType: "viewResponse",
+    requestCategory: "AgentService",
+    target: true,
+    polling: false,
+    returnClientCorrelation: false,
+    headers: [
+      {
+        id: "clientCorrelationId",
+        required: false,
+        caption: "Client Correlation Id",
+        type: "string",
+        defaultValue: "ba5dfdb1-94cb-4dc7-b0b7-f04cb0587a87",
+      },
+    ],
+    params: [],
   },
 ];
 export default agentService;

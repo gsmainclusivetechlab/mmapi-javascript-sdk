@@ -19,6 +19,7 @@ export default function updateAccount(props, onError) {
           value: "verified",
         },
       ],
+      identityId,
     } = props;
     return generateIdentifierUrl(accountId, onError, (accountUrl) => {
       return requestMaker(
