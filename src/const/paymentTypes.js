@@ -45,3 +45,13 @@ export const BILL_VIEW_BILLS = "viewAccountBills";
 export const BILL_TRANSACTION = "createBillTransaction";
 export const BILL_PAYMENT = "createBillPayment";
 export const BILL_VIEW_BILL_PAYMENTS = "viewBillPayment";
+
+// Agent Service
+export const AGENT_INIT_CASH_OUT = "createWithdrawalTransaction";
+export const AGENT_GENERATE_AUTH_CODE = "createAuthorisationCode";
+export const AGENT_VIEW_AUTH_CODE = "viewAuthorisationCode";
+export const AGENT_VIEW_ACCOUNT_NAME = "viewAccountName";
+export const AGENR_DEPOSIT = "createDepositTransaction";
+export const AGENT_CREATE_ACCOUNT = "createAccount";
+export const AGENT_VIEW_ACCOUNT = "viewAccount";
+export const AGENT_UPDATE_ACCOUNT = "updateAccountIdentity";

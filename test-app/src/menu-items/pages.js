@@ -6,7 +6,7 @@ import billPayments from "./menuObjects/billPayments";
 import internationalTransfers from "./menuObjects/internationalTransfers";
 import p2pTransfers from "./menuObjects/p2pTransfers";
 import recurringPayments from "./menuObjects/recurringPayments";
-
+import agentService from "./menuObjects/agentService";
 // assets
 import {
   IconKey,
@@ -87,6 +87,13 @@ const pages = {
       type: "collapse",
       icon: icons.IconKey,
       children: billPayments,
+    },
+    {
+      id: "agentService",
+      title: "Agent Service",
+      type: "collapse",
+      icon: icons.IconKey,
+      children: agentService,
     },
   ],
 };
