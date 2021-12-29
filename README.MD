@@ -586,7 +586,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="recurringPayments"></a>
-### Recurring Payments
+### Recurring Payments(RecurringPayment)
 
 <table>
 <thead>
