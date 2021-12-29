@@ -1,0 +1,70 @@
+# Create a Refund Transaction
+
+Here, `createRefundTransaction` creates a POST request to /transactions/type/adjustment
+
+> `Provided with a valid object representation, this endpoint allows for a new transaction to be created for a given transaction type 'adjustment' passed via the URL.`
+
+## Usage/Examples
+
+```
+{
+   "callbackUrl": "https://end13wxm5t7fgd6.m.pipedream.net/",
+    "type": "createRefundTransaction",
+    "data": {
+        "amount": "200.00",
+        "debitParty": [
+        {
+            "key": "accountid",
+            "value": "1"
+        }
+        ],
+        "creditParty": [
+        {
+            "key": "accountid",
+            "value": "30"
+        }
+        ],
+        "currency": "RWF"
+    },
+  "getClientCorrelationId":(response)=>{},
+   "onSuccess":(response, header, status)=>{},
+   "onFailure": (response, status) => {}
+}
+```
+
+### Example Output - Callback
+
+```
+{
+  "serverCorrelationId": "cf60aafd-9ec0-47cb-b851-f61a37e4b9b2",
+  "status": "pending",
+  "notificationMethod": "callback",
+  "objectReference": "15960",
+  "pollLimit": 100
+}
+
+status:
+    202
+```
+
+### Example Output - Polling
+
+```
+{
+  "serverCorrelationId": "b1be7f00-c611-4f48-8d74-75ce4b42a40c",
+  "status": "completed",
+  "notificationMethod": "polling",
+  "objectReference": "REF-1640008128898",
+  "pollLimit": 100
+}
+status:
+    200
+
+```
+---
+
+**NOTE**
+
+In asynchronous flows, a callback mechanism or polling mechanism is utilised to allow the client to determine the request's final state. Use the [viewRequestState()](viewRequestState.md) function for the polling mechanism to receive the status of a request, and the [viewTransaction()](viewTransaction.md) function to acquire the final representation of the Transaction object.
+
+---

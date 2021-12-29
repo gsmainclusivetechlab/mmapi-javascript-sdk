@@ -1,7 +1,8 @@
 GSMA_BASIC_AUTH = gsma.auth;
 
 // setupRecurring();
-viewDebitMandates()
+// viewDebitMandates()
+viewAccountTransactions()
 function setupRecurring() {
     GSMA_BASIC_AUTH.RecurringPayment({
         type: 'createAccountDebitMandate',
@@ -58,6 +59,28 @@ function viewDebitMandates() {
         },
         onFailure: (error, status) => {
             console.error('BASIC AUTH error viewAccountDebitMandate', error);
+        },
+    });
+}
+
+function viewAccountTransactions(){
+    GSMA_BASIC_AUTH.RecurringPayment({
+        type: 'viewAccountTransactions',
+        accountId:[{
+            key:'accountId',
+            value:'2000'
+        }],
+        filter:[{sdf:'sdf',sdf:'sdfsd'}],
+        onSuccess: (data, header, status) => {
+            console.log(
+                'BASIC AUTH success viewAccountTransaction',
+                header,
+                status,
+                data
+            );
+        },
+        onFailure: (error, status) => {
+            console.error('BASIC AUTH error viewAccountTransaction', error);
         },
     });
 }

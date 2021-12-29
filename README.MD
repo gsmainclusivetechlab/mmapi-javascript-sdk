@@ -1,24 +1,24 @@
-# MMAPI JavaScript SDK
+# mmapi-JavaScript-sdk
 
-## Table of Contents
+The SDK provides separate use cases to handle necessary MMAPI functionality including Merchant Payments, Disbursements, International Transfers, P2P Transfers, Recurring Payments, Account Linking, Bill Payments and Agent Services (including Cash-In and Cash-Out). Each use case exposes use case scenarios
+to customize your application integrations as needed. The SDK also includes a Samples, so you can test interactions before integration.
 
-1. [Integrating SDK to your Application](#integration)
-2. [Initialization Methods](#initMethods)
-3. [Executing Functions](#execution)
-4. [Authentication Functions](#authMethods)
-   - [Basic Authentication](#basicAuth)
-   - [OAuth2 based Authentication](#oauth2)
-   - [Executing without Authentication](#noAuth)
-   - [Executing after Authentication](#auth)
-5. [Payment Modules](#modules)
-   - [Merchant Payment Module](#merchantPayment)
-   - [Disbursements](#disbursements)
-   - [International Transfers](#international)
-   - [P2P](#p2p)
-   - [Recurring Payments](#recurringPayments)
-   - [Account Linking](#accountLinking)
+## Index
 
-<a name="integration"></a>
+This document contains the following sections:
+
+-   [Requirements](#requirements)
+-   [Setting Up](#setting-up)
+    -   [Integrating SDK to your Application](#setting-up)
+-   [Use Cases](#use-cases)
+
+<a name="requirements"></a>
+## Requirements
+
+-   Any Browser
+
+<a name="setting-up"></a>
+## Setting Up
 
 ## Integrating SDK to your Application
 
@@ -63,17 +63,23 @@ Once Authenticated, the client gets access to all functions that require authent
 
 #### Basic Authentication
 
-Tou Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
+To Authenticate using Basic Authentication method, you can use `initBasicAuth()` with Consumer key and Consumer Secret as function Parameters.
 
 ```javascript
 window.gsma.initBasicAuth(consumerKey, consumerSecret, callbackUrl);
 ```
+## Note
+
+> callbackUrl is an optional parameter. If no callbackUrl is provided during Authentication Initialization or with the Input data, the notification method will be polling.
+> Once callbackUrl is defined globaly, define `notificationMethod:'polling'` to switch into polling for each requests.
+
+
 
 <a name="oauth2"></a>
 
 #### OAuth2 based Authentication
 
-Tou Authenticate using OAuth2 based Authentication method, you can use `initStandardaAuth()` with an object with username, pass, apiKey, onSuccess and onFailure as parameter. here, onSuccess and onFailure are callback functions, which gives the client a response of Authentication Status.
+To Authenticate using OAuth2 based Authentication method, you can use `initStandardaAuth()` with an object with username, pass, apiKey, onSuccess and onFailure as parameter. here, onSuccess and onFailure are callback functions, which gives the client a response of Authentication Status.
 
 ```javascript
 window.gsma.initStandardaAuth({
@@ -89,7 +95,10 @@ window.gsma.initStandardaAuth({
   },
 });
 ```
+## Note
 
+> callbackUrl is an optional parameter. If no callbackUrl is provided during Authentication Initialization or with the Input data, the notification method will be polling.
+> Once callbackUrl is defined globaly, define `notificationMethod:'polling'` to switch into polling for each requests.
 <a name="noAuth"></a>
 
 ### Executing without Authentication
@@ -176,7 +185,14 @@ window.gsma.auth.MerchantPayment({
 
 <a name="modules"></a>
 
-## Payment Modules
+## Use Cases
+
+- [Merchant Payments](#merchantPayment)
+- [Disbursements](#disbursements)
+- [International Transfers](#international)
+- [P2P Transfers](#p2p)
+- [Recurring Payments](#recurringPayments)
+- [Account Linking](#accountLinking)
 
 <a name="merchantPayment"></a>
 
@@ -184,20 +200,98 @@ window.gsma.auth.MerchantPayment({
 
 Contains functions for all the use case scenarios within Merchant Payments.
 
-| Function                  | Scenarios                                                               | Parameters                                                                  |
-| ------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| createMerchantTransaction | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data                                                           |
-| viewRequestState          | Request state object to determine the outcome of the payment request    | serverCorrelationId                                                         |
-| viewTransaction           | Get representation of complete payment transaction                      | transactionReference                                                        |
-| createAuthorisationCode   | Auth Code generation for paymentWithAuthCode                            | accountId, data, callbackUrl                                                |
-| viewAuthorisationCode     | View specific Authorisation Code linked to an account                   | accountId,authorisationCode                                                 |
-| createMerchantTransaction | Payee-Initiated Merchant Payment using a Pre-authorised Payment Code    | callbackUrl, data, and amount, currency, oneTimeCode within the data object |
-| createRefundTransaction   | Merchant Payment Refund                                                 | data, callbackUrl and amount, currency within data object                   |
-| createReversal            | Merchant Payment Reversal                                               | transactionReference                                                        |
-| viewAccountTransaction    | Retrieve Payments for a Merchant                                        | accountId, offset, limit                                                    |
-| viewAccountBalance        | Obtain a Merchant Balance                                               | accountId                                                                   |
-| viewServiceAvailability   | Check for Service Availability                                          | -                                                                           |
-| viewResponse              | Retrieve a Missing API Response                                         | clientCorrelationId                                                         |
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Payee-Initiated Merchant Payment</td>
+    <td><a href="docs/merchantPayment/createMerchantTransaction.md">Payee Initiated Merchant Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Payee-Initiated Merchant Payment using the Polling Method</td>
+    <td><a href="docs/merchantPayment/createMerchantTransaction.md">Payee Initiated Merchant Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>data</td>
+  </tr>
+  <tr>
+    <td><a href="docs/merchantPayment/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/merchantPayment/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Payer-Initiated Merchant Payment</td>
+    <td><a href="docs/merchantPayment/createMerchantTransaction.md">Payer Initiated Merchant Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Payee-Initiated Merchant Payment using a Pre-authorised Payment Code</td>
+    <td><a href="docs/merchantPayment/createAuthorisationCode.md">Obtain an Authorisation Code</a></td>
+    <td>createAuthorisationCode</td>
+    <td>accountId, data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="docs/merchantPayment/createMerchantPayWithPreAuthCode.md">Perform a Merchant Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="docs/merchantPayment/viewAuthorisationCode.md">View An Authorisation Code</a></td>
+    <td>viewAuthorisationCode</td>
+    <td>accountId,authorisationCode</td>
+  </tr>
+  <tr>
+    <td>Merchant Payment Refund</td>
+    <td><a href="docs/merchantPayment/createRefundTransaction.md">Perform a Merchant Payment Refund</a></td>
+    <td>createRefundTransaction</td>
+    <td>data, callbackUrl </td>
+  </tr>
+  <tr>
+    <td>Merchant Payment Reversal</td>
+    <td><a href="docs/merchantPayment/createReversal.md">Perform a Merchant Payment Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain a Merchant Balance</td>
+    <td><a href="docs/merchantPayment/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td>Retrieve Payments for a Merchant</td>
+    <td><a href="docs/merchantPayment/viewAccountTransaction.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId, offset, limit</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="docs/merchantPayment/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="docs/merchantPayment/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
 
 <a name="disbursements"></a>
 
@@ -205,23 +299,117 @@ Contains functions for all the use case scenarios within Merchant Payments.
 
 Contains functions for all the use case scenarios within Disbursements.
 
-Contains functions for all the use case scenarios within Disbursements.
-
-| Function                      | Scenarios                                                                            | Parameters                                           |
-| ----------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- |
-| createDisbursementTransaction | Individual disbursement using Callback or Polling Method                             | callbackUrl, data                                    |
-| createBatchTransaction        | Bulk Disbursement using ‘one-shot’ or with 'Maker / Checker'                         | callbackUrl, data and data must contain transactions |
-| viewRequestState              | Request state object to determine the outcome of the individual disbursement request | serverCorrelationId                                  |
-| viewTransaction               | Get a representation of completed disbursement                                       | transactionReference                                 |
-| viewBatchTransaction          | Get a representation of the batch transactions object                                | batchId                                              |
-| viewBatchCompletions          | Get all transactions that have been completed                                        | batchId                                              |
-| viewBatchRejections           | Get all transactions that have been rejected                                         | batchId                                              |
-| updateBatchTransaction        | Checker submit a request to approve the transaction batch                            | callbackUrl,batchId                                  |
-| createReversal                | Reverse an individual disbursement transaction                                       | transactionReference                                 |
-| viewAccountTransaction        | Retrieve all transactions for a disbursement organisation                            | accountId, offset, limit                             |
-| viewAccountBalance            | Obtain a Disbursement Organisation Balance                                           | accountId                                            |
-| viewServiceAvailability       | Check for Service Availability                                                       | -                                                    |
-| viewResponse                  | Retrieve a Missing API Response                                                      | clientCorrelationId                                  |
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Individual Disbursement</td>
+    <td><a href="docs/disbursement/createDisbursementTransaction.md">Create a Individual Disbursement request </a></td>
+    <td>createDisbursementTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="4">Bulk Disbursement</td>
+    <td><a href="docs/disbursement/createBatchTransaction.md">Create a Transaction Batch</a></td>
+    <td>createBatchTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/viewBatchTransaction.md">View a Transaction Batch</a></td>
+    <td>viewBatchTransaction</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/viewBatchCompletions.md">View Batch Completions</a></td>
+    <td>viewBatchCompletions</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/viewBatchRejections.md">View Batch Rejections</a></td>
+    <td>viewBatchRejections</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td rowspan="5">Bulk Disbursement with Maker / Checker</td>
+    <td><a href="docs/disbursement/createBatchTransaction.md">Create a Transaction Batch</a></td>
+    <td>createBatchTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/updateBatchTransaction.md">Update a Transaction Batch</a></td>
+    <td>updateBatchTransaction</td>
+    <td>callbackUrl,batchId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/viewBatchTransaction.md">View a Transaction Batch</a></td>
+    <td>viewBatchTransaction</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/viewBatchCompletions.md">View Batch Completions</a></td>
+    <td>viewBatchCompletions</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/viewBatchRejections.md">View Batch Rejections</a></td>
+    <td>viewBatchRejections</td>
+    <td>batchId</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Individual Disbursement Using the Polling Method</td>
+    <td><a href="docs/disbursement/createDisbursementTransaction.md">Create a Individual Disbursement request </a></td>
+    <td>createDisbursementTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/disbursement/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Disbursement Reversal</td>
+    <td><a href="docs/disbursement/createReversal.md">Perform a Disbursement Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain a Disbursement Organisation Balance</td>
+    <td><a href="docs/disbursement/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td>Retrieve Transactions for a Disbursement Organisation</td>
+    <td><a href="docs/disbursement/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId, offset, limit</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="docs/disbursement/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="docs/disbursement/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
 
 <a name="international"></a>
 
@@ -229,67 +417,341 @@ Contains functions for all the use case scenarios within Disbursements.
 
 Contains functions for all the use case scenarios within International Transfers.
 
-| Function                       | Scenarios                                                          | Parameters               |
-| ------------------------------ | ------------------------------------------------------------------ | ------------------------ |
-| createQuotation                | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data        |
-| viewQuotation                  | View a specific quotation                                          | quotationReference       |
-| createInternationalTransaction | Sending FSP submits a transaction request to the receiving FSP     | callbackUrl, data        |
-| createReversal                 | Reverse an individual disbursement transaction                     | transactionReference     |
-| viewAccountTransaction         | Retrieve all transactions for a disbursement organisation          | accountId, offset, limit |
-| viewAccountBalance             | Obtain a Disbursement Organisation Balance                         | accountId                |
-| viewServiceAvailability        | Check for Service Availability                                     | -                        |
-| viewResponse                   | Retrieve a Missing API Response                                    | clientCorrelationId      |
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">International Transfer via Hub</td>
+    <td><a href="/docs/internationalTransfer/createQuotation.md">Request a International Transfer Quotation</a></td>
+    <td>createQuotation</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/internationalTransfer/createInternationalTransaction.md">Perform an International Transfer</a></td>
+    <td>createInternationalTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.md">View a Quotation</a></td>
+    <td>viewQuotation</td>
+    <td>quotationReference</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Bilateral International Transfer</td>
+    <td><a href="/docs/internationalTransfer/createQuotation.md">Request a International Transfer Quotation</a></td>
+    <td>createQuotation</td>
+    <td>data,callbackUrl</td>
+  </tr>
 
+ <tr>
+    <td><a href="/docs/internationalTransfer/createInternationalTransaction.md">Perform an International Transfer</a></td>
+    <td>createInternationalTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td>Optional <a href="/docs/internationalTransfer/viewQuotation.md">View a Quotation</a></td>
+    <td>viewQuotation</td>
+    <td>quotationReference</td>
+  </tr>
+  <tr>
+  <tr>
+    <td>International Transfer Reversal</td>
+    <td><a href="/docs/internationalTransfer/createReversal.md">Perform a Transaction Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain an FSP Balance</td>
+    <td><a href="docs/internationalTransfer/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td>Retrieve Transactions for an FSP</td>
+    <td><a href="docs/internationalTransfer/viewAccountTransaction.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId, offset, limit</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="docs/internationalTransfer/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="docs/internationalTransfer/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
 <a name="p2p"></a>
 
 ### P2P Transfers (P2PTransfer)
 
 Contains functions for all the use case scenarios within P2P Transfers.
 
-| Function                  | Scenarios                                                          | Parameters               |
-| ------------------------- | ------------------------------------------------------------------ | ------------------------ |
-| viewAccountName           | confirm the recipient name                                         | accountId                |
-| createQuotation           | Obtain a quotation and perform the transfer with the receiving FSP | callbackUrl, data        |
-| createTransferTransaction | Perform the transfer with the receiving FSP                        | callbackUrl, data        |
-| createReversal            | Reverse an p2p transaction                                         | transactionReference     |
-| viewAccountTransaction    | Retrieve all transactions                                          | accountId, offset, limit |
-| viewAccountBalance        | Obtain Balance                                                     | accountId                |
-| viewServiceAvailability   | Check for Service Availability                                     | -                        |
-| viewResponse              | Retrieve a Missing API Response                                    | clientCorrelationId      |
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">P2P Transfer via Switch</td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.md">Retrieve the Name of the Recipient</a></td>
+    <td>viewAccountName</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createQuotation.md">Request a P2P Quotation</a></td>
+    <td>createQuotation</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Bilateral P2P Transfer</td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.md">Retrieve the Name of the Recipient</a></td>
+    <td>viewAccountName</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">‘On-us’ P2P Transfer Initiated by a Third Party Provider</td>
+    <td><a href="/docs/p2pTransfer/viewAccountName.md">Retrieve the Name of the Recipient</a></td>
+    <td>viewAccountName</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createQuotation.md">Request a P2P Quotation</a></td>
+    <td>createQuotation</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/p2pTransfer/createTransferTransaction.md">Perform a P2P Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data,callbackUrl</td>
+  </tr>
+  <tr>
+    <td>P2P Transfer Reversal</td>
+    <td><a href="/docs/p2pTransfer/createReversal.md">Perform a Transaction Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain an FSP Balance</td>
+    <td><a href="/docs/p2pTransfer/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+   <tr>
+    <td>Retrieve Transactions for an FSP</td>
+    <td><a href="/docs/p2pTransfer/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId, offset, limit</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/p2pTransfer/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Retrieve a Missing API Response</td>
+    <td><a href="/docs/p2pTransfer/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
 
 <a name="recurringPayments"></a>
+### Recurring Payments
 
-### Recurring Payments (RecurringPayment)
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Setup a Recurring Payment</td>
+    <td><a href="/docs/recurringPayment/createAccountDebitMandate.md">Setup a Recurring Payment</a></td>
+    <td>createAccountDebitMandate</td>
+    <td>callbackUrl, data, accountId</td>
+  </tr>
 
-Contains functions for all the use case scenarios within Recurring Payments.
+  <tr>
+    <td>Take a Recurring Payment</td>
+    <td><a href="/docs/recurringPayment/createMerchantTransaction.md">Take a Recurring Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>callbackUrl, data</td>
+  </tr>
 
-| Function                  | Scenarios                                                               | Parameters                   |
-| ------------------------- | ----------------------------------------------------------------------- | ---------------------------- |
-| createAccountDebitMandate | recurring payment via a debit mandate                                   | callbackUrl, data, accountId |
-| createMerchantTransaction | Payee/Payer Initiated Merchant Payment using Callback or Polling Method | callbackUrl, data            |
-| viewRequestState          | Request state object to determine the outcome of the payment request    | serverCorrelationId          |
-| viewTransaction           | Get representation of complete payment transaction                      | transactionReference         |
-| createRefundTransaction   | Service Providers can issue a refund to payers                          | data, callbackUrl            |
-| createReversal            | service provider may need to reverse a transaction                      | transactionReference         |
-| viewAccountDebitMandate   | Obtain Debit Mandate by mandateReference                                | accountId, mandateReference  |
-| viewAccountTransaction    | Retrieve all transactions                                               | accountId, offset, limit     |
-| viewAccountBalance        | Obtain Balance                                                          | accountId                    |
-| viewServiceAvailability   | Check for Service Availability                                          | -                            |
-| viewResponse              | Retrieve a Missing API Response                                         | clientCorrelationId          |
+  <tr>
+    <td rowspan="3">Take a Recurring Payment using the Polling Method</td>
+    <td><a href="/docs/recurringPayment/createMerchantTransaction.md">Take a Recurring Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>data</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/recurringPayment/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/recurringPayment/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+
+  <tr>
+    <td>Recurring Payment Refund</td>
+    <td><a href="/docs/recurringPayment/createRefundTransaction.md">Perform a Recurring Payment Refund</a></td>
+    <td>createRefundTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+
+  <tr>
+    <td>Recurring Payment Reversal</td>
+    <td><a href="/docs/recurringPayment/createReversal.md">Perform a Merchant Payment Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+
+  <tr>
+    <td>Payer sets up a Recurring Payment using MMP Channel</td>
+    <td><a href="/docs/recurringPayment/createAccountDebitMandate.md">Setup a Recurring Payment</a></td>
+    <td>createAccountDebitMandate</td>
+    <td>callbackUrl, data, accountId</td>
+	
+  </tr>
+  
+
+  <tr>
+    <td>Obtain a Service Provider Balance</td>
+    <td><a href="/docs/recurringPayment/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+
+  <tr>
+    <td>Retrieve Payments for a Service Provider</td>
+    <td><a href="/docs/recurringPayment/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId,filter</td>
+  </tr>
+
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/recurringPayment/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="/docs/recurringPayment/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
 
 <a name="accountLinking"></a>
+### Account Linking
 
-### Account Linking (AccountLinking)
-
-Contains functions for all the use case scenarios within Account Linking.
-
-| Function                  | Scenarios                                              | Parameters                   |
-| ------------------------- | ------------------------------------------------------ | ---------------------------- |
-| createAccountLink         | To setup an Account Link                               | accountId, callbackUrl, data |
-| viewAccountLink           | View Account Link status                               | linkReference                |
-| createTransferTransaction | Perform the transfer with the linked account reference | callbackUrl, data            |
-| createReversal            | Reverse a linked account transaction                   | transactionReference         |
-| viewAccountTransaction    | Retrieve Transfers for a Financial Service Provider    | accountId, offset, limit     |
-| viewAccountBalance        | Obtain an FSP Balance                                  | accountId                    |
-| viewResponse              | Retrieve a Missing API Response                        | clientCorrelationId          |
-| viewServiceAvailability   | Check for Service Availability                         | -                            |
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Setup an Account Link</td>
+    <td><a href="/docs/accountLinking/createAccountLink.md">Establish an Account to Account Link</a></td>
+    <td>createAccountLink</td>
+    <td> data, accountId, callbackUrl</td>
+  </tr>
+  <tr>
+    <td>Perform a Transfer for a Linked Account</td>
+    <td><a href="/docs/accountLinking/createTransferTransaction.md">Use a Link to make a Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Perform a Transfer using an Account Link via the Polling Method</td>
+    <td><a href="/docs/accountLinking/createTransferTransaction.md">Use a Link to make a Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data</td>
+  </tr>
+  <tr>
+    <td><a href="docs/accountLinking/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/accountLinking/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Perform a Transfer Reversal</td>
+    <td><a href="/docs/accountLinking/createReversal.md">Perform a Transaction Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain a Financial Service Provider Balance</td>
+    <td><a href="/docs/accountLinking/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+   <tr>
+    <td>Retrieve Transfers for a Financial Service Provider</td>
+    <td><a href="/docs/accountLinking/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId,filter</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/accountLinking/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Retrieve a Missing API Response</td>
+    <td><a href="/docs/accountLinking/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
