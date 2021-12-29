@@ -683,7 +683,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="accountLinking"></a>
-### Account Linking
+### Account Linking(AccountLinking)
 
 <table>
 <thead>
