@@ -1,6 +1,6 @@
 # Take a Recurring Payment
 
-`createMerchantTransaction() creates a POST request to /transactions/type/merchantpay`
+`createMerchantTransaction` creates a POST request to /transactions/type/merchantpay
 
 > `Provided with a valid object representation, this endpoint allows for a new transaction to be created for a given transaction type 'merchantpay' passed via the URL.`
 

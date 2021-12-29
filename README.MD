@@ -191,6 +191,8 @@ window.gsma.auth.MerchantPayment({
 - [Disbursements](#disbursements)
 - [International Transfers](#international)
 - [P2P Transfers](#p2p)
+- [Recurring Payments](#recurringPayments)
+- [Account Linking](#accountLinking)
 
 <a name="merchantPayment"></a>
 
@@ -680,6 +682,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </tbody>
 </table>
 
+<a name="accountLinking"></a>
 ### Account Linking
 
 <table>

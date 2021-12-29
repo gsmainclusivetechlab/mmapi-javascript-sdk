@@ -1,6 +1,6 @@
 # Setup a Recurring Payment
 
-`Here, createAccountDebitMandate creates a POST request to /accounts/{identifierType}/{identifier}/debitmandates`
+Here, `createAccountDebitMandate` creates a POST request to /accounts/{identifierType}/{identifier}/debitmandates
 
 > `Provided with a valid object representation, this endpoint allows for a new debit mandate to be created for a specific account where one identifier suffices to uniquely identify an account.`
 

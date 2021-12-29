@@ -1,6 +1,6 @@
 # Retrieve a Debit Mandate
 
-`viewAccountDebitMandate creates a GET request to /accounts/{identifierType}/{identifier}/debitmandates/{mandateReference}`
+`viewAccountDebitMandate` creates a GET request to /accounts/{identifierType}/{identifier}/debitmandates/{mandateReference}
 
 > `This endpoint returns a specific debit mandate linked to an account where one identifier suffices to uniquely identify an account.`
 
