@@ -642,16 +642,11 @@ Contains functions for all the use case scenarios within P2P Transfers.
   </tr>
 
   <tr>
-    <td rowspan="2">Payer sets up a Recurring Payment using MMP Channel</td>
+    <td>Payer sets up a Recurring Payment using MMP Channel</td>
     <td><a href="/docs/recurringPayment/createAccountDebitMandate.md">Setup a Recurring Payment</a></td>
     <td>createAccountDebitMandate</td>
     <td>callbackUrl, data, accountId</td>
 	
-  </tr>
-  <tr>
-    <td>Optional <a href="/docs/recurringPayment/createAccountDebitMandate.md">Obtain Debit Mandate by mandateReference</a></td>
-    <td>viewAccountDebitMandate</td>
-    <td>accountId, mandateReference</td>
   </tr>
   
 

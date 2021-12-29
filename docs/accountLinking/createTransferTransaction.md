@@ -1,6 +1,6 @@
 # Use a Link to make a Transfer
 
-`Here, createTransferTransaction() creates a POST request to /transactions/type/transfer`
+Here, `createTransferTransaction` creates a POST request to /transactions/type/transfer
 
 > `Provided with a valid object representation, this endpoint allows for a new transaction to be created for a given transaction type 'transfer' passed via the URL.`
 

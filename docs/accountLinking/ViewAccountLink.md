@@ -1,6 +1,6 @@
 # Read a specific link for a given account.
 
- `ViewAccountLink creates a GET request to /accounts/{identifierType}/{identifier}/links/{linkReference}`
+ `viewAccountLink` creates a GET request to /accounts/{identifierType}/{identifier}/links/{linkReference}
 
 > `This endpoint returns a specific link where one identifier suffices to uniquely identify an account.`
 

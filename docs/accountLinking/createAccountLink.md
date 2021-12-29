@@ -1,6 +1,6 @@
 # Establish an Account to Account Link
 
-`Here, createAccountLink creates a POST request to /accounts/{identifierType}/{identifier}/links`
+Here, `createAccountLink` creates a POST request to /accounts/{identifierType}/{identifier}/links
 
 > `Provided with a valid object representation, this endpoint allows a new link to be created for a specific account where one identifier suffices to uniquely identify an account.`
 

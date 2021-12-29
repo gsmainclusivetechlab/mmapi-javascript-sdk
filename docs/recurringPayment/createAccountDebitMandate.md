@@ -43,6 +43,8 @@
   "pollLimit": 100
 }
 
+status
+  202
 ```
 
 ### Example Output - Polling
@@ -56,6 +58,8 @@
   "pollLimit": 100
 }
 
+status
+  200
 ```
 
 ---
