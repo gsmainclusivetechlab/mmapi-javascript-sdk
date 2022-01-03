@@ -193,6 +193,7 @@ window.gsma.auth.MerchantPayment({
 - [P2P Transfers](#p2p)
 - [Recurring Payments](#recurringPayments)
 - [Account Linking](#accountLinking)
+- [Bill Payments](#billPayments)
 
 <a name="merchantPayment"></a>
 
@@ -756,8 +757,8 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </tbody>
 </table>
 
-
-### Bill Payments
+<a name="billPayments"></a>
+### Bill Payments (BillPayment)
 
 <table>
 <thead>
