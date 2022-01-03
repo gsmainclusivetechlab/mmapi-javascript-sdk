@@ -1,5 +1,5 @@
 
-# Create A Withdrawal Transaction
+# Create Authorisation Code
 
 `createAuthorisationCode` creates a POST request to /accounts/{identifierType}/{identifier}/authorisationcodes
 
@@ -7,7 +7,7 @@
 
 ### Usage/Examples
 
-`
+```
 {
   "accountId": [
     {
@@ -24,12 +24,12 @@
   }
 }
 
-`
+```
 
 
 ### Example Output - Callback
 
-`
+```
 {
   "serverCorrelationId": "f0a8d71f-ff8c-4f28-8bdf-781a4c952234",
   "status": "pending",
@@ -41,12 +41,12 @@
 status
     202
 
-`
+```
 
 
 ### Example Output - Polling
 
-`
+```
 {
   "serverCorrelationId": "38ed6831-ea92-4201-a6f6-98bef8ac8552",
   "status": "completed",
@@ -57,7 +57,7 @@ status
 
 status
     200
-`
+```
 
 ---
 
