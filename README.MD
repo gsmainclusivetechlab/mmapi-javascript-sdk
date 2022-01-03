@@ -193,6 +193,7 @@ window.gsma.auth.MerchantPayment({
 - [P2P Transfers](#p2p)
 - [Recurring Payments](#recurringPayments)
 - [Account Linking](#accountLinking)
+- [Bill Payments](#billPayments)
 
 <a name="merchantPayment"></a>
 
@@ -750,6 +751,73 @@ Contains functions for all the use case scenarios within P2P Transfers.
   <tr>
     <td rowspan="2">Retrieve a Missing API Response</td>
     <td><a href="/docs/accountLinking/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
+
+<a name="billPayments"></a>
+### Bill Payments (BillPayment)
+
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Successful Retrieval of Bills</td>
+    <td><a href="/docs/billPayment/viewAccountBills.md">Retrieve a Set of Bills</a></td>
+    <td>viewAccountBills</td>
+    <td>accountId, filter</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Make a Successful Bill Payment with Callback</td>
+    <td><a href="/docs/billPayment/createBillTransaction.md">Create a Bill Transaction</a></td>
+    <td>createBillTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/billPayment/createBillPayment.md">Make a Bill Payment</a></td>
+    <td>createBillPayment</td>
+    <td>accountId, billReference, data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Make a Bill Payment with Polling</td>
+    <td><a href="/docs/billPayment/createBillPayment.md">Make a Bill Payment</a></td>
+    <td>createBillPayment</td>
+    <td>accountId, billReference, data</td>
+  </tr>
+   <tr>
+    <td><a href="/docs/billPayment/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/billPayment/viewBillPayment.md">Retrieve Bill Payments for a Given Bill</a></td>
+    <td>viewBillPayment</td>
+    <td>billReference, accountId, filter</td>
+  </tr>
+   <tr>
+    <td>Retrieval of Bill Payments</td>
+    <td><a href="/docs/billPayment/viewBillPayment.md">Retrieve a Set of Bill Payments</a></td>
+    <td>viewBillPayment</td>
+    <td>billReference, accountId, filter</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/billPayment/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="/docs/billPayment/viewResponse.md">Retrieve a Missing Response</a></td>
     <td>viewResponse</td>
     <td>clientCorrelationId</td>
   </tr>

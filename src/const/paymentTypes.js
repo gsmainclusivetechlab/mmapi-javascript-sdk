@@ -31,8 +31,14 @@ export const P2P_ACCOUNT_NAME = "viewAccountName";
 export const P2P_TRANSFER = "createTransferTransaction";
 
 // Recurring Payments
-export const RECURRING_DEBIT_MANDATE = "createAccountDebitMandate";
-export const RECURRING_VIEW_DEBIT_MANDATE = "viewAccountDebitMandate";
+export const RECURRING_DEBIT_MANDATE = 'createAccountDebitMandate';
+export const RECURRING_VIEW_DEBIT_MANDATE = 'viewAccountDebitMandate';
+
+// Bill payments
+export const BILL_VIEW_BILLS = 'viewAccountBills';
+export const BILL_TRANSACTION = 'createBillTransaction'
+export const BILL_PAYMENT = 'createBillPayment'
+export const BILL_VIEW_BILL_PAYMENTS='viewBillPayment'
 
 // Account Linking
 export const SETUP_ACCOUNT_LINK = "createAccountLink";
