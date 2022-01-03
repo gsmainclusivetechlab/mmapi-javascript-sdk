@@ -816,7 +816,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
   </tr>
   <tr>
     <td>Retrieve a Missing API Response</td>
-    <td><a href="/docs/billPayment/viewBillPayment.md">Retrieve a Missing Response</a></td>
+    <td><a href="/docs/billPayment/viewResponse.md">Retrieve a Missing Response</a></td>
     <td>viewResponse</td>
     <td>clientCorrelationId</td>
   </tr>
