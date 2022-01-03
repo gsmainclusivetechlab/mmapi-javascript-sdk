@@ -39,8 +39,6 @@ export const BILL_VIEW_BILLS = 'viewAccountBills';
 export const BILL_TRANSACTION = 'createBillTransaction'
 export const BILL_PAYMENT = 'createBillPayment'
 export const BILL_VIEW_BILL_PAYMENTS='viewBillPayment'
-export const RECURRING_DEBIT_MANDATE = "createAccountDebitMandate";
-export const RECURRING_VIEW_DEBIT_MANDATE = "viewAccountDebitMandate";
 
 // Account Linking
 export const SETUP_ACCOUNT_LINK = "createAccountLink";
