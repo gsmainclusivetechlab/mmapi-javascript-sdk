@@ -20,10 +20,19 @@ export default function updateAccount(props, onError) {
                 },
             ],
             identityId,
+            correlationId,
+            callbackUrl
         } = props;
+        let header = {
+            'X-CorrelationID': correlationId,
+        };
+        if (callbackUrl) {
+            header['X-Callback-URL'] = callbackUrl;
+        }
         return generateIdentifierUrl(accountId, onError, (accountUrl) => {
             return requestMaker(
-                `/accounts/${accountUrl}/identities/${identityId}`
+                `/accounts/${accountUrl}/identities/${identityId}`,
+                header
             ).patch(data);
         });
     }
