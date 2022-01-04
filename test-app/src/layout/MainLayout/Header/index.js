@@ -87,7 +87,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
         {window.gsma &&
         window.gsma.auth &&
         customization.authType === "oauth-2" ? (
-          <Tooltip title={`Access Token: ${formData.header.accessToken}`}>
+          <Tooltip title={`Authorized with OAuth2`}>
             <LockTwoTone color="success" />
           </Tooltip>
         ) : window.gsma &&

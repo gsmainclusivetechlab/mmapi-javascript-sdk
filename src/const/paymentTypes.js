@@ -14,7 +14,6 @@ export const REFUND = "createRefundTransaction";
 export const MERCHANT_INIT_PAYMENT = "createMerchantTransaction";
 export const MERCHANT_AUTH_CODE = "createAuthorisationCode";
 export const MERCHANT_VIEW_AUTH_CODE = "viewAuthorisationCode";
-export const MERCHANT_REFUND = "createRefundTransaction";
 
 // Disbursement -types
 export const DISBURSEMENT_INDIVIDUAL = "createDisbursementTransaction";
