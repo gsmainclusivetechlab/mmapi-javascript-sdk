@@ -11,6 +11,14 @@ This document contains the following sections:
 -   [Setting Up](#setting-up)
     -   [Integrating SDK to your Application](#setting-up)
 -   [Use Cases](#use-cases)
+    - [Merchant Payments](#merchantPayment)
+    - [Disbursements](#disbursements)
+    - [International Transfers](#international)
+    - [P2P Transfers](#p2p)
+    - [Recurring Payments](#recurringPayments)
+    - [Account Linking](#accountLinking)
+    - [Bill Payments](#billPayments)
+    - [Agent Services](#agentServices)
 
 <a name="requirements"></a>
 ## Requirements
