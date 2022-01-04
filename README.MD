@@ -284,7 +284,7 @@ Contains functions for all the use case scenarios within Merchant Payments.
   </tr>
   <tr>
     <td>Retrieve Payments for a Merchant</td>
-    <td><a href="docs/merchantPayment/viewAccountTransaction.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td><a href="docs/merchantPayment/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
     <td>viewAccountTransactions</td>
     <td>accountId, offset, limit</td>
   </tr>
