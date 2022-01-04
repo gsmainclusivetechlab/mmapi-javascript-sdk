@@ -485,7 +485,7 @@ Contains functions for all the use case scenarios within International Transfers
   </tr>
   <tr>
     <td>Retrieve Transactions for an FSP</td>
-    <td><a href="docs/internationalTransfer/viewAccountTransaction.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td><a href="docs/internationalTransfer/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
     <td>viewAccountTransactions</td>
     <td>accountId, offset, limit</td>
   </tr>
