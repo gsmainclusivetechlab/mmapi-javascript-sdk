@@ -18,8 +18,7 @@ Here, if Multiple account IDs are provided, `viewAccountBalance` creates a GET r
         "value": "1"
         }
     ],
-    "type": "viewAccountBalance"
-   "getClientCorrelationId":(response)=>{},
+    "type": "viewAccountBalance",
    "onSuccess":(response, header, status)=>{},
    "onFailure": (response, status) => {}
 }
