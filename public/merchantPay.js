@@ -1,56 +1,55 @@
 GSMA_BASIC_AUTH = gsma.auth;
 
-console.log('gsma basic fun', GSMA_BASIC_AUTH);
-
 //   call for balance check
-GSMA_BASIC_AUTH.merchantPay({
-    type: 'balanceCheck',
-    identifierType: 'accountid',
-    identifier: 1,
-    // callbackUrl:
-    //     'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback/local',
-    notificationMethod: 'polling',
-    onSuccess: (data, status) => {
-        console.log('BASIC AUTH success balance check', status, data);
-    },
-    onFailure: (error, status) => {
-        console.error('BASIC AUTH error balance check', error);
-    },
-});
+// GSMA_BASIC_AUTH.MerchantPayment({
+//     type: 'viewAccountBalance',
+//     identifierType: 'accountid',
+//     identifier: 1,
+//     accountId: [{ key: 'acountId', value: '2000' }],
+//     // callbackUrl:
+//     //     'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback/local',
+//     notificationMethod: 'polling',
+//     onSuccess: (data, status) => {
+//         console.log('BASIC AUTH success balance check', status, data);
+//     },
+//     onFailure: (error, status) => {
+//         console.error('BASIC AUTH error balance check', error);
+//     },
+// });
 
 //  call for pay init
-GSMA_BASIC_AUTH.merchantPay({
-    type: 'initPayment',
-    data: {
-        amount: '200.00',
-        debitParty: [
-            {
-                key: 'accountid',
-                value: '2999',
-            },
-        ],
-        creditParty: [
-            {
-                key: 'accountid',
-                value: '2999',
-            },
-        ],
-        currency: 'RWF',
-    },
-    // callbackUrl:
-    //   'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
+// GSMA_BASIC_AUTH.MerchantPayment({
+//     type: 'createMerchantTransaction',
+//     data: {
+//         amount: '200.00',
+//         debitParty: [
+//             {
+//                 key: 'accountid',
+//                 value: '2999',
+//             },
+//         ],
+//         creditParty: [
+//             {
+//                 key: 'accountid',
+//                 value: '2999',
+//             },
+//         ],
+//         currency: 'RWF',
+//     },
+//     // callbackUrl:
+//     //   'https://1527dea3-111f-48de-ba27-1c840df261c1.mock.pstmn.io/callback',
 
-    onSuccess: (data, status) => {
-        console.log('BASIC AUTH success in payInit', status, data);
-        getState(data);
-    },
-    onFailure: (error, status) => {
-        console.error('BASIC AUTH  error in payInit', error, status);
-    },
-});
+//     onSuccess: (data, status) => {
+//         console.log('BASIC AUTH success in payInit', status, data);
+//         getState(data);
+//     },
+//     onFailure: (error, status) => {
+//         console.error('BASIC AUTH  error in payInit', error, status);
+//     },
+// });
 
 // generate pre auth code
-// GSMA_BASIC_AUTH.merchantPay({
+// GSMA_BASIC_AUTH.MerchantPayment({
 //     type: 'generatePreAuthCode',
 //     identifierType: 'accountid',
 //     identifier: 1,
@@ -74,7 +73,7 @@ GSMA_BASIC_AUTH.merchantPay({
 // });
 
 // function payWithPreAuthCode(code) {
-//     GSMA_BASIC_AUTH.merchantPay({
+//     GSMA_BASIC_AUTH.MerchantPayment({
 //         type: 'paymentWithAuthCode',
 //         data: {
 //             amount: '200.00',
@@ -118,7 +117,7 @@ GSMA_BASIC_AUTH.merchantPay({
 // function getState(data) {
 //     let { serverCorrelationId } = data;
 //     // request for state
-//     GSMA_BASIC_AUTH.merchantPay({
+//     GSMA_BASIC_AUTH.MerchantPayment({
 //         type: 'requestState',
 //         serverCorrelationId: serverCorrelationId,
 //         onSuccess: (data, status) => {
@@ -134,7 +133,7 @@ GSMA_BASIC_AUTH.merchantPay({
 // function getStateOfReversal(data) {
 //     let { serverCorrelationId } = data;
 //     // request for state
-//     GSMA_BASIC_AUTH.merchantPay({
+//     GSMA_BASIC_AUTH.MerchantPayment({
 //         type: 'requestState',
 //         serverCorrelationId: serverCorrelationId,
 //         onSuccess: (data, status) => {
@@ -148,7 +147,7 @@ GSMA_BASIC_AUTH.merchantPay({
 
 // function reversal({ objectReference: transactionReference }) {
 //     //   call to get transaction referece
-//     GSMA_BASIC_AUTH.merchantPay({
+//     GSMA_BASIC_AUTH.MerchantPayment({
 //         type: 'reversal',
 //         transactionReference: transactionReference,
 //         onSuccess: (data, status) => {
@@ -168,4 +167,3 @@ GSMA_BASIC_AUTH.merchantPay({
 //         },
 //     });
 // }
-

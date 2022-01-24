@@ -18,7 +18,20 @@ export default ({ username, pass, onSuccess, onFailure }) => {
             }
         )
         .then((res) => {
-            onSuccess(res?.data, res?.status);
+            if (res && res.data) {
+                onSuccess(res?.data, res?.status);
+            } else {
+                onFailure(
+                    {
+                        errorCategory: 'Internal',
+                        errorCode: 'GenericError',
+                        errorDescription:
+                            'The request could not be completed as access token is missing',
+                        errorParameters: [{ key: 'accessToken', value: '' }],
+                    },
+                    400
+                );
+            }
         })
         .catch((error) => {
             if (error && error.response)

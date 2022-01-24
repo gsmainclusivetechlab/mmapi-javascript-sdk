@@ -4,8 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "test": "jest --watch --env=jsdom",
         "test:unit": "jest unit --watch --env=jsdom",
         "build": "webpack && http-server dist -p 9000",
+        "serve": "http-server dist -p 9000",
         "watch": "webpack --watch",
         "start": "webpack-dev-server --open && npm run watch"
     },
