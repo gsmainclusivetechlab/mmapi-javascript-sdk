@@ -1,98 +1,39 @@
-// init merchant transaction vi callback
-gsma.auth.MerchantPayment({
-    type: 'createMerchantTransaction',
-    data: {
-        amount: '200.00',
-        debitParty: [
-            {
-                key: 'accountid',
-                value: '2999',
-            },
-        ],
-        creditParty: [
-            {
-                key: 'accountid',
-                value: '1',
-            },
-        ],
-        currency: 'RWF',
-    },
-    callbackUrl:
-        'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
-    onSuccess: (data, headers, status) => {
-        console.log('createMerchantTransaction success', data, status);
-    },
-    onFailure: (error, status) => {
-        console.log('createMerchantTransaction error', error, status);
-    },
-    getClientCorrelationId: (clientCorrelationId) => {
-        console.log(
-            'createMerchantTransaction correlationId',
-            clientCorrelationId
-        );
-    },
-});
+// Setup an Account Link
 
-// init merchant transaction vi polling
-gsma.auth.MerchantPayment({
-    type: 'createMerchantTransaction',
-    data: {
-        amount: '200.00',
-        debitParty: [
-            {
-                key: 'accountid',
-                value: '2999',
-            },
-        ],
-        creditParty: [
-            {
-                key: 'accountid',
-                value: '1',
-            },
-        ],
-        currency: 'RWF',
-    },
-    onSuccess: (data, headers, status) => {
-        console.log('createMerchantTransaction success', data, status);
-    },
-    onFailure: (error, status) => {
-        console.log('createMerchantTransaction error', error, status);
-    },
-    getClientCorrelationId: (clientCorrelationId) => {
-        console.log(
-            'createMerchantTransaction correlationId',
-            clientCorrelationId
-        );
-    },
-});
-
-// create aith code
-gsma.auth.MerchantPayment({
-    type: 'createAuthorisationCode',
+gsma.auth.AccountLinking({
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
     accountId: [
         {
             key: 'accountid',
             value: '2999',
         },
     ],
+    type: 'createAccountLink',
     data: {
-        amount: '200.00',
-        currency: 'RWF',
-        amountType: 'exact',
-        codeLifetime: '600',
-        holdFundsIndicator: true,
-        redemptionAccountIdentifiers: [
+        sourceAccountIdentifiers: [
             {
                 key: 'accountid',
                 value: '2999',
             },
         ],
+        status: 'active',
+        mode: 'both',
+        customData: [
+            {
+                key: 'keytest',
+                value: 'keyvalue',
+            },
+        ],
+        requestingOrganisation: {
+            requestingOrganisationIdentifierType: 'organisationid',
+            requestingOrganisationIdentifier: '12345',
+        },
     },
     onSuccess: (data, headers, status) => {
-        console.log('createAuthorisationCode success', data, status);
+        console.log('createAccountLink success', data, status);
     },
     onFailure: (error, status) => {
-        console.log('createAuthorisationCode error', error, status);
+        console.log('createAccountLink error', error, status);
     },
     getClientCorrelationId: (clientCorrelationId) => {
         console.log(
@@ -102,8 +43,64 @@ gsma.auth.MerchantPayment({
     },
 });
 
-// view account balance
-gsma.auth.MerchantPayment({
+// Read a specific link for a given account
+
+gsma.auth.AccountLinking({
+    accountId: [
+        {
+            key: 'accountid',
+            value: '2999',
+        },
+    ],
+    linkReference: 'REF-1638168563421',
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
+    type: 'viewAccountLink',
+    onSuccess: (data, headers, status) => {
+        console.log('viewAccountLink success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewAccountLink error', error, status);
+    },
+});
+
+// Perform a Transfer for a Linked Account
+
+gsma.auth.AccountLinking({
+    type: 'createTransferTransaction',
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
+    data: {
+        amount: '200.00',
+        creditParty: [
+            {
+                key: 'linkref',
+                value: 'REF-1638168563421',
+            },
+        ],
+        currency: 'RWF',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+    },
+    onSuccess: (data, headers, status) => {
+        console.log('createTransferTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('createTransferTransaction error', error, status);
+    },
+    getClientCorrelationId: (clientCorrelationId) => {
+        console.log(
+            'createMerchantTransaction correlationId',
+            clientCorrelationId
+        );
+    },
+});
+
+// view Account Balance
+
+gsma.auth.AccountLinking({
     type: 'viewAccountBalance',
     accountId: [
         {
@@ -117,16 +114,11 @@ gsma.auth.MerchantPayment({
     onFailure: (error, status) => {
         console.log('viewAccountBalance error', error, status);
     },
-    getClientCorrelationId: (clientCorrelationId) => {
-        console.log(
-            'createMerchantTransaction correlationId',
-            clientCorrelationId
-        );
-    },
 });
 
-// view transaction Accounts
-gsma.auth.MerchantPayment({
+// Retrieve a Set of Transactions for an Account
+
+gsma.auth.AccountLinking({
     type: 'viewAccountTransaction',
     accountId: [
         {
@@ -152,8 +144,9 @@ gsma.auth.MerchantPayment({
     },
 });
 
-// check for service availibility
-gsma.auth.MerchantPayment({
+// Check for Service Availability
+
+gsma.auth.AccountLinking({
     type: 'viewServiceAvailability',
     onSuccess: (data, headers, status) => {
         console.log('viewServiceAvailability success', data, status);
@@ -163,8 +156,9 @@ gsma.auth.MerchantPayment({
     },
 });
 
-// view missing response
-gsma.auth.MerchantPayment({
+// Retrieve a Missing Response
+
+gsma.auth.AccountLinking({
     type: 'viewResponse',
     clientCorrelationId: 'cc56daf1-b2dd-4553-aeba-43d61d81f5c8',
     onSuccess: (data, headers, status) => {
@@ -175,8 +169,9 @@ gsma.auth.MerchantPayment({
     },
 });
 
-// Request state
-gsma.auth.MerchantPayment({
+// View Request State
+
+gsma.auth.AccountLinking({
     type: 'viewRequestState',
     serverCorrelationId: 'db474b5c-cc9d-4173-b1b0-8ac06cb20e7c',
     onSuccess: (data, headers, status) => {
@@ -187,8 +182,9 @@ gsma.auth.MerchantPayment({
     },
 });
 
-// view Transaction
-gsma.auth.MerchantPayment({
+// Retrieve a Transaction
+
+gsma.auth.AccountLinking({
     type: 'viewTransaction',
     transactionReference: 'REF-1633678194929',
     onSuccess: (data, headers, status) => {
@@ -199,38 +195,9 @@ gsma.auth.MerchantPayment({
     },
 });
 
-//Perform a Payment Refund
-
-gsma.auth.MerchantPayment({
-    type: 'createRefundTransaction',
-    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
-    data: {
-        amount: '200.00',
-        debitParty: [
-            {
-                key: 'accountid',
-                value: '2999',
-            },
-        ],
-        creditParty: [
-            {
-                key: 'accountid',
-                value: '1',
-            },
-        ],
-        currency: 'RWF',
-    },
-    onSuccess: (data, headers, status) => {
-        console.log('createRefundTransaction success', data, status);
-    },
-    onFailure: (error, status) => {
-        console.log('createRefundTransaction error', error, status);
-    },
-});
-
 // Perform a Payment Reversal
 
-gsma.auth.MerchantPayment({
+gsma.auth.AccountLinking({
     type: 'createReversal',
     callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
     transactionReference: 'REF-1466171557592',
