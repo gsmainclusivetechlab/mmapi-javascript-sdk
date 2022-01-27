@@ -28,8 +28,6 @@ test('Testing Payee-Initiated Merchant Payment', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: 'callback',
-                        objectReference: expect.any(String),
-                        pollLimit: expect.any(Number),
                     })
                 );
                 expect(status).toBe(202);
@@ -86,8 +84,6 @@ test('Testing Payee-Initiated Merchant Payment using the Polling Method', (done)
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: 'polling',
-                        objectReference: expect.any(String),
-                        pollLimit: expect.any(Number),
                     })
                 );
                 expect(status).toBe(200);
@@ -152,8 +148,6 @@ describe('Payee-Initiated Merchant Payment using a Pre-authorised Payment Code',
                             serverCorrelationId: expect.any(String),
                             status: 'pending',
                             notificationMethod: 'polling',
-                            objectReference: expect.any(String),
-                            pollLimit: expect.any(Number),
                         })
                     );
                     expect(status).toBe(200);
@@ -200,9 +194,7 @@ describe('Payee-Initiated Merchant Payment using a Pre-authorised Payment Code',
                     expect(data).toEqual(
                         expect.objectContaining({
                             authorisationCode: expect.any(String),
-                            amount: expect.any(String),
-                            currency: expect.any(String),
-                            redemptionAccountIdentifiers: expect.any(Array),
+                            codeState: expect.any(String),
                         })
                     );
                     expect(status).toBe(200);
@@ -226,6 +218,70 @@ describe('Payee-Initiated Merchant Payment using a Pre-authorised Payment Code',
                 } catch (error) {
                     done(error);
                 }
+            },
+        });
+    });
+
+    test('Payee-Initiated Merchant Payment using a Pre-authorised Payment Code', (done) => {
+        gsma.MerchantPayment({
+            type: 'createMerchantTransaction',
+            accountId: [
+                {
+                    key: 'accountid',
+                    value: '1',
+                },
+            ],
+            data: {
+                amount: '200.00',
+                debitParty: [
+                    {
+                        key: 'accountid',
+                        value: '1',
+                    },
+                ],
+                creditParty: [
+                    {
+                        key: 'accountid',
+                        value: '30',
+                    },
+                ],
+                currency: 'RWF',
+                oneTimeCode: 'e8f51f4e-c8d6-4b4e-873b-fcdbda22523d',
+            },
+
+            onSuccess: (data, headers, status) => {
+                try {
+                    expect(data).toEqual(
+                        expect.objectContaining({
+                            serverCorrelationId: expect.any(String),
+                            status: 'pending',
+                            notificationMethod: 'polling',
+                        })
+                    );
+                    expect(status).toBe(200);
+                    done();
+                } catch (error) {
+                    done(error);
+                }
+            },
+            onFailure: (error, status) => {
+                try {
+                    expect(error).toEqual(
+                        expect.objectContaining({
+                            errorCategory: expect.any(String),
+                            errorCode: expect.any(String),
+                            errorDescription: expect.any(String),
+                            errorParameters: expect.any(Array),
+                        })
+                    );
+                    expect(status).toBe(400);
+                    done();
+                } catch (error) {
+                    done(error);
+                }
+            },
+            getClientCorrelationId: (clientCorrelationId) => {
+                expect(clientCorrelationId).toEqual(expect.any(String));
             },
         });
     });
@@ -413,7 +469,7 @@ test('Retrieve a Missing Response', (done) => {
     });
 });
 
-test('View Request State	', (done) => {
+test('View Request State', (done) => {
     gsma.MerchantPayment({
         type: 'viewRequestState',
         serverCorrelationId: 'db474b5c-cc9d-4173-b1b0-8ac06cb20e7c',
@@ -519,7 +575,6 @@ test('Perform a Payment Refund', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: expect.any(String),
-                        objectReference: expect.any(String),
                     })
                 );
                 expect(status).toBe(202);
@@ -559,7 +614,6 @@ test('Perform a Payment Reversal', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: expect.any(String),
-                        objectReference: expect.any(String),
                     })
                 );
                 expect(status).toBe(202);

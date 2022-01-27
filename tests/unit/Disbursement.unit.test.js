@@ -27,8 +27,6 @@ test('Individual Disbursement', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: 'callback',
-                        objectReference: expect.any(String),
-                        pollLimit: expect.any(Number),
                     })
                 );
                 expect(status).toBe(202);
@@ -85,8 +83,6 @@ test('Individual Disbursement using polling', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: 'polling',
-                        objectReference: expect.any(String),
-                        pollLimit: expect.any(Number),
                     })
                 );
                 expect(status).toBe(200);
@@ -167,8 +163,6 @@ describe('Bulk Disbursement', () => {
                             serverCorrelationId: expect.any(String),
                             status: 'pending',
                             notificationMethod: 'callback',
-                            objectReference: expect.any(String),
-                            pollLimit: expect.any(Number),
                         })
                     );
                     expect(status).toBe(202);
@@ -210,13 +204,6 @@ describe('Bulk Disbursement', () => {
                             batchStatus: expect.any(String),
                             approvalDate: expect.any(String),
                             completionDate: expect.any(String),
-                            creationDate: expect.any(String),
-                            modificationDate: expect.any(String),
-                            requestDate: expect.any(String),
-                            completedCount: expect.any(Number),
-                            rejectionCount: expect.any(Number),
-                            parsingSuccessCount: expect.any(Number),
-                            processingFlag: expect.any(Boolean),
                         })
                     );
                     expect(status).toBe(200);
