@@ -6,11 +6,12 @@ import {
     AGENR_DEPOSIT,
     AGENT_CREATE_ACCOUNT,
     AGENT_VIEW_ACCOUNT,
-    AGENT_UPDATE_ACCOUNT
+    AGENT_UPDATE_ACCOUNT,
 } from '../../const/paymentTypes';
 import { common } from '../Common';
 import initCashOut from './initCashOut';
-import generateAuthCode from './generateAuthCode';
+// import generateAuthCode from './generateAuthCode';
+import generateAuthCode from '../MerchantPayments/transInitWithPreAuthCode';
 import getAuthCode from './getAuthCode';
 import getAccountName from './getAccountName';
 import deposit from './deposit';
@@ -23,7 +24,7 @@ export default {
     [AGENT_VIEW_AUTH_CODE]: getAuthCode,
     [AGENT_VIEW_ACCOUNT_NAME]: getAccountName,
     [AGENR_DEPOSIT]: deposit,
-    [AGENT_CREATE_ACCOUNT]:createAccount,
+    [AGENT_CREATE_ACCOUNT]: createAccount,
     [AGENT_VIEW_ACCOUNT]: getAccount,
     [AGENT_UPDATE_ACCOUNT]: updateAccount,
     ...common,
