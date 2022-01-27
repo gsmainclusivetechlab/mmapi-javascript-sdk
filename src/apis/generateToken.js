@@ -18,11 +18,15 @@ export default ({ username, pass, onSuccess, onFailure }) => {
             }
         )
         .then((res) => {
-            onSuccess(res?.data, res?.status);
+            if (res && res.data && res.status) {
+                onSuccess(res?.data, res?.status);
+            }
         })
         .catch((error) => {
-            if (error && error.response)
+            if (error && error.response) {
                 onFailure((error?.response?.data, error?.response?.status));
-            else onFailure(error);
+            } else {
+                onFailure(error);
+            }
         });
 };

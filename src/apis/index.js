@@ -17,17 +17,32 @@ export default function fetchHandler(
         }
         apiInstance(reqConfig)
             .then((res) => {
-                return successHandler
-                    ? successHandler(res?.data, res?.headers, res?.status)
-                    : null;
+                if (res && res.data && res.status) {
+                    return successHandler
+                        ? successHandler(res?.data, res?.headers, res?.status)
+                        : null;
+                } else {
+                    return successHandler
+                        ? successHandler(null, null, '')
+                        : null;
+                }
             })
             .catch((error) => {
-                return errorHandler && error.response
-                    ? errorHandler(
-                          error?.response?.data,
-                          error?.response?.status
-                      )
-                    : null;
+                if (
+                    error &&
+                    error.response &&
+                    error.response.data &&
+                    error.response.status
+                ) {
+                    return errorHandler
+                        ? errorHandler(
+                              error?.response?.data,
+                              error?.response?.status
+                          )
+                        : null;
+                } else {
+                    return errorHandler ? errorHandler({}, '') : null;
+                }
             });
     }
 }
