@@ -19,12 +19,12 @@ export default ({ username, pass, onSuccess, onFailure }) => {
         )
         .then((res) => {
             if (res && res.data && res.status) {
-                onSuccess(res?.data, res?.status);
+                onSuccess(res.data, res.status);
             }
         })
         .catch((error) => {
             if (error && error.response) {
-                onFailure((error?.response?.data, error?.response?.status));
+                onFailure((error.response.data, error.response.status));
             } else {
                 onFailure(error);
             }

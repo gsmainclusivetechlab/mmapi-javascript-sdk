@@ -19,7 +19,7 @@ export default function fetchHandler(
             .then((res) => {
                 if (res && res.data && res.status) {
                     return successHandler
-                        ? successHandler(res?.data, res?.headers, res?.status)
+                        ? successHandler(res.data, res.headers, res.status)
                         : null;
                 } else {
                     return successHandler
@@ -36,8 +36,8 @@ export default function fetchHandler(
                 ) {
                     return errorHandler
                         ? errorHandler(
-                              error?.response?.data,
-                              error?.response?.status
+                              error.response.data,
+                              error.response.status
                           )
                         : null;
                 } else {
