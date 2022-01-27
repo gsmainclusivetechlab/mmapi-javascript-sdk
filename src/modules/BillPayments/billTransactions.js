@@ -1,9 +1,9 @@
 import { checkRequiredProps, requestMaker } from '../../utils';
 /**
  * @param  {} props conatin parmas to make the request
- * @param  {} onError callback to throw error 
+ * @param  {} onError callback to throw error
  */
-export default function billTransaction(props, onError) {
+export default function billTransactions(props, onError) {
     if (checkRequiredProps(props, ['data'], onError)) {
         const { correlationId, callbackUrl, data } = props;
         let header = {

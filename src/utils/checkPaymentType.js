@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 // check payment type exist in a particular module
-export default function checkForExistingType(
+export default function checkPaymentType(
     paymentTypes,
     type,
     rest,

@@ -2,7 +2,7 @@ import generateToken from '../apis/generateToken';
 import { moduleWrapperWithAuth } from '../modules';
 
 // function handling token generation
-export default function tokenGenerator({
+export default function initSdkWithTokenHandler({
     username,
     pass,
     apiKey,

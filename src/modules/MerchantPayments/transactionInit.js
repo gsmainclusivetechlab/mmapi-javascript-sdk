@@ -1,5 +1,5 @@
 import { checkRequiredProps, requestMaker } from '../../utils';
-export default function merchantTransactionInit(props, onError) {
+export default function transactionInit(props, onError) {
     if (checkRequiredProps(props, ['data'], onError)) {
         const { correlationId, callbackUrl, data } = props;
         let header = {

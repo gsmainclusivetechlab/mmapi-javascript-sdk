@@ -6,9 +6,9 @@ export default function (props, onError) {
         return requestMaker(
             `/responses/${clientCorrelationId}`,
             null,
-            (props, onError) => {
-                if (checkRequiredProps(props, ['link'], onError)) {
-                    const { link } = props;
+            (props_inner, onError_inner) => {
+                if (checkRequiredProps(props_inner, ['link'], onError_inner)) {
+                    const { link } = props_inner;
                     return requestMaker(link).get();
                 }
             }

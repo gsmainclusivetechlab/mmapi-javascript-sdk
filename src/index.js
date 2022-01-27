@@ -1,7 +1,7 @@
 import { moduleWrapperWithAuth, moduleWrapperWithoutAuth } from './modules';
 import sdkWithTokenHandler from './utils/initSdkWithTokenHandler';
 // sepereate call to get token
-import generateToken from './apis/generateToken';
+// import generateToken from './apis/generateToken';
 
 window.gsma = {
     initBasicAuth: (username, pass, callbackUrl = null) => {
