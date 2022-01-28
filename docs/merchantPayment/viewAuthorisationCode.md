@@ -19,8 +19,7 @@ Here, if only a single account ID is provided, `createAuthorisationCode` creates
     }
   ],
   "authorisationCode": "7006e6d7-d0e4-4cda-9300-8cb42bbf8915",
-  "type": "createAuthorisationCode",
-  "getClientCorrelationId":(response)=>{},
+  "type": "viewAuthorisationCode",
    "onSuccess":(response, header, status)=>{},
    "onFailure": (response, status) => {}
 }
