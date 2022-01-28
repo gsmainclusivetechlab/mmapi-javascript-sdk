@@ -119,7 +119,7 @@ const Customization = () => {
         formState.username,
         formState.password,
         formState.callbackUrl,
-        process.env.REACT_APP_CLIENT_API_KEY,
+        formState.apiKey,
         () => {
           setAuthorised(true);
           setOpen(false);
@@ -189,6 +189,15 @@ const Customization = () => {
       case 2:
         return (
           <div className="container form-container">
+            <TextField
+              id="outlined-basic-usr-name"
+              label="API Key"
+              variant="outlined"
+              size="small"
+              defaultValue={process.env.REACT_APP_CLIENT_API_KEY}
+              onClick={(e) => setFormParams("apiKey", e.target.value)}
+              onChange={(e) => setFormParams("apiKey", e.target.value)}
+            />
             <TextField
               id="outlined-basic-cons-key"
               label="Consumer Key"

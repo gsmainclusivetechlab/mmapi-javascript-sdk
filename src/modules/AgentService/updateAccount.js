@@ -1,8 +1,8 @@
 import {
-  checkRequiredProps,
-  requestMaker,
-  generateIdentifierUrl,
-} from "../../utils";
+    checkRequiredProps,
+    requestMaker,
+    generateIdentifierUrl,
+} from '../../utils';
 /**
  * Function to get recepient name
  * @param  {} props must contain identifierType and identifier
@@ -21,7 +21,7 @@ export default function updateAccount(props, onError) {
             ],
             identityId,
             correlationId,
-            callbackUrl
+            callbackUrl,
         } = props;
         let header = {
             'X-CorrelationID': correlationId,

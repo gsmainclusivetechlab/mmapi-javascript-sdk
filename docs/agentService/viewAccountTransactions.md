@@ -4,7 +4,9 @@ Here, if only a single account ID is provided, `viewAccountTransactions` creates
 
 > `This endpoint returns transactions linked to a specific account where one identifier suffices to uniquely identify an account.`
 
+Here, if only a single account ID is provided, `viewAccountTransactions` creates a GET request to /accounts/{accountId}/transactions depending on the number of account IDs provided.
 
+> `This endpoint returns transactions linked to a specific account where a single identifier is not sufficient to identify an account.`
 
 ## Usage/Examples
 

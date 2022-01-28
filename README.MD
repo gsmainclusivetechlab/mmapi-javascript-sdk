@@ -191,6 +191,10 @@ window.gsma.auth.MerchantPayment({
 - [Disbursements](#disbursements)
 - [International Transfers](#international)
 - [P2P Transfers](#p2p)
+- [Recurring Payments](#recurringPayments)
+- [Account Linking](#accountLinking)
+- [Bill Payments](#billPayments)
+- [Agent Services](#agentServices)
 
 <a name="merchantPayment"></a>
 
@@ -584,3 +588,358 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="recurringPayments"></a>
+### Recurring Payments(RecurringPayment)
+
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Setup a Recurring Payment</td>
+    <td><a href="/docs/recurringPayment/createAccountDebitMandate.md">Setup a Recurring Payment</a></td>
+    <td>createAccountDebitMandate</td>
+    <td>callbackUrl, data, accountId</td>
+  </tr>
+
+  <tr>
+    <td>Take a Recurring Payment</td>
+    <td><a href="/docs/recurringPayment/createMerchantTransaction.md">Take a Recurring Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>callbackUrl, data</td>
+  </tr>
+
+  <tr>
+    <td rowspan="3">Take a Recurring Payment using the Polling Method</td>
+    <td><a href="/docs/recurringPayment/createMerchantTransaction.md">Take a Recurring Payment</a></td>
+    <td>createMerchantTransaction</td>
+    <td>data</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/recurringPayment/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/recurringPayment/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+
+  <tr>
+    <td>Recurring Payment Refund</td>
+    <td><a href="/docs/recurringPayment/createRefundTransaction.md">Perform a Recurring Payment Refund</a></td>
+    <td>createRefundTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+
+  <tr>
+    <td>Recurring Payment Reversal</td>
+    <td><a href="/docs/recurringPayment/createReversal.md">Perform a Merchant Payment Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+
+  <tr>
+    <td>Payer sets up a Recurring Payment using MMP Channel</td>
+    <td><a href="/docs/recurringPayment/createAccountDebitMandate.md">Setup a Recurring Payment</a></td>
+    <td>createAccountDebitMandate</td>
+    <td>callbackUrl, data, accountId</td>
+	
+  </tr>
+  
+
+  <tr>
+    <td>Obtain a Service Provider Balance</td>
+    <td><a href="/docs/recurringPayment/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+
+  <tr>
+    <td>Retrieve Payments for a Service Provider</td>
+    <td><a href="/docs/recurringPayment/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId,filter</td>
+  </tr>
+
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/recurringPayment/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="/docs/recurringPayment/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
+
+<a name="accountLinking"></a>
+### Account Linking(AccountLinking)
+
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Setup an Account Link</td>
+    <td><a href="/docs/accountLinking/createAccountLink.md">Establish an Account to Account Link</a></td>
+    <td>createAccountLink</td>
+    <td> data, accountId, callbackUrl</td>
+  </tr>
+  <tr>
+    <td>Perform a Transfer for a Linked Account</td>
+    <td><a href="/docs/accountLinking/createTransferTransaction.md">Use a Link to make a Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Perform a Transfer using an Account Link via the Polling Method</td>
+    <td><a href="/docs/accountLinking/createTransferTransaction.md">Use a Link to make a Transfer</a></td>
+    <td>createTransferTransaction</td>
+    <td>data</td>
+  </tr>
+  <tr>
+    <td><a href="docs/accountLinking/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/accountLinking/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Perform a Transfer Reversal</td>
+    <td><a href="/docs/accountLinking/createReversal.md">Perform a Transaction Reversal</a></td>
+    <td>createReversal</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Obtain a Financial Service Provider Balance</td>
+    <td><a href="/docs/accountLinking/viewAccountBalance.md">Get an Account Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+   <tr>
+    <td>Retrieve Transfers for a Financial Service Provider</td>
+    <td><a href="/docs/accountLinking/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId,filter</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/accountLinking/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Retrieve a Missing API Response</td>
+    <td><a href="/docs/accountLinking/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
+
+<a name="billPayments"></a>
+### Bill Payments (BillPayment)
+
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Successful Retrieval of Bills</td>
+    <td><a href="/docs/billPayment/viewAccountBills.md">Retrieve a Set of Bills</a></td>
+    <td>viewAccountBills</td>
+    <td>accountId, filter</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Make a Successful Bill Payment with Callback</td>
+    <td><a href="/docs/billPayment/createBillTransaction.md">Create a Bill Transaction</a></td>
+    <td>createBillTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/billPayment/createBillPayment.md">Make a Bill Payment</a></td>
+    <td>createBillPayment</td>
+    <td>accountId, billReference, data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Make a Bill Payment with Polling</td>
+    <td><a href="/docs/billPayment/createBillPayment.md">Make a Bill Payment</a></td>
+    <td>createBillPayment</td>
+    <td>accountId, billReference, data</td>
+  </tr>
+   <tr>
+    <td><a href="/docs/billPayment/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="/docs/billPayment/viewBillPayment.md">Retrieve Bill Payments for a Given Bill</a></td>
+    <td>viewBillPayment</td>
+    <td>billReference, accountId, filter</td>
+  </tr>
+   <tr>
+    <td>Retrieval of Bill Payments</td>
+    <td><a href="/docs/billPayment/viewBillPayment.md">Retrieve a Set of Bill Payments</a></td>
+    <td>viewBillPayment</td>
+    <td>billReference, accountId, filter</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/billPayment/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="/docs/billPayment/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
+
+<a name="agentServices"></a>
+### Agent Services (AgentService)
+
+
+<table>
+<thead>
+  <tr>
+    <th>Scenarios</th>
+    <th>API</th>
+    <th>Function</th>
+    <th>Parameters</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Agent-initiated Cash-out</td>
+    <td><a href="docs/agentService/createWithdrawalTransaction.md">Agent Initiated Cash-Out</a></td>
+    <td>createWithdrawalTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Agent-initiated Cash-out using the Polling Method</td>
+    <td><a href="docs/agentService/createWithdrawalTransaction.md">Agent Initiated Cash-out</a></td>
+    <td>createWithdrawalTransaction</td>
+    <td>data</td>
+  </tr>
+  <tr>
+    <td><a href="docs/agentService/viewRequestState.md">Poll to Determine the Request State</a></td>
+    <td>viewRequestState</td>
+    <td>serverCorrelationId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/agentService/viewTransaction.md">Retrieve a Transaction</a></td>
+    <td>viewTransaction</td>
+    <td>transactionReference</td>
+  </tr>
+  <tr>
+    <td>Customer-initiated Cash-out</td>
+    <td><a href="docs/agentService/createWithdrawalTransaction.md">Customer Initiated Cash-Out</a></td>
+    <td>createWithdrawalTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Customer Cash-out at an ATM using an Authorisation Code</td>
+    <td><a href="docs/agentService/createAuthorisationCode.md">Obtain an Authorisation Code</a></td>
+    <td>createAuthorisationCode</td>
+    <td>accountId, callbackUrl, data</td>
+  </tr>
+  <tr>
+    <td><a href="docs/agentService/createWithdrawalTransaction.md">ATM Initiated Cash-Out</a></td>
+    <td>createWithdrawalTransaction</td>
+    <td>data, callbackUrl</td>
+  </tr>
+  <tr>
+    <td><a href="docs/agentService/viewAuthorisationCode.md">Retrieve Authorisation Code</a></td>
+    <td>viewAuthorisationCode</td>
+    <td>authorisationCode, accountId</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Agent-initiated Customer Cash-in</td>
+    <td><a href="docs/agentService/viewAccountName.md">Retrieve the Name of the Depositing Customer</a></td>
+    <td>viewAccountName</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/agentService/createDepositTransaction.md">Agent Initiated Cash-in</a></td>
+    <td>createDepositTransaction</td>
+    <td>callbackUrl,  data</td>
+  </tr>
+  <tr>
+    <td>Cash-out Reversal</td>
+    <td><a href="docs/agentService/createReversal.md">Perform a Transaction Reversal</a></td>
+    <td>createReversal</td>
+    <td>callbackUrl, transactionReference</td>
+  </tr>
+  <tr>
+    <td>Register a Customer Mobile Money Account</td>
+    <td><a href="docs/agentService/createAccount.md">Create a Mobile Money Account</a></td>
+    <td>createAccount</td>
+    <td>callbackUrl, data</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Verify the KYC of a Customer</td>
+    <td><a href="docs/agentService/viewAccount.md">Retrieve Account Information</a></td>
+    <td>viewAccount</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td><a href="docs/agentService/updateAccountIdentity.md">Update KYC Verification Status</a></td>
+    <td>updateAccountIdentity</td>
+    <td>accountId, identityId, callbackUrl, data</td>
+  </tr>
+  <tr>
+    <td>Obtain an Agent Balance</td>
+    <td><a href="docs/agentService/viewAccountBalance.md">Obtain an Agent Balance</a></td>
+    <td>viewAccountBalance</td>
+    <td>accountId</td>
+  </tr>
+  <tr>
+    <td>Retrieve Transactions for an Agent</td>
+    <td><a href="docs/agentService/viewAccountTransactions.md">Retrieve a Set of Transactions for an Account</a></td>
+    <td>viewAccountTransactions</td>
+    <td>accountId, filter</td>
+  </tr>
+  <tr>
+    <td>Check for Service Availability</td>
+    <td><a href="/docs/agentService/viewServiceAvailability.md">Check for Service Availability</a></td>
+    <td>viewServiceAvailability</td>
+    <td>NA</td>
+  </tr>
+  <tr>
+    <td>Retrieve a Missing API Response</td>
+    <td><a href="/docs/agentService/viewResponse.md">Retrieve a Missing Response</a></td>
+    <td>viewResponse</td>
+    <td>clientCorrelationId</td>
+  </tr>
+</tbody>
+</table>
