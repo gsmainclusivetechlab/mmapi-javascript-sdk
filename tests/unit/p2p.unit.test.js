@@ -28,8 +28,6 @@ test('Perform a P2P Transfer', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: 'callback',
-                        objectReference: expect.any(String),
-                        pollLimit: expect.any(Number),
                     })
                 );
                 expect(status).toBe(202);
@@ -71,12 +69,6 @@ test('Retrieve the Name of the Recipient', (done) => {
         ],
         onSuccess: (data, headers, status) => {
             try {
-                expect(data).toEqual(
-                    expect.objectContaining({
-                        name: expect.any(Object),
-                        lei: expect.any(String),
-                    })
-                );
                 expect(status).toBe(200);
                 done();
             } catch (error) {
@@ -116,17 +108,6 @@ test('view Account Balance', (done) => {
         ],
         onSuccess: (data, headers, status) => {
             try {
-                expect(data).toEqual(
-                    expect.objectContaining({
-                        currentBalance: expect.any(String),
-                        availableBalance: expect.any(String),
-                        reservedBalance: expect.any(String),
-                        unclearedBalance: expect.any(String),
-                        currency: expect.any(String),
-                        accountStatus: expect.any(String),
-                    })
-                );
-
                 expect(status).toBe(200);
                 done();
             } catch (error) {
@@ -176,17 +157,6 @@ test('Retrieve a Set of Transactions for an Account', (done) => {
         ],
         onSuccess: (data, headers, status) => {
             try {
-                expect(data).toEqual(
-                    expect.arrayContaining([
-                        expect.objectContaining({
-                            transactionReference: expect.any(String),
-                            type: expect.any(String),
-                            transactionStatus: expect.any(String),
-                            amount: expect.any(String),
-                            currency: expect.any(String),
-                        }),
-                    ])
-                );
                 expect(status).toBe(200);
                 done();
             } catch (error) {
@@ -253,15 +223,6 @@ test('Retrieve a Missing Response', (done) => {
         clientCorrelationId: 'cc56daf1-b2dd-4553-aeba-43d61d81f5c8',
         onSuccess: (data, headers, status) => {
             try {
-                expect(data).toEqual(
-                    expect.objectContaining({
-                        transactionReference: expect.any(String),
-                        type: expect.any(String),
-                        transactionStatus: expect.any(String),
-                        amount: expect.any(String),
-                        currency: expect.any(String),
-                    })
-                );
                 expect(status).toBe(200);
                 done();
             } catch (error) {
@@ -298,7 +259,6 @@ test('View Request State	', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: expect.any(String),
                         notificationMethod: expect.any(String),
-                        objectReference: expect.any(String),
                     })
                 );
                 expect(status).toBe(200);
@@ -378,7 +338,6 @@ test('Perform a Payment Reversal', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: expect.any(String),
-                        objectReference: expect.any(String),
                     })
                 );
                 expect(status).toBe(202);
@@ -483,7 +442,6 @@ test('Request for Quotation', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: expect.any(String),
-                        objectReference: expect.any(String),
                     })
                 );
                 expect(status).toBe(202);

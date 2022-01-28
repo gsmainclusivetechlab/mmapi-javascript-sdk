@@ -3,7 +3,6 @@ export default {
 };
 
 const mockResolver = (reqProps) => {
-    console.log('showing req props', reqProps);
     let notificationMethod = 'polling';
     let status = 200;
     let statusValue = 'completed';

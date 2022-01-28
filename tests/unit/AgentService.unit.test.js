@@ -27,8 +27,6 @@ test('Agent-initiated Cash-out', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: 'callback',
-                        objectReference: expect.any(String),
-                        pollLimit: expect.any(Number),
                     })
                 );
                 expect(status).toBe(202);
@@ -82,8 +80,6 @@ describe('Customer Cash-out at an ATM using an Authorisation Code', () => {
                             serverCorrelationId: expect.any(String),
                             status: 'pending',
                             notificationMethod: 'callback',
-                            objectReference: expect.any(String),
-                            pollLimit: expect.any(Number),
                         })
                     );
                     expect(status).toBe(202);
@@ -130,12 +126,6 @@ describe('Customer Cash-out at an ATM using an Authorisation Code', () => {
                         expect.objectContaining({
                             authorisationCode: expect.any(String),
                             codeState: expect.any(String),
-                            amount: expect.any(String),
-                            currency: expect.any(String),
-                            redemptionAccountIdentifiers: expect.any(Array),
-                            creationDate: expect.any(String),
-                            modificationDate: expect.any(String),
-                            requestDate: expect.any(String),
                         })
                     );
                     expect(status).toBe(200);
@@ -159,9 +149,6 @@ describe('Customer Cash-out at an ATM using an Authorisation Code', () => {
                 } catch (error) {
                     done(error);
                 }
-            },
-            getClientCorrelationId: (clientCorrelationId) => {
-                expect(clientCorrelationId).toEqual(expect.any(String));
             },
         });
     });
@@ -179,12 +166,6 @@ describe('Agent-initiated Customer Cash-in', () => {
             ],
             onSuccess: (data, headers, status) => {
                 try {
-                    expect(data).toEqual(
-                        expect.objectContaining({
-                            name: expect.any(Object),
-                            lei: expect.any(String),
-                        })
-                    );
                     expect(status).toBe(200);
                     done();
                 } catch (error) {
@@ -206,9 +187,6 @@ describe('Agent-initiated Customer Cash-in', () => {
                 } catch (error) {
                     done(error);
                 }
-            },
-            getClientCorrelationId: (clientCorrelationId) => {
-                expect(clientCorrelationId).toEqual(expect.any(String));
             },
         });
     });
@@ -240,8 +218,6 @@ describe('Agent-initiated Customer Cash-in', () => {
                             serverCorrelationId: expect.any(String),
                             status: 'pending',
                             notificationMethod: 'callback',
-                            objectReference: expect.any(String),
-                            pollLimit: expect.any(Number),
                         })
                     );
                     expect(status).toBe(202);
@@ -360,8 +336,6 @@ test('Register a Customer Mobile Money Account', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: 'callback',
-                        objectReference: expect.any(String),
-                        pollLimit: expect.any(Number),
                     })
                 );
                 expect(status).toBe(202);
@@ -408,14 +382,7 @@ describe('Verify the KYC of a Customer', () => {
                         expect.objectContaining({
                             accountIdentifiers: expect.any(Array),
                             identity: expect.any(Array),
-                            accountType: expect.any(String),
                             accountStatus: expect.any(String),
-                            accountSubStatus: expect.any(String),
-                            fees: expect.any(Array),
-                            registeringEntity: expect.any(String),
-                            creationDate: expect.any(String),
-                            requestDate: expect.any(String),
-                            customData: expect.any(Array),
                         })
                     );
                     expect(status).toBe(200);
@@ -439,9 +406,6 @@ describe('Verify the KYC of a Customer', () => {
                 } catch (error) {
                     done(error);
                 }
-            },
-            getClientCorrelationId: (clientCorrelationId) => {
-                expect(clientCorrelationId).toEqual(expect.any(String));
             },
         });
     });
@@ -471,8 +435,6 @@ describe('Verify the KYC of a Customer', () => {
                             serverCorrelationId: expect.any(String),
                             status: 'pending',
                             notificationMethod: 'callback',
-                            objectReference: expect.any(String),
-                            pollLimit: expect.any(Number),
                         })
                     );
                     expect(status).toBe(202);
@@ -515,17 +477,6 @@ test('view Account Balance', (done) => {
         ],
         onSuccess: (data, headers, status) => {
             try {
-                expect(data).toEqual(
-                    expect.objectContaining({
-                        currentBalance: expect.any(String),
-                        availableBalance: expect.any(String),
-                        reservedBalance: expect.any(String),
-                        unclearedBalance: expect.any(String),
-                        currency: expect.any(String),
-                        accountStatus: expect.any(String),
-                    })
-                );
-
                 expect(status).toBe(200);
                 done();
             } catch (error) {
@@ -652,15 +603,6 @@ test('Retrieve a Missing Response', (done) => {
         clientCorrelationId: 'cc56daf1-b2dd-4553-aeba-43d61d81f5c8',
         onSuccess: (data, headers, status) => {
             try {
-                expect(data).toEqual(
-                    expect.objectContaining({
-                        transactionReference: expect.any(String),
-                        type: expect.any(String),
-                        transactionStatus: expect.any(String),
-                        amount: expect.any(String),
-                        currency: expect.any(String),
-                    })
-                );
                 expect(status).toBe(200);
                 done();
             } catch (error) {
@@ -686,7 +628,7 @@ test('Retrieve a Missing Response', (done) => {
     });
 });
 
-test('View Request State	', (done) => {
+test('View Request State', (done) => {
     gsma.AgentService({
         type: 'viewRequestState',
         serverCorrelationId: 'db474b5c-cc9d-4173-b1b0-8ac06cb20e7c',
@@ -697,7 +639,6 @@ test('View Request State	', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: expect.any(String),
                         notificationMethod: expect.any(String),
-                        objectReference: expect.any(String),
                     })
                 );
                 expect(status).toBe(200);
@@ -777,7 +718,6 @@ test('Perform a Payment Reversal', (done) => {
                         serverCorrelationId: expect.any(String),
                         status: 'pending',
                         notificationMethod: expect.any(String),
-                        objectReference: expect.any(String),
                     })
                 );
                 expect(status).toBe(202);
