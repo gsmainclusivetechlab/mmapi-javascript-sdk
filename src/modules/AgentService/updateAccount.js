@@ -9,16 +9,10 @@ import {
  * @param  {} onError triggered when there is some error in validation
  */
 export default function updateAccount(props, onError) {
-    if (checkRequiredProps(props, ['accountId', 'identityId'], onError)) {
+    if (checkRequiredProps(props, ['accountId', 'identityId','data'], onError)) {
         const {
             accountId,
-            data = [
-                {
-                    op: 'replace',
-                    path: '/kycVerificationStatus',
-                    value: 'verified',
-                },
-            ],
+            data,
             identityId,
             correlationId,
             callbackUrl,
