@@ -7,6 +7,7 @@ export default function choosePayment(paymentTypes, authHeaderProps = {}) {
     return (clientProps) => {
         // check for required basic props in called function
         if (
+            clientProps &&
             clientProps.hasOwnProperty('onFailure') &&
             clientProps.hasOwnProperty('onSuccess')
         ) {

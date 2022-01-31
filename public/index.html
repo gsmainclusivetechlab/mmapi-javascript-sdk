@@ -10,35 +10,22 @@
         <h1 class="main"></h1>
         <script src="mmsdk.min.js"></script>
         <script>
-            // ------------ Basic Auth ----------------
+            // ------------ Init Auth ----------------
 
             gsma.initBasicAuth(
                 '59vthmq3f6i15v6jmcjskfkmh', //consumer key
                 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb', //consumer secret key
                 'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback' // global callbackUrl
             );
-            // ------------ Standard Auth  --------------
-
-            // gsma.initStandardAuth({
-            //     username: '59vthmq3f6i15v6jmcjskfkmh', //consumer key
-            //     pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb', //consumer secret key
-            //     apiKey: 'oVN89kXyTx1cKT3ZohH7h6foEmQmjqQm3OK2U8Ue', //api key
-            //     onSuccess: (data) => {
-            //         console.log('Std Auth1 sucess=>', data);
-            //         afterInit();
-            //     },
-            //     onFailure: (error) => {
-            //         console.log('Std Auth1  error=>', error);
-            //     },
-            // });
         </script>
-        <!-- <script src="noAuth.js"></script> -->
-        <!-- <script src="merchantPay.js"></script> -->
-        <!-- <script src="disbursement.js"></script> -->
-        <!-- <script src="InterTransfers.js"></script> -->
-        <!-- <script src="p2p.js"></script> -->
-        <!-- <script src="recurring.js"></script> -->
+        <!-- load sdk modules -->
+        <script src="merchantPay.js"></script>
+        <script src="disbursement.js"></script>
+        <script src="InterTransfers.js"></script>
+        <script src="p2p.js"></script>
+        <script src="recurring.js"></script>
         <script src="billPayment.js"></script>
-
+        <script src="accountLinking.js"></script>
+        <script src="agentService.js"></script>
     </body>
 </html>

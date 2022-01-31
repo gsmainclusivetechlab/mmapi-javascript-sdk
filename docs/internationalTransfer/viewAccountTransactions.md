@@ -28,7 +28,7 @@ Here, if only a single account ID is provided, `viewAccountTransactions` creates
       "value": "2"
     }
   ],
-  "type": "viewAccountTransactions"
+  "type": "viewAccountTransaction"
 }
 ```
 

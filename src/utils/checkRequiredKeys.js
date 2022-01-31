@@ -6,17 +6,19 @@ const checkRequiredKeys = (allObjs = null, keys = [], onError = null) => {
                 errors.push({ key: k, value: '' });
             }
         });
-        if (onError && errors.length > 0) {
-            onError(
-                {
-                    errorCategory: 'validation',
-                    errorCode: 'MandatoryValueNotSupplied',
-                    errorDescription:
-                        'A mandatory value has not been provided in the header and/or JSON body.',
-                    errorParameters: errors,
-                },
-                '400'
-            );
+        if (errors.length > 0) {
+            if (onError) {
+                onError(
+                    {
+                        errorCategory: 'validation',
+                        errorCode: 'MandatoryValueNotSupplied',
+                        errorDescription:
+                            'A mandatory value has not been provided in the header and/or JSON body.',
+                        errorParameters: errors,
+                    },
+                    400
+                );
+            }
             return false;
         } else {
             return true;

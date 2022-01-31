@@ -15,19 +15,25 @@ export default function fetchHandler(
         } else {
             apiInstance = gsma;
         }
-        apiInstance(reqConfig)
-            .then((res) => {
-                return successHandler
-                    ? successHandler(res?.data, res?.headers, res?.status)
-                    : null;
-            })
-            .catch((error) => {
-                return errorHandler && error.response
-                    ? errorHandler(
-                          error?.response?.data,
-                          error?.response?.status
-                      )
-                    : null;
-            });
+        try {
+            apiInstance(reqConfig)
+                .then((res) => {
+                    return successHandler
+                        ? successHandler(res?.data, res?.headers, res?.status)
+                        : null;
+                })
+                .catch((error) => {
+                    return errorHandler && error.response
+                        ? errorHandler(
+                              error?.response?.data,
+                              error?.response?.status
+                          )
+                        : null;
+                });
+        } catch (error) {
+            return errorHandler && error.response
+                ? errorHandler(error?.response?.data, error?.response?.status)
+                : null;
+        }
     }
 }
