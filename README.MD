@@ -1001,6 +1001,16 @@ cd mmapi-Javascript-sdk
 npm install
 ```
 
+-   Create .env file for Setting Api BaseUrl:
+
+
+e.g.
+
+```
+GSMA_BASE_URL= https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm
+GSMA_BASE_URL_AUTH=https://sandbox.mobilemoneyapi.io/2/oauth/simulator/v1.2/mm/
+GSMA_TOKEN_URL=https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken
+```
 
 -   Run sample code by staring the server and results can be view in browser console:
 
