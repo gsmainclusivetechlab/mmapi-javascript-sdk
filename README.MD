@@ -19,7 +19,10 @@ This document contains the following sections:
     - [Account Linking](#accountLinking)
     - [Bill Payments](#billPayments)
     - [Agent Services](#agentServices)
-
+-   [Tests](#tests)
+    -   [Unit tests](#unit-tests)
+    -   [Integration tests](#integration-tests)
+-   [Samples](#samples)
 <a name="requirements"></a>
 ## Requirements
 
@@ -951,3 +954,58 @@ Contains functions for all the use case scenarios within P2P Transfers.
   </tr>
 </tbody>
 </table>
+
+<a name="tests"></a>
+## Tests
+
+The `tests` folder contains the test cases. Two type of testing implemented are,
+
+1. Unit
+2. Integration
+
+### Unit tests
+
+These tests are located in `tests/unit` and are responsible for ensuring each functional unit is behaving as expected, without considering the rest of the system. Unit tests heavily leverage mocking and are an essential part of the testing harness.
+
+To run unit tests,
+
+```shell
+npm run test:unit
+```
+
+To run tests individually (be sure not to be pointing to an integration test file):
+
+```shell
+npm run test <test_file>
+```
+
+### Integration tests
+
+Integration test is done using the `Test Application`. Test App is available on branch `test-app`.
+
+
+## Samples
+
+The sample code snippets are all completely independent and self-contained. You can analyze them to get an understanding of how a particular method can be implemented in your application. Sample code snippets can be found [here](/public). Steps to run the sample code snippets are as follows:
+
+-   Clone this repository:
+
+```
+git clone git@github.com:gsmainclusivetechlab/mmapi-javascript-sdk.git
+cd mmapi-Javascript-sdk
+```
+
+-  Install all dependencys:
+
+```
+npm install
+```
+
+
+-   Run sample code by staring the server and results can be view in browser console:
+
+```
+npm start
+```
+
+
