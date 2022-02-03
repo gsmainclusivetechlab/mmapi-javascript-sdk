@@ -10,13 +10,28 @@
         <h1 class="main"></h1>
         <script src="mmsdk.min.js"></script>
         <script>
-            // ------------ Init Auth ----------------
+            // ------------ Init Auth -----------------------
 
-            gsma.initBasicAuth(
-                '59vthmq3f6i15v6jmcjskfkmh', //consumer key
-                'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb', //consumer secret key
-                'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback' // global callbackUrl
-            );
+            // gsma.initBasicAuth(
+            //     '59vthmq3f6i15v6jmcjskfkmh', //consumer key
+            //     'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb', //consumer secret key
+            //     'ftp://..sds./' // global callbackUrl
+            // );
+
+            //  ------------ Init with Standard Auth ---------
+            gsma.initStandardAuth({
+                username: '59vthmq3f6i15v6jmcjskfkmh',
+                pass: 'ef8tl4gihlpfd7r8jpc1t1nda33q5kcnn32cj375lq6mg2nv7rb',
+                apiKey: '59vthmq3f6i15v6jmcjskfkmh',
+                callbackUrl:
+                    'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
+                onFailure: (errorObj) => {
+                    console.log('init failed stdAuth', errorObj);
+                },
+                onSuccess: (sucess) => {
+                    console.log('init success stdAuth', sucess);
+                },
+            });
         </script>
         <!-- load sdk modules -->
         <script src="merchantPay.js"></script>

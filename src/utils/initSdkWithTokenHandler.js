@@ -1,8 +1,9 @@
 import generateToken from '../apis/generateToken';
 import { moduleWrapperWithAuth } from '../modules';
+import { callbackUrlValidateWrapperWithMandatoryCheck } from './validator';
 
 // function handling token generation
-export default function tokenGenerator({
+function tokenGenerator({
     username = null,
     pass = null,
     apiKey = null,
@@ -10,34 +11,23 @@ export default function tokenGenerator({
     onSuccess = null,
     onFailure = null,
 }) {
-    if (username && pass && apiKey) {
-        // if user has token in cache
-        if (sessionStorage.getItem('mmSdkToken')) {
-            const tokenData = JSON.parse(sessionStorage.getItem('mmSdkToken'));
-            const { access_token: accessToken, expires_at } = tokenData;
+    // if user has token in cache
+    if (sessionStorage.getItem('mmSdkToken')) {
+        const tokenData = JSON.parse(sessionStorage.getItem('mmSdkToken'));
+        const { access_token: accessToken, expires_at } = tokenData;
 
-            // if token not expired
-            if (
-                accessToken &&
-                checkForTokenExpire(expires_at) &&
-                accessToken.length > 0
-            ) {
-                // All moduled are initated with new accessToken and api key
-                moduleWrapperWithAuth({ apiKey, accessToken, callbackUrl });
-                onSuccess &&
-                    onSuccess(
-                        'You can access our functions using : window.gsma.auth'
-                    );
-            } else {
-                getToken({
-                    username,
-                    pass,
-                    apiKey,
-                    callbackUrl,
-                    onSuccess,
-                    onFailure,
-                });
-            }
+        // if token not expired
+        if (
+            accessToken &&
+            checkForTokenExpire(expires_at) &&
+            accessToken.length > 0
+        ) {
+            // All moduled are initated with new accessToken and api key
+            moduleWrapperWithAuth({ apiKey, accessToken, callbackUrl });
+            onSuccess &&
+                onSuccess(
+                    'You can access our functions using : window.gsma.auth'
+                );
         } else {
             getToken({
                 username,
@@ -49,22 +39,14 @@ export default function tokenGenerator({
             });
         }
     } else {
-        if (onFailure) {
-            onFailure(
-                {
-                    errorCategory: 'validation',
-                    errorCode: 'MandatoryValueNotSupplied',
-                    errorDescription:
-                        'Any of the mandatory value has not been provided while initialization.',
-                    errorParameters: [
-                        { key: 'username', value: '' },
-                        { key: 'pass', value: '' },
-                        { key: 'apiKey', value: '' },
-                    ],
-                },
-                400
-            );
-        }
+        getToken({
+            username,
+            pass,
+            apiKey,
+            callbackUrl,
+            onSuccess,
+            onFailure,
+        });
     }
 }
 
@@ -131,3 +113,5 @@ const setExpireTokenInStorage = ({ access_token = '', expires_in = 3600 }) => {
 };
 
 export { checkForTokenExpire, setExpireTokenInStorage };
+
+export default callbackUrlValidateWrapperWithMandatoryCheck(tokenGenerator);
