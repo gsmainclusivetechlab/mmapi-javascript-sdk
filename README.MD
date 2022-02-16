@@ -8,27 +8,71 @@ to customize your application integrations as needed. The SDK also includes a Sa
 This document contains the following sections:
 
 -   [Requirements](#requirements)
+-   [Getting Started](#gettingStarted)
 -   [Setting Up](#setting-up)
     -   [Integrating SDK to your Application](#setting-up)
 -   [Use Cases](#use-cases)
-    - [Merchant Payments](#merchantPayment)
-    - [Disbursements](#disbursements)
-    - [International Transfers](#international)
-    - [P2P Transfers](#p2p)
-    - [Recurring Payments](#recurringPayments)
-    - [Account Linking](#accountLinking)
-    - [Bill Payments](#billPayments)
-    - [Agent Services](#agentServices)
+    -   [Merchant Payments](#merchantPayment)
+    -   [Disbursements](#disbursements)
+    -   [International Transfers](#international)
+    -   [P2P Transfers](#p2p)
+    -   [Recurring Payments](#recurringPayments)
+    -   [Account Linking](#accountLinking)
+    -   [Bill Payments](#billPayments)
+    -   [Agent Services](#agentServices)
 -   [Tests](#tests)
     -   [Unit tests](#unit-tests)
     -   [Integration tests](#integration-tests)
 -   [Samples](#samples)
-<a name="requirements"></a>
+    <a name="requirements"></a>
+
 ## Requirements
 
 -   Any Browser
 
+<a name="gettingStarted"></a>
+
+## Getting Started
+
+-   Clone this repository:
+
+```
+git clone git@github.com:gsmainclusivetechlab/mmapi-javascript-sdk.git
+cd mmapi-Javascript-sdk
+```
+
+-   Install all dependencys defined in `package.json` to configure project setup:
+
+```
+npm install
+```
+
+-   Create .env file for Setting Api BaseUrl:
+
+e.g.
+
+```
+GSMA_BASE_URL= https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm
+GSMA_BASE_URL_AUTH=https://sandbox.mobilemoneyapi.io/2/oauth/simulator/v1.2/mm/
+GSMA_TOKEN_URL=https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken
+```
+
+-   Run sample code by staring the server and results can be view in browser console:
+
+```
+npm start
+```
+
+-   Generate a build of sdk:
+
+```
+npm run build
+```
+
+The build will be present in `dist/mmsdk.min.js`. This build file is provided to the client app as CDN.
+
 <a name="setting-up"></a>
+
 ## Setting Up
 
 ## Integrating SDK to your Application
@@ -79,12 +123,11 @@ To Authenticate using Basic Authentication method, you can use `initBasicAuth()`
 ```javascript
 window.gsma.initBasicAuth(consumerKey, consumerSecret, callbackUrl);
 ```
+
 ## Note
 
 > callbackUrl is an optional parameter. If no callbackUrl is provided during Authentication Initialization or with the Input data, the notification method will be polling.
 > Once callbackUrl is defined globaly, define `notificationMethod:'polling'` to switch into polling for each requests.
-
-
 
 <a name="oauth2"></a>
 
@@ -94,23 +137,24 @@ To Authenticate using OAuth2 based Authentication method, you can use `initStand
 
 ```javascript
 window.gsma.initStandardaAuth({
-  username: username,
-  pass: password,
-  apiKey: apiKey,
-  callbackUrl: globalCallbackUrl,
-  onSuccess: (res) => {
-    console.log("Authentication Success", res);
-  },
-  onFailure: (res) => {
-    console.log("Authentication Failed", res);
-  },
+    username: username,
+    pass: password,
+    apiKey: apiKey,
+    callbackUrl: globalCallbackUrl,
+    onSuccess: (res) => {
+        console.log('Authentication Success', res);
+    },
+    onFailure: (res) => {
+        console.log('Authentication Failed', res);
+    },
 });
 ```
+
 ## Note
 
 > callbackUrl is an optional parameter. If no callbackUrl is provided during Authentication Initialization or with the Input data, the notification method will be polling.
 > Once callbackUrl is defined globaly, define `notificationMethod:'polling'` to switch into polling for each requests.
-<a name="noAuth"></a>
+> <a name="noAuth"></a>
 
 ### Executing without Authentication
 
@@ -131,24 +175,24 @@ For Example:
 
 ```javascript
 window.gsma.noAuth.MerchantPayment({
-  type: "createMerchantTransaction",
-  callbackUrl: "https://www.test.com/callbackurl",
-  data: {
-    amount: "200.00",
-    debitParty: [
-      {
-        key: "accountid",
-        value: "2999",
-      },
-    ],
-    creditParty: [
-      {
-        key: "accountid",
-        value: "2999",
-      },
-    ],
-    currency: "RWF",
-  },
+    type: 'createMerchantTransaction',
+    callbackUrl: 'https://www.test.com/callbackurl',
+    data: {
+        amount: '200.00',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        creditParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        currency: 'RWF',
+    },
 });
 ```
 
@@ -173,24 +217,24 @@ For Example:
 
 ```javascript
 window.gsma.auth.MerchantPayment({
-  type: "createMerchantTransaction",
-  callbackUrl: "https://www.test.com/callbackurl",
-  data: {
-    amount: "200.00",
-    debitParty: [
-      {
-        key: "accountid",
-        value: "2999",
-      },
-    ],
-    creditParty: [
-      {
-        key: "accountid",
-        value: "2999",
-      },
-    ],
-    currency: "RWF",
-  },
+    type: 'createMerchantTransaction',
+    callbackUrl: 'https://www.test.com/callbackurl',
+    data: {
+        amount: '200.00',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        creditParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        currency: 'RWF',
+    },
 });
 ```
 
@@ -198,14 +242,14 @@ window.gsma.auth.MerchantPayment({
 
 ## Use Cases
 
-- [Merchant Payments](#merchantPayment)
-- [Disbursements](#disbursements)
-- [International Transfers](#international)
-- [P2P Transfers](#p2p)
-- [Recurring Payments](#recurringPayments)
-- [Account Linking](#accountLinking)
-- [Bill Payments](#billPayments)
-- [Agent Services](#agentServices)
+-   [Merchant Payments](#merchantPayment)
+-   [Disbursements](#disbursements)
+-   [International Transfers](#international)
+-   [P2P Transfers](#p2p)
+-   [Recurring Payments](#recurringPayments)
+-   [Account Linking](#accountLinking)
+-   [Bill Payments](#billPayments)
+-   [Agent Services](#agentServices)
 
 <a name="merchantPayment"></a>
 
@@ -599,6 +643,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="recurringPayments"></a>
+
 ### Recurring Payments(RecurringPayment)
 
 <table>
@@ -663,7 +708,6 @@ Contains functions for all the use case scenarios within P2P Transfers.
     <td>callbackUrl, data, accountId</td>
 	
   </tr>
-  
 
   <tr>
     <td>Obtain a Service Provider Balance</td>
@@ -696,6 +740,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="accountLinking"></a>
+
 ### Account Linking(AccountLinking)
 
 <table>
@@ -770,6 +815,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="billPayments"></a>
+
 ### Bill Payments (BillPayment)
 
 <table>
@@ -837,8 +883,8 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="agentServices"></a>
-### Agent Services (AgentService)
 
+### Agent Services (AgentService)
 
 <table>
 <thead>
@@ -956,6 +1002,7 @@ Contains functions for all the use case scenarios within P2P Transfers.
 </table>
 
 <a name="tests"></a>
+
 ## Tests
 
 The `tests` folder contains the test cases. Two type of testing implemented are,
@@ -983,7 +1030,6 @@ npm run test <test_file>
 
 Integration test is done using the `Test Application`. Test App is available on branch `test-app`.
 
-
 ## Samples
 
 The sample code snippets are all completely independent and self-contained. You can analyze them to get an understanding of how a particular method can be implemented in your application. Sample code snippets can be found [here](/public). Steps to run the sample code snippets are as follows:
@@ -995,17 +1041,24 @@ git clone git@github.com:gsmainclusivetechlab/mmapi-javascript-sdk.git
 cd mmapi-Javascript-sdk
 ```
 
--  Install all dependencys:
+-   Install all dependencys:
 
 ```
 npm install
 ```
 
+-   Create .env file for Setting Api BaseUrl:
+
+e.g.
+
+```
+GSMA_BASE_URL= https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm
+GSMA_BASE_URL_AUTH=https://sandbox.mobilemoneyapi.io/2/oauth/simulator/v1.2/mm/
+GSMA_TOKEN_URL=https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken
+```
 
 -   Run sample code by staring the server and results can be view in browser console:
 
 ```
 npm start
 ```
-
-

@@ -1,11 +1,25 @@
 import { moduleWrapperWithAuth, moduleWrapperWithoutAuth } from './modules';
 import sdkWithTokenHandler from './utils/initSdkWithTokenHandler';
-// sepereate call to get token
-import generateToken from './apis/generateToken';
+import { isValidURL } from './utils';
 
 window.gsma = {
     initBasicAuth: (username, pass, callbackUrl = null) => {
-        moduleWrapperWithAuth({ username, pass, callbackUrl });
+        if (callbackUrl) {
+            if (isValidURL(callbackUrl)) {
+                moduleWrapperWithAuth({ username, pass, callbackUrl });
+            } else {
+                console.error({
+                    errorCategory: 'validation',
+                    errorCode: 'Invalid CallBack Url',
+                    errorDescription: 'SDK initiated without callback url',
+                    errorParameters: [
+                        { key: 'callbackUrl', value: callbackUrl },
+                    ],
+                });
+            }
+        } else {
+            moduleWrapperWithAuth({ username, pass });
+        }
     },
     // initStandardAuthWithToken: (apiKey, accessToken) => {
     //     moduleWrapperWithAuth({ apiKey, accessToken });
