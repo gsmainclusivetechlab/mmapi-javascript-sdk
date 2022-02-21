@@ -71,6 +71,15 @@ npm run build
 
 The build will be present in `dist/mmsdk.min.js`. This build file is provided to the client app as CDN.
 
+-   Resolve CORS issue on browser
+
+```
+  - window=>run
+  - execute command : chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+```
+
+Run chrome without security checks due to CORS issue.
+
 <a name="setting-up"></a>
 
 ## Setting Up
