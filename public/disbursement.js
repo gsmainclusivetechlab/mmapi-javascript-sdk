@@ -1,248 +1,295 @@
+// Individual Disbursement
 
-GSMA_BASIC_AUTH = gsma.auth;
-// GSMA_BASIC_AUTH.disbursement({
-//     type: 'individualDisbursement',
-//     data: {
-//         amount: '200.00',
-//         debitParty: [
-//             {
-//                 key: 'accountid',
-//                 value: '2999',
-//             },
-//         ],
-//         creditParty: [
-//             {
-//                 key: 'accountid',
-//                 value: '2999',
-//             },
-//         ],
-//         currency: 'RWF',
-//     },
-//     onSuccess: (data) => {
-//         console.log('handling sucess', data);
-//         getBulkTransactionState(data);
-//     },
-//     onFailure: (error) => {
-//         console.log('show error', error);
-//     },
-// });
+gsma.auth.Disbursement({
+    type: 'createDisbursementTransaction',
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
+    data: {
+        amount: '200.00',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        creditParty: [
+            {
+                key: 'accountid',
+                value: '30',
+            },
+        ],
+        currency: 'RWF',
+    },
+    onSuccess: (data, headers, status) => {
+        console.log('createDisbursementTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('createDisbursementTransaction error', error, status);
+    },
+    getClientCorrelationId: (clientCorrelationId) => {
+        console.log(
+            'createMerchantTransaction correlationId',
+            clientCorrelationId
+        );
+    },
+});
 
-// used for polling ---
-// function getBulkTransactionState({ serverCorrelationId }) {
-//     GSMA_BASIC_AUTH.disbursement({
-//         type: 'requestState',
-//         serverCorrelationId: serverCorrelationId,
-//         onSuccess: (data) => {
-//             console.log(' sucess: polling request state', data);
-//             disbursementReversal(data);
-//         },
-//         onFailure: (error) => {
-//             console.log(' error: polling request state', error);
-//         },
-//     });
-// }
+// Individual Disbursement using polling
 
-// used for polling reference ----
-// function getBulkTransactionReference({ objectReference }) {
-//     GSMA_BASIC_AUTH.disbursement({
-//         type: 'transactionReference',
-//         transactionReference: objectReference,
-//         onSuccess: (data) => {
-//             console.log(' sucess: polling request reference', data);
-//         },
-//         onFailure: (error) => {
-//             console.log(' error: polling request reference', error);
-//         },
-//     });
-// }
+gsma.auth.Disbursement({
+    type: 'createDisbursementTransaction',
+    data: {
+        amount: '200.00',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        creditParty: [
+            {
+                key: 'accountid',
+                value: '30',
+            },
+        ],
+        currency: 'RWF',
+    },
+    onSuccess: (data, headers, status) => {
+        console.log('createDisbursementTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('createDisbursementTransaction error', error, status);
+    },
+});
 
-// check for reversal---
+//:: Bulk Disbursement
+// Create a Transaction Batch
 
-// function disbursementReversal({ objectReference }) {
-//     GSMA_BASIC_AUTH.disbursement({
-//         type: 'reversal',
-//         transactionReference: objectReference,
-//         callbackUrl:
-//             'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
-//         onSuccess: (data) => {
-//             console.log(' sucess: disbursement reversal', data);
-//             getBulkTransactionReference(data);
-//         },
-//         onFailure: (error) => {
-//             console.log(' error: disbursement reversal', error);
-//         },
-//     });
-// }
-
-GSMA_BASIC_AUTH.disbursement({
-    type: 'bulkDisbursement',
+gsma.auth.Disbursement({
+    type: 'createBatchTransaction',
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
     data: {
         transactions: [
             {
-                amount: '2001.00',
-                type: 'transfer',
-                creditParty: [
-                    {
-                        key: 'accountid',
-                        value: '2000',
-                    },
-                ],
+                type: 'billpay',
+                amount: '200.00',
                 currency: 'RWF',
                 debitParty: [
                     {
                         key: 'accountid',
                         value: '2999',
+                    },
+                ],
+                creditParty: [
+                    {
+                        key: 'accountid',
+                        value: '30',
                     },
                 ],
             },
             {
-                amount: '200.00',
-                type: 'transfer',
-                creditParty: [
+                type: 'billpay',
+                amount: '400.00',
+                currency: 'RWF',
+                debitParty: [
                     {
                         key: 'accountid',
                         value: '2999',
                     },
                 ],
-                currency: 'RWF',
-                debitParty: [
+                creditParty: [
                     {
                         key: 'accountid',
-                        value: '2000',
+                        value: '30',
                     },
                 ],
             },
         ],
-        batchTitle: 'Batch_Test',
-        batchDescription: 'Testing a Batch',
-        scheduledStartDate: '2019-12-11T15:08:03.158Z',
     },
-    // callbackUrl:
-    //     'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
-    notificationMethod:'polling',
-    onSuccess: (data) => {
-        console.log('bulk disbursement sucess', data);
-        getState(data)
+    onSuccess: (data, headers, status) => {
+        console.log('createBatchTransaction success', data, status);
     },
-    onFailure: (error) => {
-        console.error('bulk disbursement error', error);
+    onFailure: (error, status) => {
+        console.log('createBatchTransaction error', error, status);
+    },
+    getClientCorrelationId: (clientCorrelationId) => {
+        console.log(
+            'createMerchantTransaction correlationId',
+            clientCorrelationId
+        );
+    },
+});
+// View a Transaction Batch
+
+gsma.auth.Disbursement({
+    type: 'viewBatchTransaction',
+    batchId: 'REF-1635833835849',
+    onSuccess: (data, headers, status) => {
+        console.log('viewBatchTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewBatchTransaction error', error, status);
     },
 });
 
+// View Batch Completions
 
-
-
-function getState({serverCorrelationId}){
-    GSMA_BASIC_AUTH.international({
-        type: 'requestState',
-        serverCorrelationId:serverCorrelationId,
-        onSuccess: (data, header, status) => {
-            console.log('BASIC AUTH success international getState', status, data);
-            getTransactionReference(data)
-            approval(data)
-        },
-        onFailure: (error, header, status) => {
-            console.error('BASIC AUTH error international getState', error);
-        },
-    });
-}
-
-function approval({objectReference:batchId}){
-    GSMA_BASIC_AUTH.disbursement({
-    type: 'bulkDisbursementApproval',
-    batchId: batchId,
-    callbackUrl:
-        'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
-    onSuccess: (data, status) => {
-        console.log('sucess: bulkDisbursementApproval :', data, status);
-        // getState(data)
+gsma.auth.Disbursement({
+    type: 'viewBatchCompletions',
+    batchId: 'REF-1635833835849',
+    onSuccess: (data, headers, status) => {
+        console.log('viewBatchCompletions success', data, status);
     },
-    onFailure: (error) => {
-        console.error('error :bulkDisbursementApproval ', error);
+    onFailure: (error, status) => {
+        console.log('viewBatchCompletions error', error, status);
     },
 });
-}
 
-function getTransactionReference({ objectReference: transactionReference }) {
-    //   call to get transaction referece
-    GSMA_BASIC_AUTH.merchantPay({
-        type: 'transactionReference',
-        transactionReference: transactionReference,
-        onSuccess: (data, status) => {
-            console.log(
-                'BASIC AUTH success transaction reference',
-                status,
-                data
-            );
+// View Batch Completions
+
+gsma.auth.Disbursement({
+    type: 'viewBatchRejections',
+    batchId: 'REF-1635833835849',
+    onSuccess: (data, headers, status) => {
+        console.log('viewBatchRejections success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewBatchRejections error', error, status);
+    },
+});
+
+//  :: Bulk Disbursement with Maker / Checker
+// Update a Transaction Batch
+
+gsma.auth.Disbursement({
+    type: 'updateBatchTransaction',
+    batchId: 'REF-1635833835849',
+    onSuccess: (data, headers, status) => {
+        console.log('updateBatchTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('updateBatchTransaction error', error, status);
+    },
+    getClientCorrelationId: (clientCorrelationId) => {
+        console.log(
+            'createMerchantTransaction correlationId',
+            clientCorrelationId
+        );
+    },
+});
+
+// view Account Balance
+
+gsma.auth.Disbursement({
+    type: 'viewAccountBalance',
+    accountId: [
+        {
+            key: 'accountid',
+            value: '2999',
         },
-        onFailure: (error, status) => {
-            console.log('BASIC AUTH error transaction reference', error);
+    ],
+    onSuccess: (data, headers, status) => {
+        console.log('viewAccountBalance success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewAccountBalance error', error, status);
+    },
+    getClientCorrelationId: (clientCorrelationId) => {
+        console.log(
+            'createMerchantTransaction correlationId',
+            clientCorrelationId
+        );
+    },
+});
+
+// Retrieve a Set of Transactions for an Account
+
+gsma.auth.Disbursement({
+    type: 'viewAccountTransaction',
+    accountId: [
+        {
+            key: 'accountid',
+            value: '2999',
         },
-    });
-}
+    ],
+    filter: [
+        {
+            key: 'offset',
+            value: '0',
+        },
+        {
+            key: 'limit',
+            value: '2',
+        },
+    ],
+    onSuccess: (data, headers, status) => {
+        console.log('viewAccountTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewAccountTransaction error', error, status);
+    },
+});
 
+// Check for Service Availability
 
-// GSMA_BASIC_AUTH.disbursement({
-//     type: 'bulkDisbursementCompleted',
-//     batchId: 'REF-1635786695336',
-//     onSuccess: (data, status) => {
-//         console.log('bulk disbursement  completed sucess', data, status);
-        
-//     },
-//     onFailure: (error) => {
-//         console.error('bulk disbursement completed error', error);
-//     },
-// });
+gsma.auth.Disbursement({
+    type: 'viewServiceAvailability',
+    onSuccess: (data, headers, status) => {
+        console.log('viewServiceAvailability success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewServiceAvailability error', error, status);
+    },
+});
 
+// Retrieve a Missing Response
 
-// GSMA_BASIC_AUTH.disbursement({
-//     type: 'bulkDisbursementCompleted',
-//     batchId: 'REF-1635786695336',
-//     onSuccess: (data, status) => {
-//         console.log('bulk disbursement  completed sucess', data, status);
-//     },
-//     onFailure: (error) => {
-//         console.error('bulk disbursement completed error', error);
-//     },
-// });
+gsma.auth.Disbursement({
+    type: 'viewResponse',
+    clientCorrelationId: 'cc56daf1-b2dd-4553-aeba-43d61d81f5c8',
+    onSuccess: (data, headers, status) => {
+        console.log('viewResponse success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewResponse error', error, status);
+    },
+});
 
-// GSMA_BASIC_AUTH.disbursement({
-//     type: 'bulkDisbursementRejected',
-//     batchId: 'REF-1635786695336',
-//     onSuccess: (data, status) => {
-//         console.log('sucess: bulk disbursement rejected :', data, status);
-//     },
-//     onFailure: (error) => {
-//         console.error('error :bulk disbursement rejected ', error);
-//     },
-// });
+// View Request State
 
-// GSMA_BASIC_AUTH.disbursement({
-//     type: 'bulkDisbursementApproval',
-//     batchId: 'REF-1635788600694',
-//     callbackUrl:
-//         'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
-//     onSuccess: (data, status) => {
-//         console.log('sucess: bulkDisbursementApproval :', data, status);
-//     },
-//     onFailure: (error) => {
-//         console.error('error :bulkDisbursementApproval ', error);
-//     },
-// });
+gsma.auth.Disbursement({
+    type: 'viewRequestState',
+    serverCorrelationId: 'db474b5c-cc9d-4173-b1b0-8ac06cb20e7c',
+    onSuccess: (data, headers, status) => {
+        console.log('viewRequestState success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewRequestState error', error, status);
+    },
+});
 
-// GSMA_BASIC_AUTH.disbursement({
-//     type: 'payments',
-//     identifierType: 'accountid',
-//     identifier: 2000,
-//     offset: 0,
-//     limit: 20,
-//     getClientCorrelationId: (id) => {
-//         console.log('getting client id', id);
-//     },
-//     onSuccess: (data, status) => {
-//         console.log('sucess: get all transactions :', data, status);
-//     },
-//     onFailure: (error) => {
-//         console.error('error :get all transactions ', error);
-//     },
-// });
+// Retrieve a Transaction
+
+gsma.auth.Disbursement({
+    type: 'viewTransaction',
+    transactionReference: 'REF-1633678194929',
+    onSuccess: (data, headers, status) => {
+        console.log('viewTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewTransaction error', error, status);
+    },
+});
+
+// Perform a Payment Reversal
+
+gsma.auth.Disbursement({
+    type: 'createReversal',
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
+    transactionReference: 'REF-1466171557592',
+    onSuccess: (data, headers, status) => {
+        console.log('createReversal success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('createReversal error', error, status);
+    },
+});

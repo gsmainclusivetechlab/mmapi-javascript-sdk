@@ -10,11 +10,10 @@ Step 7: Add `SKIP_PREFLIGHT_CHECK=true` in .env<br />
 Step 8 (OPTIONAL): If SDK is added locally into the application, Add the following Environment variables as well in .env<br />
 
 ```
-GSMA_TOKEN_URL = 'https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken'
-GSMA_BASE_URL = 'https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm'
-GSMA_BASE_URL_AUTH = 'https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm'
-CONSUMER_KEY = '(Consumer key)'
-CONSUMER_SECRET = '(Consumer Secret)'
+REACT_APP_CLIENT_API_KEY = '(API key)
+REACT_APP_CONSUMER_KEY = '(Consumer key)'
+REACT_APP_CONSUMER_SECRET = '(Consumer Secret)'
+SKIP_PREFLIGHT_CHECK=true
 ```
 
 Step 9: npm start<br />

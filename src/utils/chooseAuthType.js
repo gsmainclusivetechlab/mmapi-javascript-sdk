@@ -1,12 +1,12 @@
 export default function chooseAuthType(
     restParentProps,
     authHeaderProps,
-    requestConfig,
+    requestConfig = {},
     basicAuthCallBack,
     standarsAuthCallBack,
     onFailure
 ) {
-    if (restParentProps.hasOwnProperty('auth')) {
+    if (restParentProps && restParentProps.hasOwnProperty('auth')) {
         let {
             auth: {
                 apiKey = null,
@@ -49,9 +49,10 @@ export default function chooseAuthType(
         );
     } else {
         // no auth can throw error
-        basicAuthCallBack({
-            ...requestConfig.headers,
-        });
+        basicAuthCallBack &&
+            basicAuthCallBack({
+                ...requestConfig?.headers,
+            });
     }
 }
 
@@ -74,22 +75,25 @@ function generateAuthHeaderFormGivenParams(
     onFailure
 ) {
     if (apiKey && accessToken) {
-        stdAuth({
-            ...requestConfig.headers,
-            'X-API-Key': apiKey,
-            Authorization: `Bearer ${accessToken}`,
-        });
+        stdAuth &&
+            stdAuth({
+                ...requestConfig.headers,
+                'X-API-Key': apiKey,
+                Authorization: `Bearer ${accessToken}`,
+            });
     } else if (username && pass) {
         const base64Data = window.btoa(`${username}:${pass}`);
 
-        basicAuth({
-            ...requestConfig.headers,
-            Authorization: `Bearer ${base64Data}`,
-        });
+        basicAuth &&
+            basicAuth({
+                ...requestConfig.headers,
+                Authorization: `Bearer ${base64Data}`,
+            });
     } else {
         // onFailure('Missing auth params', '400');
-        basicAuth({
-            ...requestConfig.headers
-        });
+        basicAuth &&
+            basicAuth({
+                ...requestConfig.headers,
+            });
     }
 }

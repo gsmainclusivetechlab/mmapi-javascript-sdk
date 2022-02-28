@@ -3,12 +3,12 @@ import { v4 as uuidv4 } from 'uuid';
 export default function checkForExistingType(
     paymentTypes,
     type,
-    rest,
+    rest = {},
     onFailure,
     getClientCorrelationId = null,
     globalCallBackUrl = null
 ) {
-    if (paymentTypes[type]) {
+    if (paymentTypes && type && paymentTypes[type]) {
         const correlationId = uuidv4();
         let restWithcorrelationId = { correlationId, ...rest };
 
@@ -17,6 +17,7 @@ export default function checkForExistingType(
 
         // check individual request have a callback mentioned
         if (
+            rest &&
             rest.hasOwnProperty('notificationMethod') &&
             rest.notificationMethod === 'polling'
         ) {
@@ -24,7 +25,7 @@ export default function checkForExistingType(
                 // remove callbackUrl property to switch into polling
                 delete restWithcorrelationId.callbackUrl;
             }
-        } else if (!rest.hasOwnProperty('callbackUrl')) {
+        } else if (rest && !rest.hasOwnProperty('callbackUrl')) {
             // CONFIG globalCallBackUrl TO EACH REQUEST
             if (globalCallBackUrl) {
                 restWithcorrelationId['callbackUrl'] = globalCallBackUrl;
@@ -33,19 +34,22 @@ export default function checkForExistingType(
 
         return paymentTypes[type](restWithcorrelationId, onFailure);
     } else {
-        onFailure(
-            {
-                errorCategory: 'validation',
-                errorCode: 'typeError',
-                errorDescription: 'Invalid Payment Type ',
-                errorParameters: [
-                    {
-                        key: 'type',
-                        value: type,
-                    },
-                ],
-            },
-            '400'
-        );
+        if (onFailure) {
+            onFailure(
+                {
+                    errorCategory: 'validation',
+                    errorCode: 'typeError',
+                    errorDescription: 'Invalid Payment Type ',
+                    errorParameters: [
+                        {
+                            key: 'type',
+                            value: type,
+                        },
+                    ],
+                },
+                400
+            );
+        }
+        return null;
     }
 }

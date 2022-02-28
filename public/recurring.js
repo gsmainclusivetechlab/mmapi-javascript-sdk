@@ -1,86 +1,230 @@
-GSMA_BASIC_AUTH = gsma.auth;
+// Setup a Recurring Payment
 
-// setupRecurring();
-// viewDebitMandates()
-viewAccountTransactions()
-function setupRecurring() {
-    GSMA_BASIC_AUTH.RecurringPayment({
-        type: 'createAccountDebitMandate',
-        data:{
-            "payee": [
-             {
-               "key": "accountid",
-               "value": "2999"
-             }
-           ],
-             "requestDate": "2018-07-03T10:43:27.405Z",
-             "startDate": "2018-07-03T10:43:27.405Z",
-             "currency": "GBP",
-             "amountLimit": "1000.00",
-             "endDate": "2028-07-03T10:43:27.405Z",
-             "numberOfPayments": "2",
-             "frequencyType": "sixmonths",
-             "customData": [
-                 {
-                 "key": "keytest",
-                 "value": "keyvalue"
-                 }
-             ]        
-         },
-         accountId:[{
-             key:'accountId',
-             value:'2000'
-         }],
+gsma.auth.RecurringPayment({
+    type: 'createAccountDebitMandate',
+    accountId: [
+        {
+            key: 'accountid',
+            value: '2999',
+        },
+    ],
+    data: {
+        payee: [
+            {
+                key: 'accountId',
+                value: '2999',
+            },
+        ],
+        startDate: '2018-11-20',
+        requestDate: '2021-11-24T12:44:34.223Z',
+    },
+    onSuccess: (data, headers, status) => {
+        console.log('createAccountDebitMandate success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('createAccountDebitMandate error', error, status);
+    },
+    getClientCorrelationId: (clientCorrelationId) => {
+        console.log(
+            'createMerchantTransaction correlationId',
+            clientCorrelationId
+        );
+    },
+});
 
-        onSuccess: (data, header, status) => {
-            console.log('BASIC AUTH success createAccountDebitMandate', header, data);
-        },
-        onFailure: (error, status) => {
-            console.error('BASIC AUTH error createAccountDebitMandate', error);
-        },
-    });
-}
+// Retrieve a Debit Mandate
 
-function viewDebitMandates() {
-    GSMA_BASIC_AUTH.RecurringPayment({
-        type: 'viewAccountDebitMandate',
-        mandateReference:'REF-1637918417894',
-        accountId:[{
-            key:'accountId',
-            value:'2000'
-        }],
-        onSuccess: (data, header, status) => {
-            console.log(
-                'BASIC AUTH success viewAccountDebitMandate',
-                header,
-                status,
-                data
-            );
+gsma.auth.RecurringPayment({
+    type: 'viewAccountDebitMandate',
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
+    accountId: [
+        {
+            key: 'accountid',
+            value: '2999',
         },
-        onFailure: (error, status) => {
-            console.error('BASIC AUTH error viewAccountDebitMandate', error);
-        },
-    });
-}
+    ],
+    mandateReference: 'REF-1637758263349',
 
-function viewAccountTransactions(){
-    GSMA_BASIC_AUTH.RecurringPayment({
-        type: 'viewAccountTransactions',
-        accountId:[{
-            key:'accountId',
-            value:'2000'
-        }],
-        filter:[{sdf:'sdf',sdf:'sdfsd'}],
-        onSuccess: (data, header, status) => {
-            console.log(
-                'BASIC AUTH success viewAccountTransaction',
-                header,
-                status,
-                data
-            );
+    onSuccess: (data, headers, status) => {
+        console.log('viewAccountDebitMandate success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewAccountDebitMandate error', error, status);
+    },
+});
+
+// Take a Recurring Payment
+
+gsma.auth.RecurringPayment({
+    type: 'createMerchantTransaction',
+    data: {
+        amount: '200.00',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        creditParty: [
+            {
+                key: 'accountid',
+                value: '30',
+            },
+        ],
+        currency: 'RWF',
+    },
+    callbackUrl:
+        'https://b23014ff-efaa-45ee-8518-4c1d34c71940.mock.pstmn.io/callback',
+    onSuccess: (data, headers, status) => {
+        console.log('createMerchantTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('createMerchantTransaction error', error, status);
+    },
+    getClientCorrelationId: (clientCorrelationId) => {
+        console.log(
+            'createMerchantTransaction correlationId',
+            clientCorrelationId
+        );
+    },
+});
+
+// view Account Balance
+
+gsma.auth.RecurringPayment({
+    type: 'viewAccountBalance',
+    accountId: [
+        {
+            key: 'accountid',
+            value: '2999',
         },
-        onFailure: (error, status) => {
-            console.error('BASIC AUTH error viewAccountTransaction', error);
+    ],
+    onSuccess: (data, headers, status) => {
+        console.log('viewAccountBalance success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewAccountBalance error', error, status);
+    },
+});
+
+// Retrieve a Set of Transactions for an Account
+
+gsma.auth.RecurringPayment({
+    type: 'viewAccountTransaction',
+    accountId: [
+        {
+            key: 'accountid',
+            value: '2999',
         },
-    });
-}
+    ],
+    filter: [
+        {
+            key: 'offset',
+            value: '0',
+        },
+        {
+            key: 'limit',
+            value: '2',
+        },
+    ],
+    onSuccess: (data, headers, status) => {
+        console.log('viewAccountTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewAccountTransaction error', error, status);
+    },
+});
+
+// Check for Service Availability
+
+gsma.auth.RecurringPayment({
+    type: 'viewServiceAvailability',
+    onSuccess: (data, headers, status) => {
+        console.log('viewServiceAvailability success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewServiceAvailability error', error, status);
+    },
+});
+
+// Retrieve a Missing Response
+
+gsma.auth.RecurringPayment({
+    type: 'viewResponse',
+    clientCorrelationId: 'cc56daf1-b2dd-4553-aeba-43d61d81f5c8',
+    onSuccess: (data, headers, status) => {
+        console.log('viewResponse success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewResponse error', error, status);
+    },
+});
+
+// View Request State
+
+gsma.auth.RecurringPayment({
+    type: 'viewRequestState',
+    serverCorrelationId: 'db474b5c-cc9d-4173-b1b0-8ac06cb20e7c',
+    onSuccess: (data, headers, status) => {
+        console.log('viewRequestState success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewRequestState error', error, status);
+    },
+});
+
+// Retrieve a Transaction
+
+gsma.auth.RecurringPayment({
+    type: 'viewTransaction',
+    transactionReference: 'REF-1633678194929',
+    onSuccess: (data, headers, status) => {
+        console.log('viewTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('viewTransaction error', error, status);
+    },
+});
+
+// Perform a Payment Reversal
+
+gsma.auth.RecurringPayment({
+    type: 'createReversal',
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
+    transactionReference: 'REF-1466171557592',
+    onSuccess: (data, headers, status) => {
+        console.log('createReversal success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('createReversal error', error, status);
+    },
+});
+
+// Perform a Payment Refund
+
+gsma.auth.RecurringPayment({
+    type: 'createRefundTransaction',
+    callbackUrl: 'https://end13wxm5t7fgd6.m.pipedream.net/',
+    data: {
+        amount: '200.00',
+        debitParty: [
+            {
+                key: 'accountid',
+                value: '2999',
+            },
+        ],
+        creditParty: [
+            {
+                key: 'accountid',
+                value: '30',
+            },
+        ],
+        currency: 'RWF',
+    },
+    onSuccess: (data, headers, status) => {
+        console.log('createRefundTransaction success', data, status);
+    },
+    onFailure: (error, status) => {
+        console.log('createRefundTransaction error', error, status);
+    },
+});
