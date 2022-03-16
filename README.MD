@@ -1,4 +1,4 @@
-# mmapi-JavaScript-sdk
+# mmapi-javascript-sdk
 
 The SDK provides separate use cases to handle necessary MMAPI functionality including Merchant Payments, Disbursements, International Transfers, P2P Transfers, Recurring Payments, Account Linking, Bill Payments and Agent Services (including Cash-In and Cash-Out). Each use case exposes use case scenarios
 to customize your application integrations as needed. The SDK also includes a Samples, so you can test interactions before integration.
@@ -38,7 +38,7 @@ This document contains the following sections:
 
 ```
 git clone git@github.com:gsmainclusivetechlab/mmapi-javascript-sdk.git
-cd mmapi-Javascript-sdk
+cd mmapi-javascript-sdk
 ```
 
 -   Install all dependencys defined in `package.json` to configure project setup:
@@ -52,9 +52,9 @@ npm install
 e.g.
 
 ```
-GSMA_BASE_URL= https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm
+GSMA_BASE_URL=https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm/
 GSMA_BASE_URL_AUTH=https://sandbox.mobilemoneyapi.io/2/oauth/simulator/v1.2/mm/
-GSMA_TOKEN_URL=https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken
+GSMA_TOKEN_URL=https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken/
 ```
 
 -   Run sample code by staring the server and results can be view in browser console:
@@ -197,7 +197,7 @@ window.gsma.noAuth.MerchantPayment({
         creditParty: [
             {
                 key: 'accountid',
-                value: '2999',
+                value: '1',
             },
         ],
         currency: 'RWF',
@@ -239,7 +239,7 @@ window.gsma.auth.MerchantPayment({
         creditParty: [
             {
                 key: 'accountid',
-                value: '2999',
+                value: '1',
             },
         ],
         currency: 'RWF',
@@ -1047,7 +1047,7 @@ The sample code snippets are all completely independent and self-contained. You 
 
 ```
 git clone git@github.com:gsmainclusivetechlab/mmapi-javascript-sdk.git
-cd mmapi-Javascript-sdk
+cd mmapi-javascript-sdk
 ```
 
 -   Install all dependencys:
@@ -1061,9 +1061,9 @@ npm install
 e.g.
 
 ```
-GSMA_BASE_URL= https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm
+GSMA_BASE_URL=https://sandbox.mobilemoneyapi.io/simulator/v1.2/passthrough/mm/
 GSMA_BASE_URL_AUTH=https://sandbox.mobilemoneyapi.io/2/oauth/simulator/v1.2/mm/
-GSMA_TOKEN_URL=https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken
+GSMA_TOKEN_URL=https://sandbox.mobilemoneyapi.io/v1/oauth/accesstoken/
 ```
 
 -   Run sample code by staring the server and results can be view in browser console:
