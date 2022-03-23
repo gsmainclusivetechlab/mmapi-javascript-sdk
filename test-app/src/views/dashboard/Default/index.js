@@ -9,6 +9,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import FormGenerator from '../../../ui-component/formGenerator';
 import { RESET_FORM } from 'store/actions';
 
+import './dashboard.css';
+
 // ===========================|| DEFAULT DASHBOARD ||=========================== //
 
 const Dashboard = () => {
@@ -250,7 +252,11 @@ const Dashboard = () => {
                                         {customization.pageData.apiHeaders &&
                                             customization.pageData.apiHeaders.map(
                                                 (item, index) => (
-                                                    <div>
+                                                    <div
+                                                        className={
+                                                            'header-item'
+                                                        }
+                                                    >
                                                         <FormGenerator
                                                             key={index}
                                                             component={item}

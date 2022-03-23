@@ -274,13 +274,13 @@ const merchantPay = [
                     2
                 ),
             },
-            {
-                id: 'data',
-                required: true,
-                caption: 'CodeState',
-                type: 'string',
-                defaultValue: 'active',
-            },
+            // {
+            //     id: 'data',
+            //     required: true,
+            //     caption: 'CodeState',
+            //     type: 'string',
+            //     defaultValue: 'active',
+            // },
             {
                 id: 'callbackUrl',
                 required: false,
@@ -553,6 +553,7 @@ const merchantPay = [
                 ),
             },
         ],
+        params: [],
         testSuccessParams: [],
         testErrorParams: ['errorCategory', 'errorCode'],
     },
