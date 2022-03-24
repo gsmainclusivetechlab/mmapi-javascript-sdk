@@ -270,21 +270,41 @@ const disbursements = [
         id: 'individualDisbursementUsingPollingMethod',
         title: 'Individual Disbursement Using the Polling Method',
         type: 'item',
-        requestType: 'viewRequestState',
+        requestType: 'createDisbursementTransaction',
         requestCategory: 'Disbursement',
         target: true,
-        polling: true,
+        polling: false,
+
         returnClientCorrelation: true,
-        headers: [
+        headers: [],
+        params: [
             {
-                id: 'serverCorrelationId',
+                id: 'body',
                 required: true,
-                caption: 'Server-Correlation-ID',
-                type: 'string',
-                defaultValue: '8b7c5b72-3844-41ea-9d63-61cf9b5f83a1',
+                caption: 'JSON Body',
+                type: 'json',
+                defaultValue: JSON.stringify(
+                    {
+                        amount: '200.00',
+                        debitParty: [
+                            {
+                                key: 'accountid',
+                                value: '1',
+                            },
+                        ],
+                        creditParty: [
+                            {
+                                key: 'accountid',
+                                value: '30',
+                            },
+                        ],
+                        currency: 'RWF',
+                    },
+                    null,
+                    2
+                ),
             },
         ],
-        params: [],
         testSuccessParams: [
             'serverCorrelationId',
             'status',
@@ -292,6 +312,32 @@ const disbursements = [
         ],
         testErrorParams: ['errorCategory', 'errorCode'],
     },
+    // {
+    //     id: 'individualDisbursementUsingPollingMethod',
+    //     title: 'Individual Disbursement Using the Polling Method',
+    //     type: 'item',
+    //     requestType: 'viewRequestState',
+    //     requestCategory: 'Disbursement',
+    //     target: true,
+    //     polling: true,
+    //     returnClientCorrelation: true,
+    //     headers: [
+    //         {
+    //             id: 'serverCorrelationId',
+    //             required: true,
+    //             caption: 'Server-Correlation-ID',
+    //             type: 'string',
+    //             defaultValue: '8b7c5b72-3844-41ea-9d63-61cf9b5f83a1',
+    //         },
+    //     ],
+    //     params: [],
+    //     testSuccessParams: [
+    //         'serverCorrelationId',
+    //         'status',
+    //         'notificationMethod',
+    //     ],
+    //     testErrorParams: ['errorCategory', 'errorCode'],
+    // },
     {
         id: 'disbursementReversal',
         title: 'Disbursement Reversal',
