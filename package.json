@@ -6,6 +6,7 @@
     "scripts": {
         "test": "jest --watch --env=jsdom",
         "test:unit": "jest unit --watch --env=jsdom",
+        "test-ci": "jest unit --env=jsdom",
         "build": "webpack",
         "serve": "http-server dist -p 9000",
         "watch": "webpack --watch",
